@@ -1,0 +1,14 @@
+
+.login-card {
+    width: 300px;
+    margin: auto;
+}
+.login-btn {
+    display: block;
+    width: 200px;
+    margin: 0 auto 1rem;
+}
+
+.footer-row {
+    text-align: center;
+}
