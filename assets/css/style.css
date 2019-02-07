@@ -19,6 +19,9 @@
 .admin-row h4 {
     text-align: center;
 }
+.admin-panel .card-body {
+    min-height: 400px;
+}
 .control-labels label {
     margin: 10px 0 0 10px;
 }
@@ -50,9 +53,22 @@
     position: relative;
     top: 5px;
   }
-  
-
-
+.selection-controls {
+    flex-wrap: wrap;    
+}
+.select-add, .select-remove {
+    flex-basis: 100%;
+}
+.select-add button, .select-remove button {
+    min-width: 75px;
+}
+.fa-angle-left, .fa-angle-right {
+    padding: 10px;
+    cursor: pointer;
+}
+.fa-angle-left:hover, .fa-angle-right:hover {
+    color: blue;
+}
 .footer-row {
     text-align: center;
 }

@@ -42,7 +42,8 @@
                                 <label for="users">Groups</label>
                             </div>
                             <div class="row control-buttons">
-                                <a id="addGroup" href="#" data-toggle="modal" data-target="#addGroupModal"><i class="fa fa-plus fa-3x fa-border" aria-hidden="true"></i></a>
+                                <a id="addGroup" href="#" data-toggle="modal" data-target="#addGroupModal"><i
+                                        class="fa fa-plus fa-3x fa-border" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-search fa-3x fa-border" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-edit fa-3x fa-border" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-trash fa-3x fa-border" aria-hidden="true"></i></a>
@@ -78,7 +79,65 @@
             </div>
         </section>
         <section id="addNewGroup">
-            <h1>New Group</h1>
+            <div class="row mt-5 add-group-row">
+                <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 admin-panel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>My Users</h4>
+                        </div>
+                        <div class="card-body">
+                            <p id="loremSelectedUsers">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
+                                modi culpa asperiores
+                                vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
+                                deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
+                                consectetur adipisicing elit. Impedit modi culpa asperiores
+                                vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
+                                deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
+                                consectetur adipisicing elit. Impedit modi culpa asperiores
+                                vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
+                                deleniti expedita aperiam porro quasi perspiciatis!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 admin-panel align-self-center">
+                    <div class="selection-controls">
+                        <div class="select-add d-flex justify-content-center">
+                            <a href="admin.html"><a href="admin.html"><button id="addUsersSubmit" type="button"
+                                        class="btn btn-success mb-5">Finish</button></a>
+                        </div>
+                        <div class="select-add d-flex justify-content-center">
+                            <i id="selectAdd" class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="select-remove d-flex justify-content-center">
+                            <i id="selectRemove" class="fa fa-angle-right fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="select-remove d-flex justify-content-center">
+                            <a href="admin.html"><button id="cancelUsersSubmit" type="button"
+                                    class="btn btn-danger mt-5">Cancel</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 admin-panel">
+                    <div class="card">
+                        <div class="card-header user-search">
+                            <h4>Available Users</h4>
+                        </div>
+                        <div class="card-body">
+                            <input type="checkbox" > Select All
+                            <p id="loremAvailUsers">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
+                                modi culpa asperiores
+                                vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
+                                deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
+                                consectetur adipisicing elit. Impedit modi culpa asperiores
+                                vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
+                                deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
+                                consectetur adipisicing elit. Impedit modi culpa asperiores
+                                vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
+                                deleniti expedita aperiam porro quasi perspiciatis!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <footer>
             <div class="row footer-row mt-5">
@@ -89,35 +148,38 @@
         </footer>
     </div>
     <!-- Modal -->
-<div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addGroupModalLabel">New Group</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="form-group">
-                  <label for="newGroupName"><span class="required">*</span> Name</label>
-                  <input type="text" class="form-control" id="newGroupName" aria-describedby="groupName" placeholder="Enter a name for your group">
-                  <small id="groupNameHelp" class="form-text text-muted">Limit 140 characters</small>
+    <div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addGroupModalLabel">New Group</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="newGroupNameDesc">Give a description of your group..</label>
-                    <textarea class="form-control" id="newGroupNameDesc" rows="3"></textarea>
-                  </div>
-            </form>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="newGroupName"><span class="required">*</span> Name</label>
+                            <input type="text" class="form-control" id="newGroupName" aria-describedby="groupName"
+                                placeholder="Enter a name for your group">
+                            <small id="groupNameHelp" class="form-text text-muted">Limit 140 characters</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="newGroupNameDesc">Give a description of your group..</label>
+                            <textarea class="form-control" id="newGroupNameDesc" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button id="submitNewGroupName" type="button" class="btn btn-primary"
+                        data-dismiss="modal">Next</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button id="submitNewGroupName" type="button" class="btn btn-primary" data-dismiss="modal">Next</button>
-        </div>
-      </div>
     </div>
-  </div>
     <!-- begin js files -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
