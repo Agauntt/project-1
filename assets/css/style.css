@@ -1,0 +1,77 @@
+
+.required {
+    color: red;
+}
+.logo img {
+    margin: auto;
+  
+}
+.login-card {
+    width: 300px;
+    margin: auto;
+}
+.login-btn {
+    display: block;
+    width: 200px;
+    margin: 0 auto 1rem;
+    text-transform: uppercase;
+}
+.admin-row h4 {
+    text-align: center;
+}
+.admin-panel .card-body {
+    min-height: 400px;
+}
+.control-labels label {
+    margin: 10px 0 0 10px;
+}
+.control-buttons i {
+   margin-right: 5px;
+}
+
+.group {
+    border: 1px solid #e5e5e5;
+    min-height: 50px;
+    min-width: 300px;
+    margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    cursor: pointer;
+    
+}
+.group img {
+    float: left;
+    margin-right: 10px;
+    width: 50px;
+    
+}
+.group span {
+    display: inline;
+    font-size: 1.5rem;
+    position: relative;
+    top: 5px;
+  }
+.selection-controls {
+    flex-wrap: wrap;    
+}
+.select-add, .select-remove {
+    flex-basis: 100%;
+}
+.select-add button, .select-remove button {
+    min-width: 75px;
+}
+.fa-angle-left, .fa-angle-right {
+    padding: 10px;
+    cursor: pointer;
+}
+.fa-angle-left:hover, .fa-angle-right:hover {
+    color: blue;
+}
+#showGroupDesc p {
+    font-size: .75rem;
+}
+.footer-row {
+    text-align: center;
+}
