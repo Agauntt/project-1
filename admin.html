@@ -56,8 +56,8 @@
                         <div class="card-header">
                             <h4>My Groups</h4>
                         </div>
-                        <div class="card-body">
-                            <div class="group">
+                        <div id="myGroups" class="card-body">
+                            <div id="group1" class="group">
                                 <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
                                 <span>UT Coding Bootcamp (Nov. Tues/Thurs)</span>
                             </div>
@@ -67,11 +67,11 @@
                             </div>
                             <div class="group">
                                 <img src="https://via.placeholder.com/50">
-                                <span>Miscellaneous Group #1</span>
+                                <span>Random Group #1</span>
                             </div>
                             <div class="group">
                                 <img src="https://via.placeholder.com/50">
-                                <span>Miscellaneous Group #1</span>
+                                <span>Miscellaneous Group #2</span>
                             </div>
                         </div>
                     </div>
@@ -102,8 +102,7 @@
                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 admin-panel align-self-center">
                     <div class="selection-controls">
                         <div class="select-add d-flex justify-content-center">
-                            <a href="admin.html"><a href="admin.html"><button id="addUsersSubmit" type="button"
-                                        class="btn btn-success mb-5">Finish</button></a>
+                            <button id="addUsersSubmit" type="button" class="btn btn-success mb-5">Finish</button>
                         </div>
                         <div class="select-add d-flex justify-content-center">
                             <i id="selectAdd" class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
@@ -123,7 +122,7 @@
                             <h4>Available Users</h4>
                         </div>
                         <div class="card-body">
-                            <input type="checkbox" > Select All
+                            <input type="checkbox"> Select All
                             <p id="loremAvailUsers">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
                                 modi culpa asperiores
                                 vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
@@ -147,7 +146,8 @@
             </div>
         </footer>
     </div>
-    <!-- Modal -->
+    <!-- Modals -->
+    <!-- Add Group Modal -->
     <div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -176,6 +176,46 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button id="submitNewGroupName" type="button" class="btn btn-primary"
                         data-dismiss="modal">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Show Group Modal -->
+    <div class="modal fade" id="showGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addGroupModalLabel">UT Coding Bootcamp (Nov. Tues/Thurs)</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="showGroupModalBody" class="modal-body">
+                    <span id="showGroupDesc">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tenetur magni
+                            repudiandae eveniet quae temporibus quis in tempore quibusdam facilis voluptatum rem fuga
+                            qui sed, modi nulla aut eaque molestiae?</p>
+                    </span>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Activities</h5>
+                            <p class="card-text">You do not have any activites scheduled.
+                            </p>
+                            <a id="addNewActivity" href="#" class="btn btn-primary" data-dismiss="modal">Add Activity</a>
+                        </div>
+                    </div>
+                    <div class="card mt-1">
+                            <div class="card-body">
+                                <h5 class="card-title">Results</h5>
+                                <p class="card-text">There are no results to display.
+                                </p>
+                                <a id="viewResult" href="#" class="btn btn-secondary disabled">See Results</a>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
