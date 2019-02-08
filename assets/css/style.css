@@ -19,8 +19,12 @@
 .admin-row h4 {
     text-align: center;
 }
-.admin-panel .card-body {
+.admin-panel .card-body, .user-group-panel .card-body {
     min-height: 400px;
+}
+.user-group-panel .card-body {
+    min-width: 300px;
+    padding: .25rem;
 }
 .control-labels label {
     margin: 10px 0 0 10px;
@@ -28,8 +32,10 @@
 .control-buttons i {
    margin-right: 5px;
 }
-
-.group {
+.user-group:hover {
+    background: #e5e5e5;
+}
+.group, .user-group {
     border: 1px solid #e5e5e5;
     min-height: 50px;
     min-width: 300px;
@@ -47,11 +53,12 @@
     width: 50px;
     
 }
-.group span {
+.group span,  .user-group span {
     display: inline;
     font-size: 1.5rem;
     position: relative;
     top: 5px;
+    padding-right: 5px;
   }
 .selection-controls {
     flex-wrap: wrap;    
@@ -97,6 +104,18 @@
 }
 .card-deactive {
     opacity: .5;
+}
+.user-activity-card-body {
+    max-width: 200px;
+    margin: 0;
+    padding: .5rem;
+    font-size: .75rem;
+}
+.my-activity-card {
+    min-width: 300px;
+}
+.card-body.user-activity-card-body {
+    margin: auto;
 }
 .footer-row {
     text-align: center;

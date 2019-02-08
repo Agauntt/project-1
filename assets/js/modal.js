@@ -1,3 +1,14 @@
+function initAdmin(){
+    $(".group").hide();
+    $("#adminHome").show();
+    $("#addNewGroupUsers").hide();
+    $("#loremSelectedUsers").hide();
+    $("#addActivity").hide();       
+    $("#userGroupSelect").hide();
+    $("#userActivitySelect").hide();
+    
+}
+initAdmin();
 // Modal functionality
 $(document).ready(function(){
     // testing only
@@ -8,14 +19,7 @@ $(document).ready(function(){
        
         
     }
-    function initAdmin(){
-        $("#adminHome").show();
-        $("#addNewGroupUsers").hide();
-        $("#loremSelectedUsers").hide();
-        $("#addActivity").hide();
-        $(".group").hide();
-    }
-    initAdmin();
+   
     $("#submitNewGroupName").on("click", function(){
         $("#adminHome").hide();
         $("#addNewGroupUsers").show();
@@ -56,4 +60,14 @@ $(document).ready(function(){
         $("#addNewGroupUsers").hide();
         $("#addActivity").hide();    
     });
+    // test user submit login
+    $("#submitUserLogin").on("click", function(e){
+        $("#homePage").hide();
+        $("#userGroupSelect").show();
+    });
+    $("#userGroup1").on("click", function(e){
+        $("#userGroupSelect").hide();
+        $("#userActivitySelect").show();
+    });
+    
 });
