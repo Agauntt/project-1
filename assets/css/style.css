@@ -41,7 +41,7 @@
     cursor: pointer;
     
 }
-.group img {
+.group img, .modal-header img {
     float: left;
     margin-right: 10px;
     width: 50px;
@@ -71,6 +71,32 @@
 }
 #showGroupDesc p {
     font-size: .75rem;
+}
+.activity-row-header {
+    margin-left: .2rem;
+    
+}
+.activity-row-header h1 {
+    display: inline-block;
+    position: relative;
+    top: 12px;
+    left: 5px;
+}
+.activity-row-desc {
+    padding: 1rem 2rem;
+}
+.activity-row .card-body {
+    min-height: 200px;
+    padding: 0 2rem;
+}
+.activity-btn {
+    float: right;
+}
+.card-text {
+    margin-top: 20px;
+}
+.card-deactive {
+    opacity: .5;
 }
 .footer-row {
     text-align: center;
