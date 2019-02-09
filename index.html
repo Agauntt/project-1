@@ -23,19 +23,70 @@
                 </div>
             </div>
         </header>
-        <div class="container">
-            <div class="social-btns mt-5">
-                <button type="button" class="btn fb-btn login-btn" id="facebookLogin" data-target="#userLogin">
-                    <i class="fab fa-facebook-f"></i> Login with Facebook
-                </button>
-                <button type="button" class="btn google-btn login-btn" id="googleLogin" data-target="#userLogin">
-                    <i class="fab fa-google"></i> Login with Google
-                </button>
-                <button type="button" class="btn twitter-btn login-btn" id="twitterLogin" data-target="#userLogin">
-                    <i class="fab fa-twitter"></i> Login with Twitter
-                </button>
+        <section id="userLogin">
+            <div class="container">
+                <div class="social-btns mt-5">
+                    <button type="button" class="btn fb-btn login-btn" id="facebookLogin" data-target="#userLogin">
+                        <i class="fab fa-facebook-f"></i> Login with Facebook
+                    </button>
+                    <button type="button" class="btn google-btn login-btn" id="googleLogin" data-target="#userLogin">
+                        <i class="fab fa-google"></i> Login with Google
+                    </button>
+                    <button type="button" class="btn twitter-btn login-btn" id="twitterLogin" data-target="#userLogin">
+                        <i class="fab fa-twitter"></i> Login with Twitter
+                    </button>
+                </div>
             </div>
-        </div>
+        </section>
+        <section id="userGroupSelect">
+            <div class="row user-group-select-row mt-5">
+                <div class="col-12 d-flex justify-content-center user-group-panel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>My Groups</h4>
+                        </div>
+                        <div id="myGroups" class="card-body">
+                            <div id="userGroup1" class="user-group">
+                                <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
+                                <span>UT Coding Bootcamp (Nov. Tues/Thurs)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="userActivitySelect">
+            <div class="row user-group-select-row mt-5">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="card my-activity-card ">
+                        <div class="card-header">
+                            <h4>My Activities</h4>
+                        </div>
+                        <div class="card-body user-activity-card-body mt-3">
+                            <div class="card border-dark mb-3 ">
+                                <div class="card-header">2 Truths & A Lie</div>
+                                <div class="card-body user-activity-card-body ">
+                                    <p>Classic game of two truths & a lie. Provides admin user report
+                                        for recommended team building venues.</p>
+                                    <button id="startThisActivity" class="btn btn-success activity-btn">Start</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body user-activity-card-body card-deactive">
+                            <div class="card border-dark mb-3 ">
+                                <div class="card-header">Completed Activity</div>
+                                <div class="card-body user-activity-card-body ">
+                                    <p>Some quick example text to build on the card title and make up
+                                        the
+                                        bulk of the card's content.</p>
+                                    <button id="startThisActivity" class="btn btn-secondary activity-btn">Start</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- begin js files -->
         <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
