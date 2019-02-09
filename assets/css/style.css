@@ -10,12 +10,7 @@
     width: 300px;
     margin: auto;
 }
-.login-btn {
-    display: block;
-    width: 200px;
-    margin: 0 auto 1rem;
-    text-transform: uppercase;
-}
+
 .admin-row h4 {
     text-align: center;
 }
@@ -115,6 +110,43 @@
     min-width: 300px;
 }
 .card-body.user-activity-card-body {
+    margin: auto;
+}
+
+.fb-btn {
+    background-color: #3B5998;
+    color: white;
+  }
+  
+.twitter-btn {
+    background-color: #55ACEE;
+    color: white;
+  }  
+.google-btn {
+    background-color: #dd4b39;
+    color: white;
+  }
+.login-btn {
+    display: block;
+    width: 250px;
+    margin: 0 auto 1rem;
+    text-transform: uppercase;
+    opacity: .85;
+}
+.login-btn:hover {
+    color: #fff;
+    opacity: 1;
+}
+.login-btn i {
+    float: left;
+    position: relative;
+    top: 3px;
+}
+.social-btns {
+    background: #e5e5e5;
+    width: 350px;
+    padding: 3rem;
+    border-radius: 10px;
     margin: auto;
 }
 .footer-row {
