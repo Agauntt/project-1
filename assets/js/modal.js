@@ -69,5 +69,11 @@ $(document).ready(function(){
         $("#userGroupSelect").hide();
         $("#userActivitySelect").show();
     });
-    
+    // test user/admin redirect
+    $("#adminAsUser").on("click", function(){
+        window.location.href="index.html";
+    });
+    $("#adminAsAdmin").on("click", function(){
+        window.location.href="admin.html";
+    });
 });
