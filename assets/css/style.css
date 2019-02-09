@@ -149,6 +149,25 @@
     border-radius: 10px;
     margin: auto;
 }
+.user-details {
+    background: blue;
+    max-height: 35px;
+    padding: .2rem;
+    color: #fff;
+}
+.user-details img {
+    width: 25px;
+    height: 25px;
+    margin-right: .25rem;   
+}
+.user-details i {
+    margin-right: .25rem;
+    cursor: pointer;
+}
+.mini-nav i {
+    font-size: 30px;
+    cursor: pointer;
+}
 .footer-row {
     text-align: center;
 }
