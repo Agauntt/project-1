@@ -16,7 +16,8 @@ var config = {
   var user={
     displayName:'',
     emailId:'',
-    photoUrl:''
+    photoUrl:'',
+    uid:''
   }
 
 
@@ -141,6 +142,7 @@ function webAuth() {
     user.displayName=signIn.displayName;
     user.emailId=signIn.email;
     user.photoUrl=signIn.photoURL;
+    user.uid = signIn.uid;
    return user;
   }
   
