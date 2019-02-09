@@ -4,9 +4,9 @@ function initAdmin(){
     $("#addNewGroupUsers").hide();
     $("#loremSelectedUsers").hide();
     $("#addActivity").hide();       
-    $("#userGroupSelect").hide();
+    // $("#userGroupSelect").hide();
     $("#userActivitySelect").hide();
-    
+    $("#userLogin").hide()
 }
 initAdmin();
 // Modal functionality
