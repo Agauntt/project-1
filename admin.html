@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,26 +10,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">    
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script src="assets/js/particles.js"></script>
+</head>
+
 <body>
-    <div class="container">
+    <div id="particles-js"></div>
+    <div class="page-container">
+    <div class="container content-wrap">    
         <header>
             <div class="row">
-                <div class="col-4">
+                <div class="col-lg-4 d-none d-lg-block d-xl-block">
                 </div>
-                <div class="col-4 d-flex justify-content-center mt-1">
-                    <img src="https://via.placeholder.com/200x100" alt="Logo">
+                <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-center mt-3 logo">
+                    <img src="assets/images/Logo.svg" alt="Logo">
                 </div>
-                <div class="col-4 d-flex justify-content-end mt-2">
+                <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-end mt-2">
                     <div class="mini-nav mt-2">
                         <a href="index.html"><i class="fas fa-home fa-lg mr-2"></i></a>
                         <i class="fas fa-bell fa-lg mr-3"></i>
                     </div>
-                    <div class="user-details">
-                        <img src="https://via.placeholder.com/50x50" alt="Logo" id="userProfilePic">
-                        <span id="userProfileName">FirstName LastName</span>
-                        <i id="userProfileMoreInfo" class="fas fa-caret-down"></i>
+                    <div class="dropdown user-details">
+                        <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img src="https://via.placeholder.com/50x50" alt="Logo" id="userProfilePic">
+                            <span id="userProfileName">FirstName LastName</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
                     </div>
                 </div>
         </header>
@@ -233,140 +245,143 @@
                 </div>
             </div>
         </section>
-        <footer>
+        <!-- Modals -->
+    <!-- Add Group Modal -->
+    <div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addGroupModalLabel">New Group</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="newGroupName"><span class="required">*</span> Name</label>
+                        <input type="text" class="form-control" id="newGroupName" aria-describedby="groupName"
+                            placeholder="Enter a name for your group">
+                        <small id="groupNameHelp" class="form-text text-muted">Limit 140 characters</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="newGroupNameDesc">Give a description of your group..</label>
+                        <textarea class="form-control" id="newGroupNameDesc" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="groupProfilePic">Upload a group profile pic</label>
+                        <input type="file" class="form-control-file" id="groupProfilePic">
+                    </div>
+                    <small id="groupNameHelp" class="form-text text-muted">Must be 10mb or smaller</small>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button id="submitNewGroupName" type="button" class="btn btn-primary"
+                    data-dismiss="modal">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Show Group Modal -->
+<div class="modal fade" id="showGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
+                <h5 class="modal-title" id="addGroupModalLabel">UT Coding Bootcamp (Nov. Tues/Thurs)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="showGroupModalBody" class="modal-body">
+                <span id="showGroupDesc">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tenetur magni
+                        repudiandae eveniet quae temporibus quis in tempore quibusdam facilis voluptatum rem fuga
+                        qui sed, modi nulla aut eaque molestiae?</p>
+                </span>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Activities</h5>
+                        <p class="card-text">You do not have any activites scheduled.
+                        </p>
+                        <a id="addNewActivity" href="#" class="btn btn-primary" data-dismiss="modal">Add
+                            Activity</a>
+                    </div>
+                </div>
+                <div class="card mt-1">
+                    <div class="card-body">
+                        <h5 class="card-title">Results</h5>
+                        <p class="card-text">There are no results to display.
+                        </p>
+                        <a id="viewResult" href="#" class="btn btn-secondary disabled">See Results</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Show Group Modal -->
+<div class="modal fade" id="confirmAddActivityModal" tabindex="-1" role="dialog"
+    aria-labelledby="confirmAddActivityModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
+                <h5 class="modal-title" id="confirmAddActivityModalLabel">UT Coding Bootcamp (Nov. Tues/Thurs)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="confirmAddActivityModalBody" class="modal-body">
+                <h5>You are about to add:</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">2 Truths & A Lie</h5>
+                        <p class="card-text">Classic game of two truths & a lie. Provides admin user report for
+                            recommended team building venues.
+                        </p>
+                    </div>
+                </div>
+                <div class="card mt-1">
+                    <div class="card-body">
+                        <h5 class="card-title">User List</h5>
+                        <p class="card-text">Scollable list of profile pictures
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelAddActivity" type="button" class="btn btn-danger"
+                    data-dismiss="modal">Cancel</button>
+                <button id="confirmAddActivity" type="button" class="btn btn-success"
+                    data-dismiss="modal">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div> 
+</div>
+</div>
+    <footer>
+        <div class="container">
             <div class="row footer-row mt-5">
                 <div class="col-12">
                     <p>Copyright &copy; 2019 <br> TACT</p>
                 </div>
             </div>
-        </footer>
-    </div>
-    <!-- Modals -->
-    <!-- Add Group Modal -->
-    <div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addGroupModalLabel">New Group</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="newGroupName"><span class="required">*</span> Name</label>
-                            <input type="text" class="form-control" id="newGroupName" aria-describedby="groupName"
-                                placeholder="Enter a name for your group">
-                            <small id="groupNameHelp" class="form-text text-muted">Limit 140 characters</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="newGroupNameDesc">Give a description of your group..</label>
-                            <textarea class="form-control" id="newGroupNameDesc" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="groupProfilePic">Upload a group profile pic</label>
-                            <input type="file" class="form-control-file" id="groupProfilePic">
-                        </div>
-                        <small id="groupNameHelp" class="form-text text-muted">Must be 10mb or smaller</small>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button id="submitNewGroupName" type="button" class="btn btn-primary"
-                        data-dismiss="modal">Next</button>
-                </div>
-            </div>
         </div>
-    </div>
-    <!-- Show Group Modal -->
-    <div class="modal fade" id="showGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                    <h5 class="modal-title" id="addGroupModalLabel">UT Coding Bootcamp (Nov. Tues/Thurs)</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div id="showGroupModalBody" class="modal-body">
-                    <span id="showGroupDesc">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tenetur magni
-                            repudiandae eveniet quae temporibus quis in tempore quibusdam facilis voluptatum rem fuga
-                            qui sed, modi nulla aut eaque molestiae?</p>
-                    </span>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Activities</h5>
-                            <p class="card-text">You do not have any activites scheduled.
-                            </p>
-                            <a id="addNewActivity" href="#" class="btn btn-primary" data-dismiss="modal">Add
-                                Activity</a>
-                        </div>
-                    </div>
-                    <div class="card mt-1">
-                        <div class="card-body">
-                            <h5 class="card-title">Results</h5>
-                            <p class="card-text">There are no results to display.
-                            </p>
-                            <a id="viewResult" href="#" class="btn btn-secondary disabled">See Results</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Show Group Modal -->
-    <div class="modal fade" id="confirmAddActivityModal" tabindex="-1" role="dialog"
-        aria-labelledby="confirmAddActivityModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                    <h5 class="modal-title" id="confirmAddActivityModalLabel">UT Coding Bootcamp (Nov. Tues/Thurs)</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div id="confirmAddActivityModalBody" class="modal-body">
-                    <h5>You are about to add:</h5>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">2 Truths & A Lie</h5>
-                            <p class="card-text">Classic game of two truths & a lie. Provides admin user report for
-                                recommended team building venues.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card mt-1">
-                        <div class="card-body">
-                            <h5 class="card-title">User List</h5>
-                            <p class="card-text">Scollable list of profile pictures
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button id="cancelAddActivity" type="button" class="btn btn-danger"
-                        data-dismiss="modal">Cancel</button>
-                    <button id="confirmAddActivity" type="button" class="btn btn-success"
-                        data-dismiss="modal">Confirm</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    </footer>
     <!-- begin js files -->
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-database.js"></script>
-    <script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="assets/js/app.js"></script>
@@ -378,5 +393,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
+
+    <!-- end js files -->
 </body>
-</head>
+
+</html>

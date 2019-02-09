@@ -1,9 +1,17 @@
 body {
-    background: #00BCD4;  
-    overflow-x: hidden;
+    background: #98C2EC;  
+    overflow-x: hidden;    
 }
-.bg {
-    background: red;
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+.content-wrapper {
+    padding-bottom: 2.5rem;
+}
+.logo img {
+    width: 250px;
+    height: 62px;
 }
 #particles-js canvas {
     display: block;
@@ -50,6 +58,11 @@ body {
 }
 .control-buttons i {
    margin-right: 5px;
+   color: #3788DB;
+   opacity: .85;
+}
+.control-buttons i:hover {
+    opacity: 1;
 }
 .user-group:hover {
     background: #e5e5e5;
@@ -119,7 +132,7 @@ body {
     float: right;
 }
 .card-header {
-    background: #0097A7;
+    background: #1C5C9B;
     color: #fff;
     border: none;
 }
@@ -182,7 +195,7 @@ body {
     margin: auto;
 }
 .user-details {
-    background: #009688;
+    background: #573E8A;
     border-radius: 5px;
     max-height: 35px;
     padding: .2rem .33rem;
@@ -193,7 +206,7 @@ body {
     text-decoration: none;
 }
 a.dropdown-item {
-    color: #009688;
+    color: #573E8A;
 }
 .user-details img {
     width: 25px;
@@ -207,12 +220,18 @@ a.dropdown-item {
 .mini-nav i {
     font-size: 25px;
     cursor: pointer;
-    color: #009688;
+    color: #573E8A;
     opacity: .85;
 }
 .mini-nav i:hover {
     opacity: 1;
 }
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+  }
 .footer-row {
     text-align: center;
 }
