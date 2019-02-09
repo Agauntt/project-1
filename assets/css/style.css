@@ -1,6 +1,13 @@
 body {
     background: #98C2EC;  
-    overflow-x: hidden;
+    overflow-x: hidden;    
+}
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+.content-wrapper {
+    padding-bottom: 2.5rem;
 }
 .logo img {
     width: 250px;
@@ -219,6 +226,12 @@ a.dropdown-item {
 .mini-nav i:hover {
     opacity: 1;
 }
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+  }
 .footer-row {
     text-align: center;
 }
