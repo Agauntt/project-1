@@ -1,25 +1,9 @@
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyDWuA0J2rffhNNunnrf8CrM9jwNku2t0jg",
-  authDomain: "first-group-project-users.firebaseapp.com",
-  databaseURL: "https://first-group-project-users.firebaseio.com",
-  projectId: "first-group-project-users",
-  storageBucket: "first-group-project-users.appspot.com",
-  messagingSenderId: "709505113322"
-  };
-  firebase.initializeApp(config);
 
   var signIn ="";
   var signInSuccess = "";
 //Provider default Google
   var provider = new firebase.auth.GoogleAuthProvider();
-  var user={
-    displayName:'',
-    emailId:'',
-    photoUrl:'',
-    uid:''
-  }
-
+ 
  $(document).ready(function(){
   signIn=Cookies.getJSON('userDetail');
     if (signIn==null)
@@ -151,7 +135,7 @@ function webAuth() {
   });
   function redirectToLoginSuccessPage(){
     
-    getUserDetailsFromCookies();
+    setUsersFromCookies();
     if (signInSuccess == "true") {
       $("#userProfileName").text(user.displayName);
       $("#userProfilePic").attr("src",user.photoUrl);
@@ -167,20 +151,5 @@ function webAuth() {
        
       }
     }
-  }
-  function getUserDetailsFromCookies(){
-    
-    signIn=Cookies.getJSON('userDetail')
-    if (signIn!=null)
-    {
-      user.displayName=signIn.displayName;
-      user.emailId=signIn.email;
-      user.photoUrl=signIn.photoURL;
-      user.uid = signIn.uid;
-      
-    }
-    
-    
-   return user;
   }
   

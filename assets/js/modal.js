@@ -11,7 +11,7 @@ function initAdmin(){
 initAdmin();
 // Modal functionality
 $(document).ready(function(){
-    getUserDetailsFromCookies();
+ 
     // testing only
     function showAddUsers() {
         $("#adminHome").show();
