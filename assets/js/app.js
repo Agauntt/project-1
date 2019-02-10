@@ -61,7 +61,7 @@ $("#submitNewGroupName").on("click", function(){
                 group_id: key,     
                 group_short_desc: shortDesc,                            
                 group_long_desc : longDesc,
-                createdBy : "Trent Davis",
+                createdBy : user.displayName,
                 created : firebase.database.ServerValue.TIMESTAMP                  
                    
         };
