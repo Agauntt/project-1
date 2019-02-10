@@ -162,7 +162,10 @@ $("#submitNewGroupName").on("click", function(){
     $("#confirmAddActivityBtn").on("click", function(){
         var groupID = $(this).attr("data-group-id");
         var activityID = $(this).attr("data-activity-id");
-        console.log(groupID, activityID);
+        var query = db.ref('groups').orderByChild('group_id').equalTo(groupID);
+        query.on("child_added", function(snapshot) {
+        snapshot.ref.child('activites').push({activity_id: activityID });
+        });
         $("#adminHome").show();
         $("#addGroupActivity").hide(); 
         $("#confirmAddActivityModal").modal("hide");
