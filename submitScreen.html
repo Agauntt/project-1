@@ -14,16 +14,57 @@
 </head>
 
 <body>
-    <header>
-        <h2 class="text-center" id="selectScreenHeader">Selection Screen</span></h2>
-    </header>
-<br>
-<br>
     <div class="container">
+        <header>
+            <h2 class="text-center" id="selectScreenHeader">Selection Screen</span></h2>
+        </header>
+<br>
+<br>
+ 
     <h4 class="text-center">Select two truths and one lie from the dropdown list below. Indicate which selection is the lie by selecting the button next to the chosen lie. Click "submit" when you have completed this.</h4>
 <br>
-    <div class="wrapper" id="truthOrLieSubmitBox">
-        <div class="dropdown">
+    <div class="wrapper text-center" id="truthOrLieSubmitBox">
+        <select class="dropdown" id="option1">
+            <option value="1-1">Truth or Lie 1-1</option>
+            <option value="1-2">Truth or Lie 1-2</option>
+            <option value="1-3">Truth or Lie 1-3</option>
+        </select>
+        <span id="radio1">
+                <input type="radio" name="lieSelect"> Lie
+            </span>
+<br>
+        <select class="dropdown" id="option2">
+            <option value="2-1">Truth or Lie 2-1</option>
+            <option value="2-2">Truth or Lie 2-2</option>
+            <option value="2-3">Truth or Lie 2-3</option>
+        </select>
+        <span id="radio2">
+                <input type="radio" name="lieSelect"> Lie
+            </span>
+<br>
+        <select class="dropdown" id="option2">
+            <option value="3-1">Truth or Lie 2-1</option>
+            <option value="3-2">Truth or Lie 2-2</option>
+            <option value="3-3">Truth or Lie 3-3</option>
+        </select>
+        <span id="radio2">
+                <input type="radio" name="lieSelect"> Lie
+            </span>
+<br>
+            <button class="btn btn-success" id="inputSubmit">Submit</button>
+    </div>
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="assets/js/gameLogic.js"></script>
+</body>
+</html>
+
+
+ <!-- <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Truth or lie dropdown one
             </button> 
@@ -31,9 +72,9 @@
                     <input type="radio" name="lieSelect"> Lie
                 </span>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <button class="dropdown-item text-center" type="button">Truth or Lie 1-1</button>
-              <button class="dropdown-item text-center" type="button">Truth or Lie 1-2</button>
-              <button class="dropdown-item text-center" type="button">Truth or Lie 1-3</button>
+              <button class="dropdown-item text-center" id="1-1" type="button">Truth or Lie 1-1</button>
+              <button class="dropdown-item text-center" id="1-2" type="button">Truth or Lie 1-2</button>
+              <button class="dropdown-item text-center" id="1-3" type="button">Truth or Lie 1-3</button>
             </div>
           </div>
     <br>
@@ -63,15 +104,4 @@
             <button class="dropdown-item text-center" type="button">Truth or Lie 3-2</button>
             <button class="dropdown-item text-center" type="button">Truth or Lie 3-3</button>
             </div>
-            </div>
-    <br>
-            <button class="btn btn-success" id="inputSubmit">Submit</button>
-    </div>
-        
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-</body>
-</html>
+            </div> -->
