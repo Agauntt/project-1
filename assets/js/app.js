@@ -1,5 +1,15 @@
 // start particles.js
 particlesJS.load('particles-js', 'assets/js/particles.json');
+function initAll(){
+    $("#adminHome").show();
+    $("#addNewGroupUsers").hide();
+    $("#loremSelectedUsers").hide();
+    $("#addActivity").hide();       
+    $("#userGroupSelect").hide();
+    $("#userActivitySelect").hide();
+    $("#newGroupNameError").hide();
+}
+initAll();
 $(document).ready(function(){
     var db = firebase.database();
 // add new group modal functions 

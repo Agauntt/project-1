@@ -1,14 +1,4 @@
-function initAdmin(){
-    // $(".group").hide();
-    $("#adminHome").show();
-    $("#addNewGroupUsers").hide();
-    $("#loremSelectedUsers").hide();
-    $("#addActivity").hide();       
-    $("#userGroupSelect").hide();
-    $("#userActivitySelect").hide();
-   // $("#userLogin").hide()
-}
-initAdmin();
+
 // Modal functionality
 $(document).ready(function(){
     getUserDetailsFromCookies();
