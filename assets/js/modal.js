@@ -1,5 +1,5 @@
 function initAdmin(){
-    $(".group").hide();
+    // $(".group").hide();
     $("#adminHome").show();
     $("#addNewGroupUsers").hide();
     $("#loremSelectedUsers").hide();
@@ -21,10 +21,9 @@ $(document).ready(function(){
         
     }
    
-    $("#submitNewGroupName").on("click", function(){
-        $("#adminHome").hide();
-        $("#addNewGroupUsers").show();
-    });
+    // $("#submitNewGroupName").on("click", function(){
+
+    // });
     // test onclick function
     $("#selectAdd").on("click", function(){
         $("#loremAvailUsers").hide();
