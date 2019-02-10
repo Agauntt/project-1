@@ -3,11 +3,7 @@
   var signInSuccess = "";
 //Provider default Google
   var provider = new firebase.auth.GoogleAuthProvider();
-  
-
-
- $(document).on("click","#googleLogin",function(){
-   
+   $(document).on("click","#googleLogin",function(){
     signIn=Cookies.getJSON('userDetail');
     if (signIn==null)
     {
@@ -20,7 +16,6 @@
  })
 
  $(document).on("click","#facebookLogin",function(){
-
   signIn=Cookies.getJSON('userDetail');
     if (signIn==null)
     {   $("#userLogin").show();
@@ -53,8 +48,8 @@ function webAuth() {
         // [START_EXCLUDE]
         console.log("user :", user);
         signInSuccess = "true";
-        addGroupUser();
-        authNav();
+        addGroupUser(true);
+        authNav(true);
         // [END_EXCLUDE]
       }).catch(function(error) {
         // Handle Errors here.
@@ -75,7 +70,7 @@ function webAuth() {
       alert("An auth domain configuration is required"); 
         }
         else if (errorCode === 'auth/cancelled-popup-request') {
-            alert("Popup Google sign in was canceled");
+            alert("Popup sign in was canceled");
         }
         else if (errorCode === 'auth/operation-not-allowed') {
             alert("Operation is not allowed");
@@ -87,7 +82,7 @@ function webAuth() {
             alert("Sign in popup got blocked");
         }
         else if (errorCode === 'auth/popup-closed-by-user') {
-            alert("Google sign in popup got cancelled");
+            alert("The sign in popup got cancelled");
         }
         else if (errorCode === 'auth/unauthorized-domain') {
             alert("Unauthorized domain");

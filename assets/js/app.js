@@ -52,7 +52,7 @@ $(document).ready(function(){
         
         }
         $(".user-details").show();
-        authNav();
+        authNav(false);
          
      }
      else{
@@ -62,7 +62,7 @@ $(document).ready(function(){
          $("#userGroupSelect").hide();
          $(".user-details").hide();
          }
-         authNav();
+         authNav(false);
      }
   
 // add new group modal functions 
@@ -217,10 +217,8 @@ function isUserAuthenticated(){
      }
 }
 
-    
-
  var user={
-  displayName:'',
+ displayName:'',
   emailId:'',
   photoUrl:'',
   uid:''
@@ -242,9 +240,9 @@ function setUsersFromCookies(){
  return true;
 }
 
- function authNav(){
+ function authNav(isFreshLogin){
   var isCookie= setUsersFromCookies();
-   if (isCookie==false || typeof signIn === "undefined") 
+   if (isCookie==false) 
    {
         if (page=="index.html"){
           $("#userLogin").show();
@@ -259,13 +257,13 @@ function setUsersFromCookies(){
    else {
      if (signIn.email === "chandnibpatel@gmail.com")
      {
-       console.log("admin");
-       if (page=="index.html")
+      if (page=="index.html" && isFreshLogin)
        window.location.replace( "../project-1/continueAs.html");
      }
      else{
        $("#userLogin").hide();
        $("#userGroupSelect").show();
+       $(".user-details").show();
      }
    }
  }
@@ -276,10 +274,8 @@ var addGroupUser=function(){
     {
      var myRef = db.ref().push();
      var key = myRef.key;
-   
-   
-    
-     db.ref('groupUsers').child(user.displayName).set(user)
+    user.uid=key;
+    db.ref('groupUsers').child(user.displayName).set(user)
          .then(function (snap) {
              console.log("Success!");
          }, function (err) {
