@@ -29,7 +29,7 @@ function initAll(){
     $("#adminHome").show();
     $("#addNewGroupUsers").hide();
     $("#loremSelectedUsers").hide();
-    $("#addActivity").hide();       
+    $("#addGroupActivity").hide();       
     $("#userGroupSelect").hide();
     $("#userActivitySelect").hide();
     $("#newGroupNameError").hide();
@@ -50,9 +50,7 @@ $("#submitNewGroupName").on("click", function(){
        var newGroupName = $("#newGroupName").val();
        var newGroupNameDesc = $("#newGroupNameDesc").val();
        saveGroupToDB(newGroupName, newGroupNameDesc);
-       $("#addGroupModal").modal('hide');
-       $("#adminHome").hide();
-       $("#addNewGroupUsers").show();       
+       $("#addGroupModal").modal('hide');      
     }
    });
     function saveGroupToDB(name, desc) {
@@ -71,14 +69,15 @@ $("#submitNewGroupName").on("click", function(){
             }, function (err) {
                 console.log(err + " error");
             });
-    }    
+    }
+    // populate My Groups on admin page with groups created by user.uid    
     function populateMyGroups(admin){  
     
     db.ref('groups').orderByChild('createdBy').equalTo(admin).on("value", function(snap) {      
         $("#myGroups").empty();
         snap.forEach(function(data) {
            var newDiv = $("<div>");
-           newDiv.addClass("group");
+           newDiv.addClass("admin-group");
            newDiv.attr("id", data.val().group_id);
            newDiv.html("<span>" + data.key + "</span>");
            $("#myGroups").append(newDiv);
@@ -86,6 +85,88 @@ $("#submitNewGroupName").on("click", function(){
     });
     }
     populateMyGroups("Trent Davis");
+    function clearFirebaseDataHTML() {
+        $("#showGroupModalTitle").empty();
+        $("#addGroupActivityTitle").empty();
+        $("#showGroupCreatedBy").empty();
+        $("#showGroupShortDesc").empty();
+        $("#addGroupActivityShortDesc").empty();
+        $("#showGroupLongDesc").empty() ;
+        $("#addNewGroupActivity").attr("data-group-id", ""); 
+        $("#showGroupResults").attr("data-group-id", ""); 
+    }
+    // show My Group info and Add Activity/See Results
+    $(document).on("click", ".admin-group", function(){
+        clearFirebaseDataHTML();
+        var group_id = $(this).attr("id");
+        db.ref('groups').orderByChild('group_id').equalTo(group_id).on("value", function(snap) {     
+            snap.forEach(function(child) {
+               var name = child.key;
+                var cv = child.val();
+                $("#showGroupModalTitle").text(name);
+                $("#addGroupActivityTitle").text(name);                
+                $("#showGroupCreatedBy").text(cv.createdBy);
+                $("#showGroupCreatedOn").text(cv.created);
+                $("#showGroupShortDesc").text(cv.group_short_desc);
+                $("#addGroupActivityShortDesc").text(cv.group_short_desc);                
+                $("#showGroupLongDesc").text(cv.group_long_desc); 
+                $("#addNewGroupActivity").attr("data-group-id", cv.group_id);     
+                $("#showGroupResults").attr("data-group-id", cv.group_id);                   
+              });
+        });
+            $("#showGroupModal").modal('show');
+    });
+    // show Add New Group Activity section
+    $("#addNewGroupActivity").on("click", function(){
+        $("#adminHome").hide();
+        $("#addGroupActivity").show();
+        var dataGroupID = $(this).attr("data-group-id");
+        db.ref('activities').on("value", function(snap) {      
+            $("#addActivityRow").empty();
+            snap.forEach(function(data) {  
+                var dv =  data.val();
+               var html = "<div class='card-body'>";
+               html += "<div class='card border-dark mb-3' style='max-width: 18rem;'>";
+               html += "<div class='card-header'>" + data.key + "</div>";
+               html += "<div class='card-body'>";
+               html += "<p class='card-text'>" + dv.activity_desc + "</p>";
+               html += "<button data-group-id='" + dataGroupID + "' data-activity-id='" + dv.activity_id + "'";
+               html += "data-activity-name='" + data.key + "' data-activity-desc='" + dv.activity_desc + "'";
+               html += "id='addThisActivity' class='btn btn-success activity-btn'>Add to  Group</button>";
+               html += "</div></div></div>";
+               $("#addActivityRow").append(html);
+ 
+            });
+        });
+    });
+    // hide Add New Group Activity when 'Back to admin panel' is clicked
+    $("#hideAddActivitySection").on("click", function(){
+        $("#addGroupActivity").hide();
+        $("#adminHome").show();       
+    });
+   
+    // Show cofirm add activity modal on click
+    $(document).on("click", ".activity-btn", function(){
+        $('#confirmAddActivityModal').modal('show'); 
+        var groupID = $(this).attr("data-group-id");
+        var activityID = $(this).attr("data-activity-id");
+        var activityName = $(this).attr("data-activity-name");
+        var activityDesc = $(this).attr("data-activity-desc");
+        $("#confirmAddActivityName").text(activityName);
+        $("#confirmAddActivityDesc").text(activityDesc);
+        $("#confirmAddActivityBtn").attr("data-group-id", groupID);
+        $("#confirmAddActivityBtn").attr("data-activity-id", activityID);
+    });
+
+    // Add confirm add activity to Firebase
+    $("#confirmAddActivityBtn").on("click", function(){
+        var groupID = $(this).attr("data-group-id");
+        var activityID = $(this).attr("data-activity-id");
+        console.log(groupID, activityID);
+        $("#adminHome").show();
+        $("#addGroupActivity").hide(); 
+        $("#confirmAddActivityModal").modal("hide");
+    });
 
     // Logout functionality
        $(document).on("click","#logOutLink",function(){
