@@ -122,6 +122,9 @@ span#addGroupActivityShortDesc {
 #showGroupDesc p, .created-by {
     font-size: .75rem;
 }
+span#showGroupLongDesc {
+    font-size: .8rem;    
+}
 .activity-row-header {
     margin-left: .2rem;
     
