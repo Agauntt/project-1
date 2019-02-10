@@ -171,10 +171,14 @@ function webAuth() {
   function getUserDetailsFromCookies(){
     
     signIn=Cookies.getJSON('userDetail')
-    user.displayName=signIn.displayName;
-    user.emailId=signIn.email;
-    user.photoUrl=signIn.photoURL;
-    user.uid = signIn.uid;
+    if (signIn!=null)
+    {
+      user.displayName=signIn.displayName;
+      user.emailId=signIn.email;
+      user.photoUrl=signIn.photoURL;
+      user.uid = signIn.uid;
+      
+    }
     
     
    return user;
