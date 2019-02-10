@@ -58,11 +58,11 @@ $("#submitNewGroupName").on("click", function(){
         var myRef = db.ref().push();
         var key = myRef.key;
         var data = { 
-                group_id: key,     
-                group_short_desc: shortDesc,                            
-                group_long_desc : longDesc,
-                createdBy : user.displayName,
-                created : firebase.database.ServerValue.TIMESTAMP                  
+            group_id: key,
+            group_short_desc: shortDesc,                            
+            group_long_desc : longDesc,
+            createdBy : user.displayName,
+            created : firebase.database.ServerValue.TIMESTAMP                 
                    
         };
         db.ref('groups').child(name).set(data)
