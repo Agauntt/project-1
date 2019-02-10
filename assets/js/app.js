@@ -37,8 +37,34 @@ function initAll(){
     $("#userGroupSelect").show();
 }
 initAll();
+var path = window.location.pathname;
+var page = path.split("/").pop();
+var signIn;
+  var signInSuccess = "";
+  var db = firebase.database();
 $(document).ready(function(){
-    var db = firebase.database();
+   
+    //Check url 
+    if(isUserAuthenticated()){
+        if (page=="index.html"){
+         $("#userLogin").hide();
+         $("#userGroupSelect").show();
+        
+        }
+        $(".user-details").show();
+        authNav(false);
+         
+     }
+     else{
+         console.log("in signup");
+         if (page=="index.html"){
+         $("#userLogin").show();
+         $("#userGroupSelect").hide();
+         $(".user-details").hide();
+         }
+         authNav(false);
+     }
+  
 // add new group modal functions 
 $("#submitNewGroupName").on("click", function(){
     // add new group validation
@@ -59,7 +85,7 @@ $("#submitNewGroupName").on("click", function(){
         var data = { 
                 group_id: key,                                 
                 group_long_desc : desc,
-                createdBy : "Trent Davis",
+                createdBy : user.displayName,
                 created : firebase.database.ServerValue.TIMESTAMP                  
                    
         };
@@ -174,9 +200,92 @@ $("#submitNewGroupName").on("click", function(){
     // Logout functionality
        $(document).on("click","#logOutLink",function(){
         console.log("Logout");
+        firebase.auth().signOut();
         Cookies.remove('userDetail');
         $("#userLogin").show();
+        
         window.location.replace( "../project-1/index.html");
      
    });
+
+   
 });
+function isUserAuthenticated(){
+    signIn=Cookies.getJSON("userDetail");
+     if(signIn==null || typeof signIn === "undefined"){
+       return false;
+     }
+     else{
+         return true;
+     }
+}
+
+ var user={
+ displayName:'',
+  emailId:'',
+  photoUrl:'',
+  uid:''
+}
+function setUsersFromCookies(){
+   signIn=Cookies.getJSON('userDetail');
+  if(signIn===null || typeof signIn === "undefined"){
+    return false;
+  }
+  else{
+  user.displayName=signIn.displayName;
+  user.emailId=signIn.email;
+  user.photoUrl=signIn.photoURL;
+  user.uid = signIn.uid;
+  $("#userProfileName").text(user.displayName);
+  $("#userProfilePic").attr("src",user.photoUrl);
+ }
+
+ return true;
+}
+
+ function authNav(isFreshLogin){
+  var isCookie= setUsersFromCookies();
+   if (isCookie==false) 
+   {
+        if (page=="index.html"){
+          $("#userLogin").show();
+          $("#userGroupSelect").hide();
+          $(".user-details").hide();
+      }
+      else
+      {
+          window.location.replace( "../project-1/index.html");
+      }
+   }
+   else {
+     if (signIn.email === "chandnibpatel@gmail.com")
+     {
+      if (page=="index.html" && isFreshLogin)
+       window.location.replace( "../project-1/continueAs.html");
+     }
+     else{
+       $("#userLogin").hide();
+       $("#userGroupSelect").show();
+       $(".user-details").show();
+     }
+   }
+ }
+//Add Users
+
+var addGroupUser=function(){
+    if (setUsersFromCookies())
+    {
+     var myRef = db.ref().push();
+     var key = myRef.key;
+    user.uid=key;
+    db.ref('groupUsers').child(user.displayName).set(user)
+         .then(function (snap) {
+             console.log("Success!");
+         }, function (err) {
+             console.log(err + " error");
+         });
+    
+     }
+   }
+
+ 
