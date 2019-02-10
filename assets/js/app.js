@@ -74,12 +74,13 @@ $("#submitNewGroupName").on("click", function(){
     // else grab values and fire db function - hide/show necessary sections
     } else {
        var newGroupName = $("#newGroupName").val();
-       var newGroupNameDesc = $("#newGroupNameDesc").val();
-       saveGroupToDB(newGroupName, newGroupNameDesc);
+       var newGroupNameShortDesc = $("#newGroupNameShortDesc").val();
+       var newGroupNameLongDesc = $("#newGroupNameLongDesc").val();
+       saveGroupToDB(newGroupName, newGroupNameShortDesc, newGroupNameLongDesc);
        $("#addGroupModal").modal('hide');      
     }
    });
-    function saveGroupToDB(name, desc) {
+    function saveGroupToDB(name, shortDesc, longDesc) {
         var myRef = db.ref().push();
         var key = myRef.key;
         var data = { 
@@ -118,7 +119,8 @@ $("#submitNewGroupName").on("click", function(){
         $("#showGroupCreatedBy").empty();
         $("#showGroupShortDesc").empty();
         $("#addGroupActivityShortDesc").empty();
-        $("#showGroupLongDesc").empty() ;
+        $("#showGroupLongDesc").empty();
+        $("#adminActivitiesScheduled").empty();
         $("#addNewGroupActivity").attr("data-group-id", ""); 
         $("#showGroupResults").attr("data-group-id", ""); 
     }
@@ -137,6 +139,16 @@ $("#submitNewGroupName").on("click", function(){
                 $("#showGroupShortDesc").text(cv.group_short_desc);
                 $("#addGroupActivityShortDesc").text(cv.group_short_desc);                
                 $("#showGroupLongDesc").text(cv.group_long_desc); 
+                if(child.hasChild('activities')) {
+                    child.child('activities').forEach(function(children){
+                    var activity_id = children.val().activity_id;                    
+                    db.ref('activities').orderByChild('activity_id').equalTo(activity_id).on("child_added", function(snap) {
+                        $("#adminActivitiesScheduled").append("<li>" + snap.key + "</li>");    
+                    });                                                              
+                    });
+                } else {
+                    $("#adminActivitiesScheduled").text("<li>You do not have any activities scheduled</li>");  
+                }                
                 $("#addNewGroupActivity").attr("data-group-id", cv.group_id);     
                 $("#showGroupResults").attr("data-group-id", cv.group_id);                   
               });
@@ -191,7 +203,7 @@ $("#submitNewGroupName").on("click", function(){
         var activityID = $(this).attr("data-activity-id");
         var query = db.ref('groups').orderByChild('group_id').equalTo(groupID);
         query.on("child_added", function(snapshot) {
-        snapshot.ref.child('activites').push({activity_id: activityID });
+        snapshot.ref.child('activities').push({activity_id: activityID });
         });
         $("#adminHome").show();
         $("#addGroupActivity").hide(); 
