@@ -9,33 +9,58 @@ var config = {
   };
   firebase.initializeApp(config);
 
-
   var signIn ="";
   var signInSuccess = "";
-//Provider defult Google
+//Provider default Google
   var provider = new firebase.auth.GoogleAuthProvider();
- 
+  var user={
+    displayName:'',
+    emailId:'',
+    photoUrl:'',
+    uid:''
+  }
+
+ $(document).ready(function(){
+  signIn=Cookies.getJSON('userDetail');
+    if (signIn==null)
+    {
+      console.log("in signup")
+      $("#userLogin").show();
+      $("#userGroupSelect").hide();
+    }
+    else{
+      $("#userLogin").hide();
+      $("#userGroupSelect").show();
+      
+      signInSuccess='true';
+      redirectToLoginSuccessPage();
+    }
+   });
 
 
  $(document).on("click","#googleLogin",function(){
-    signIn=JSON.parse(localStorage.getItem('userDetail'));
+   
+    signIn=Cookies.getJSON('userDetail');
     if (signIn==null)
     {
-     provider = new firebase.auth.GoogleAuthProvider();
-    
+      console.log("in signup")
+      provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('https://www.googleapis.com/auth/plus.login');
-    webAuth();
+      webAuth();
     }
-    else
-    redirectToLoginSuccessPage();
+    else{
+      signInSuccess = "true";
+      redirectToLoginSuccessPage();
+    }
+    
   
  })
 
  $(document).on("click","#facebookLogin",function(){
 
-    signIn=JSON.parse(localStorage.getItem('userDetail'));
+  signIn=Cookies.getJSON('userDetail');
     if (signIn==null)
-    {
+    {   $("#userLogin").show();
         provider = new firebase.auth.FacebookAuthProvider();
       
     webAuth();
@@ -44,6 +69,8 @@ var config = {
     redirectToLoginSuccessPage();
   
  });
+
+
 
 function webAuth() {
     if (!firebase.auth().currentUser) {
@@ -57,10 +84,15 @@ function webAuth() {
         // The signed-in user info.
         var user = result.user;
         // The signed-in user info.
-        localStorage.setItem('userDetail', JSON.stringify(user))
+        var date = new Date();
+        var minutes = 30;
+        date.setTime(date.getTime() + (minutes * 60 * 1000));
+        Cookies.set("userDetail", JSON.stringify(user), { expires: date });
+       //Cookies.set Cookies.set('userDetail', JSON.stringify(user))
         // [START_EXCLUDE]
         console.log("user :", user);
         signInSuccess = "true";
+        
         redirectToLoginSuccessPage();
         // [END_EXCLUDE]
       }).catch(function(error) {
@@ -112,15 +144,39 @@ function webAuth() {
     }
   
   }
-
-
   firebase.auth().signOut().then(function() {
     // Sign-out successful.
   }).catch(function(error) {
     // An error happened.
   });
   function redirectToLoginSuccessPage(){
+    
+    getUserDetailsFromCookies();
     if (signInSuccess == "true") {
+      $("#userProfileName").text(user.displayName);
+      $("#userProfilePic").attr("src",user.photoUrl);
+      if (signIn.email === "chandnibpatel@gmail.com")
+      {
+        console.log("admin");
         window.location.replace( "../project-1/continueAs.html");
-       }
+      }
+      else{
+        
+        $("#userLogin").hide();
+        $("#userGroupSelect").show();
+       
+      }
+    }
   }
+  function getUserDetailsFromCookies(){
+    
+    signIn=Cookies.getJSON('userDetail')
+    user.displayName=signIn.displayName;
+    user.emailId=signIn.email;
+    user.photoUrl=signIn.photoURL;
+    user.uid = signIn.uid;
+    
+    
+   return user;
+  }
+  
