@@ -13,6 +13,10 @@
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="assets/js/particles.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-database.js"></script>
+    <script src="assets/js/firebase.js"></script>
 </head>
 
 <body>
@@ -69,7 +73,7 @@
                             <div class="card-header">
                                 <h4>My Groups</h4>
                             </div>
-                            <div id="myGroups" class="card-body">
+                            <div id="myUserGroups" class="card-body">
                                 <div id="userGroup1" class="user-group">
                                     <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
                                     <span>UT Coding Bootcamp (Nov. Tues/Thurs)</span>
@@ -125,16 +129,14 @@
         </div>
     </footer>
     <!-- begin js files -->
-    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-database.js"></script>
+    
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <!-- <script src="assets/js/view.js"></script> -->
-    <script src="assets/js/firebaseConnection.js"></script>
+    <!-- <script src="assets/js/firebase.js"></script> -->
     <script src="assets/js/app.js"></script>
-    <script src="assets/js/auth.js"></script>
+     <script src="assets/js/auth.js"></script>
     <script src="assets/js/modal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"

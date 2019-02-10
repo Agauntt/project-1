@@ -13,7 +13,10 @@
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="assets/js/particles.js"></script>
-    
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-database.js"></script>
+    <script src="assets/js/firebase.js"></script>
 </head>
 
 <body>
@@ -83,99 +86,22 @@
                                 <h4>My Groups</h4>
                             </div>
                             <div id="myGroups" class="card-body">
-                                <!-- <div id="group1" class="group">
-                                    <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                                    <span>UT Coding Bootcamp (Nov. Tues/Thurs)</span>
-                                </div>
-                                <div class="group">
-                                    <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                                    <span>UT Coding Bootcamp (Nov. Mon/Wed)</span>
-                                </div>
-                                <div class="group">
-                                    <img src="https://via.placeholder.com/50">
-                                    <span>Random Group #1</span>
-                                </div>
-                                <div class="group">
-                                    <img src="https://via.placeholder.com/50">
-                                    <span>Miscellaneous Group #2</span>
-                                </div> -->
+
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section id="addNewGroupUsers">
-                <div class="row mt-5 add-group-row">
-                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 admin-panel">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>My Users</h4>
-                            </div>
-                            <div class="card-body">
-                                <p id="loremSelectedUsers">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Impedit
-                                    modi culpa asperiores
-                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
-                                    accusamus
-                                    deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Impedit modi culpa asperiores
-                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
-                                    accusamus
-                                    deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Impedit modi culpa asperiores
-                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
-                                    accusamus
-                                    deleniti expedita aperiam porro quasi perspiciatis!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 admin-panel align-self-center">
-                        <div class="selection-controls">
-                            <div class="select-add d-flex justify-content-center">
-                                <button id="addUsersSubmit" type="button" class="btn btn-success mb-5">Finish</button>
-                            </div>
-                            <div class="select-add d-flex justify-content-center">
-                                <i id="selectAdd" class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
-                            </div>
-                            <div class="select-remove d-flex justify-content-center">
-                                <i id="selectRemove" class="fa fa-angle-right fa-2x" aria-hidden="true"></i>
-                            </div>
-                            <div class="select-remove d-flex justify-content-center">
-                                <a href="admin.html"><button id="cancelUsersSubmit" type="button"
-                                        class="btn btn-danger mt-5">Cancel</button></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 admin-panel">
-                        <div class="card">
-                            <div class="card-header user-search">
-                                <h4>Available Users</h4>
-                            </div>
-                            <div class="card-body">
-                                <input type="checkbox"> Select All
-                                <p id="loremAvailUsers">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-                                    modi culpa asperiores
-                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
-                                    accusamus
-                                    deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Impedit modi culpa asperiores
-                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
-                                    accusamus
-                                    deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Impedit modi culpa asperiores
-                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
-                                    accusamus
-                                    deleniti expedita aperiam porro quasi perspiciatis!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="addActivity">
+            
+            <section id="addGroupActivity">
                 <div class="row activity-row-header mt-5">
+                    <div class="col-12 mb-2 mini-nav">
+                        <span id="hideAddActivitySection"><i class="fas fa-angle-double-left"></i> Back to Admin Panel</span>
+                    </div>
                     <div class="col-12">
-                        <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                        <h1>UT Coding Bootcamp (Tues/Thurs)</h1>
+                        <!-- <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4"> -->
+                        <h1 id="addGroupActivityTitle"></h1>
+                        <span id="addGroupActivityShortDesc"></span>
                     </div>
                 </div>
                 <div class="col-12 mt-3">
@@ -184,8 +110,8 @@
                             <h4>Activities</h4>
                         </div>
                         <h5 class="activity-row-desc">Recommended for you...</h5>
-                        <div class="row activity-row">
-                            <div class="card-body">
+                        <div id="addActivityRow" class="row activity-row">
+                            <!-- <div class="card-body">
                                 <div class="card border-dark mb-3" style="max-width: 18rem;">
                                     <div class="card-header">2 Truths & A Lie</div>
                                     <div class="card-body">
@@ -196,8 +122,8 @@
                                             Group</button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-body card-deactive">
+                            </div> -->
+                            <!-- <div class="card-body card-deactive">
                                 <div class="card border-dark mb-3" style="max-width: 18rem;">
                                     <div class="card-header">Random Activity</div>
                                     <div class="card-body">
@@ -218,45 +144,9 @@
                                             bulk of the card's content.</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                         </div>
-                        <div class="row activity-row">
-                            <div class="card-body card-deactive">
-                                <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                    <div class="card-header">Random Activity</div>
-                                    <div class="card-body">
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up
-                                            the
-                                            bulk of the card's content.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body card-deactive">
-                                <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                    <div class="card-header">Random Activity</div>
-                                    <div class="card-body">
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up
-                                            the
-                                            bulk of the card's content.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body card-deactive">
-                                <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                    <div class="card-header">Random Activity</div>
-                                    <div class="card-body">
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up
-                                            the
-                                            bulk of the card's content.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </section>
@@ -285,6 +175,14 @@
                                     <label for="newGroupNameDesc">Give a description of your group..</label>
                                     <textarea class="form-control" id="newGroupNameDesc" rows="3"></textarea>
                                 </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="publicPrivate" id="groupPublic" value="0" checked="checked">
+                                    <label class="form-check-label" for="groupPublic">Public</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="publicPrivate" id="groupPrivate" value="1" disabled>
+                                    <label class="form-check-label" for="groupPrivate">Private</label>
+                                  </div>
                                 <!-- not ready to implement uploading of profile pictures -->
                                 <!-- <div class="form-group">
                                     <label for="groupProfilePic">Upload a group profile pic</label>
@@ -302,30 +200,29 @@
                 </div>
             </div>
             <!-- Show Group Modal -->
-            <div class="modal fade" id="showGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
+            <div class="modal fade" id="showGroupModal" tabindex="-1" role="dialog" aria-labelledby="showGroupModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                            <h5 class="modal-title" id="addGroupModalLabel">UT Coding Bootcamp (Nov. Tues/Thurs)</h5>
+                            <!-- <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4"> -->
+                            <h5 class="modal-title" id="showGroupModalTitle"></h5><span id="showGroupShortDesc"></span>
+                                                       
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                        </div>
+                        </div>                        
+                            <div class="created-by pl-3">
+                                Created by <span id="showGroupCreatedBy"></span> on <span id="showGroupCreatedOn"></span>
+                            </div> 
                         <div id="showGroupModalBody" class="modal-body">
-                            <span id="showGroupDesc">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tenetur magni
-                                    repudiandae eveniet quae temporibus quis in tempore quibusdam facilis voluptatum rem
-                                    fuga
-                                    qui sed, modi nulla aut eaque molestiae?</p>
-                            </span>
+                            <span id="showGroupLongDesc"></span>
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Activities</h5>
                                     <p class="card-text">You do not have any activites scheduled.
                                     </p>
-                                    <a id="addNewActivity" href="#" class="btn btn-primary" data-dismiss="modal">Add
+                                    <a id="addNewGroupActivity" href="#" class="btn btn-primary" data-dismiss="modal">Add
                                         Activity</a>
                                 </div>
                             </div>
@@ -334,7 +231,7 @@
                                     <h5 class="card-title">Results</h5>
                                     <p class="card-text">There are no results to display.
                                     </p>
-                                    <a id="viewResult" href="#" class="btn btn-secondary disabled">See Results</a>
+                                    <a id="showGroupResults" href="#" class="btn btn-secondary disabled">See Results</a>
                                 </div>
                             </div>
                         </div>
@@ -344,44 +241,30 @@
                     </div>
                 </div>
             </div>
-            <!-- Show Group Modal -->
+            <!-- Show confirm Ac Modal -->
             <div class="modal fade" id="confirmAddActivityModal" tabindex="-1" role="dialog"
                 aria-labelledby="confirmAddActivityModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                            <h5 class="modal-title" id="confirmAddActivityModalLabel">UT Coding Bootcamp (Nov.
-                                Tues/Thurs)</h5>
+                        <div class="modal-header">                           
+                            <h5 class="modal-title" id="confirmAddActivityModalLabel">You are about to add:</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div id="confirmAddActivityModalBody" class="modal-body">
-                            <h5>You are about to add:</h5>
+                        <div id="confirmAddActivityModalBody" class="modal-body">                           
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">2 Truths & A Lie</h5>
-                                    <p class="card-text">Classic game of two truths & a lie. Provides admin user report
-                                        for
-                                        recommended team building venues.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card mt-1">
-                                <div class="card-body">
-                                    <h5 class="card-title">User List</h5>
-                                    <p class="card-text">Scollable list of profile pictures
-                                    </p>
-
+                                    <h5 id="confirmAddActivityName" class="card-title"></h5>
+                                    <p id="confirmAddActivityDesc" class="card-text"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button id="cancelAddActivity" type="button" class="btn btn-danger"
                                 data-dismiss="modal">Cancel</button>
-                            <button id="confirmAddActivity" type="button" class="btn btn-success"
-                                data-dismiss="modal">Confirm</button>
+                            <button id="confirmAddActivityBtn" type="button" class="btn btn-success"
+                               >Confirm</button>
                         </div>
                     </div>
                 </div>
@@ -398,18 +281,13 @@
         </div>
     </footer>
     <!-- begin js files -->
-    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-database.js"></script>
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         
-        <script src="assets/js/firebaseConnection.js"></script>
-        <script src="assets/js/firebaseDb.js"></script>
-        <script src="assets/js/view.js"></script>
-        <script src="assets/js/app.js"></script>
-        <script src="assets/js/modal.js"></script>
+    <script src="assets/js/app.js"></script>  
+    <script src="assets/js/modal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>

@@ -3,23 +3,7 @@
   var signInSuccess = "";
 //Provider default Google
   var provider = new firebase.auth.GoogleAuthProvider();
- 
- $(document).ready(function(){
-  signIn=Cookies.getJSON('userDetail');
-    if (signIn==null)
-    {
-      console.log("in signup")
-      $("#userLogin").show();
-      $("#userGroupSelect").hide();
-    }
-    else{
-      $("#userLogin").hide();
-      $("#userGroupSelect").show();
-      
-      signInSuccess='true';
-      redirectToLoginSuccessPage();
-    }
-   });
+  
 
 
  $(document).on("click","#googleLogin",function(){
@@ -32,12 +16,7 @@
       provider.addScope('https://www.googleapis.com/auth/plus.login');
       webAuth();
     }
-    else{
-      signInSuccess = "true";
-      redirectToLoginSuccessPage();
-    }
     
-  
  })
 
  $(document).on("click","#facebookLogin",function(){
@@ -49,9 +28,7 @@
       
     webAuth();
     }
-    else
-    redirectToLoginSuccessPage();
-  
+    
  });
 
 
@@ -76,8 +53,8 @@ function webAuth() {
         // [START_EXCLUDE]
         console.log("user :", user);
         signInSuccess = "true";
-        
-        redirectToLoginSuccessPage();
+        addGroupUser();
+        authNav();
         // [END_EXCLUDE]
       }).catch(function(error) {
         // Handle Errors here.
@@ -133,23 +110,5 @@ function webAuth() {
   }).catch(function(error) {
     // An error happened.
   });
-  function redirectToLoginSuccessPage(){
-    
-    setUsersFromCookies();
-    if (signInSuccess == "true") {
-      $("#userProfileName").text(user.displayName);
-      $("#userProfilePic").attr("src",user.photoUrl);
-      if (signIn.email === "chandnibpatel@gmail.com")
-      {
-        console.log("admin");
-        window.location.replace( "../project-1/continueAs.html");
-      }
-      else{
-        
-        $("#userLogin").hide();
-        $("#userGroupSelect").show();
-       
-      }
-    }
-  }
-  
+ 
+ 

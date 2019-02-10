@@ -58,19 +58,8 @@ var addGroup =function(name,desc){
 }
 
 
-function populateMyGroups(admin){  
-    
-    db.ref('groups').orderByChild('createdBy').equalTo(admin).on("value", function(snap) {      
-        $("#myGroups").empty();
-        snap.forEach(function(data) {
-           var newDiv = $("<div>");
-           newDiv.addClass("group");
-           newDiv.attr("id", data.val().group_id);
-           newDiv.html("<span>" + data.key + "</span>");
-           $("#myGroups").append(newDiv);
-        });
-    });
-    }
+
+
 
 
 
