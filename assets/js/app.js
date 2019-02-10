@@ -9,7 +9,7 @@ particlesJS.load('particles-js', 'assets/js/particles.json');
 //     storageBucket: "first-group-project-users.appspot.com",
 //     messagingSenderId: "709505113322"
 //   };
-  firebase.initializeApp(config);
+//   firebase.initializeApp(config);
 $(document).ready(function(){
     var db = firebase.database();
 // add new group modal functions 
