@@ -10,364 +10,384 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">    
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="assets/js/particles.js"></script>
+    
 </head>
 
 <body>
     <div id="particles-js"></div>
     <div class="page-container">
-    <div class="container content-wrap">    
-        <header>
-            <div class="row">
-                <div class="col-lg-4 d-none d-lg-block d-xl-block">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-center mt-3 logo">
-                    <img src="assets/images/Logo.svg" alt="Logo">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-end mt-2">
-                    <div class="mini-nav mt-2">
-                        <a href="index.html"><i class="fas fa-home fa-lg mr-2"></i></a>
-                        <i class="fas fa-bell fa-lg mr-3"></i>
+        <div class="container content-wrap">
+            <header>
+                <div class="row">
+                    <div class="col-lg-4 d-none d-lg-block d-xl-block">
                     </div>
-                    <div class="dropdown user-details">
-                        <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <img src="https://via.placeholder.com/50x50" alt="Logo" id="userProfilePic">
-                            <span id="userProfileName">FirstName LastName</span>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Profile</a>
-                            <a class="dropdown-item" href="#">Logout</a>
+                    <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-center mt-3 logo">
+                        <img src="assets/images/Logo.svg" alt="Logo">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-end mt-2">
+                        <div class="mini-nav mt-2">
+                            <a href="index.html"><i class="fas fa-home fa-lg mr-2"></i></a>
+                            <i class="fas fa-bell fa-lg mr-3"></i>
+                        </div>
+                        <div class="dropdown user-details">
+                            <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="https://via.placeholder.com/50x50" alt="Logo" id="userProfilePic">
+                                <span class="d-none d-lg-inline d-xl-inline" id="userProfileName">FirstName
+                                    LastName</span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="#">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+            </header>
+            <section id="adminHome">
+                <div class="row mt-5 admin-row">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 admin-panel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Admin Controls</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row control-labels">
+                                    <label for="users">Users</label>
+                                </div>
+                                <div class="row control-buttons">
+                                    <a href="continueAs.html"><i class="fa fa-home fa-3x fa-border"
+                                            aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-user-plus fa-3x fa-border" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-user-edit fa-3x fa-border" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-user-minus fa-3x fa-border" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="row control-labels">
+                                    <label for="users">Groups</label>
+                                </div>
+                                <div class="row control-buttons">
+                                    <a id="addGroup" href="#" data-toggle="modal" data-target="#addGroupModal"><i
+                                            class="fa fa-plus fa-3x fa-border" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-search fa-3x fa-border" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-edit fa-3x fa-border" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-trash fa-3x fa-border" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 admin-panel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>My Groups</h4>
+                            </div>
+                            <div id="myGroups" class="card-body">
+                                <div id="group1" class="group">
+                                    <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
+                                    <span>UT Coding Bootcamp (Nov. Tues/Thurs)</span>
+                                </div>
+                                <div class="group">
+                                    <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
+                                    <span>UT Coding Bootcamp (Nov. Mon/Wed)</span>
+                                </div>
+                                <div class="group">
+                                    <img src="https://via.placeholder.com/50">
+                                    <span>Random Group #1</span>
+                                </div>
+                                <div class="group">
+                                    <img src="https://via.placeholder.com/50">
+                                    <span>Miscellaneous Group #2</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-        </header>
-        <section id="adminHome">
-            <div class="row mt-5 admin-row">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 admin-panel">
+            </section>
+            <section id="addNewGroupUsers">
+                <div class="row mt-5 add-group-row">
+                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 admin-panel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>My Users</h4>
+                            </div>
+                            <div class="card-body">
+                                <p id="loremSelectedUsers">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Impedit
+                                    modi culpa asperiores
+                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
+                                    accusamus
+                                    deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Impedit modi culpa asperiores
+                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
+                                    accusamus
+                                    deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Impedit modi culpa asperiores
+                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
+                                    accusamus
+                                    deleniti expedita aperiam porro quasi perspiciatis!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 admin-panel align-self-center">
+                        <div class="selection-controls">
+                            <div class="select-add d-flex justify-content-center">
+                                <button id="addUsersSubmit" type="button" class="btn btn-success mb-5">Finish</button>
+                            </div>
+                            <div class="select-add d-flex justify-content-center">
+                                <i id="selectAdd" class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <div class="select-remove d-flex justify-content-center">
+                                <i id="selectRemove" class="fa fa-angle-right fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <div class="select-remove d-flex justify-content-center">
+                                <a href="admin.html"><button id="cancelUsersSubmit" type="button"
+                                        class="btn btn-danger mt-5">Cancel</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 admin-panel">
+                        <div class="card">
+                            <div class="card-header user-search">
+                                <h4>Available Users</h4>
+                            </div>
+                            <div class="card-body">
+                                <input type="checkbox"> Select All
+                                <p id="loremAvailUsers">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
+                                    modi culpa asperiores
+                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
+                                    accusamus
+                                    deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Impedit modi culpa asperiores
+                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
+                                    accusamus
+                                    deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Impedit modi culpa asperiores
+                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
+                                    accusamus
+                                    deleniti expedita aperiam porro quasi perspiciatis!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="addActivity">
+                <div class="row activity-row-header mt-5">
+                    <div class="col-12">
+                        <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
+                        <h1>UT Coding Bootcamp (Tues/Thurs)</h1>
+                    </div>
+                </div>
+                <div class="col-12 mt-3">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Admin Controls</h4>
+                            <h4>Activities</h4>
                         </div>
-                        <div class="card-body">
-                            <div class="row control-labels">
-                                <label for="users">Users</label>
+                        <h5 class="activity-row-desc">Recommended for you...</h5>
+                        <div class="row activity-row">
+                            <div class="card-body">
+                                <div class="card border-dark mb-3" style="max-width: 18rem;">
+                                    <div class="card-header">2 Truths & A Lie</div>
+                                    <div class="card-body">
+                                        <p class="card-text">Classic game of two truths & a lie. Provides admin user
+                                            report
+                                            for recommended team building venues.</p>
+                                        <button id="addThisActivity" class="btn btn-success activity-btn">Add to
+                                            Group</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row control-buttons">
-                                <a href="continueAs.html"><i class="fa fa-home fa-3x fa-border"
-                                        aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-user-plus fa-3x fa-border" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-user-edit fa-3x fa-border" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-user-minus fa-3x fa-border" aria-hidden="true"></i></a>
+                            <div class="card-body card-deactive">
+                                <div class="card border-dark mb-3" style="max-width: 18rem;">
+                                    <div class="card-header">Random Activity</div>
+                                    <div class="card-body">
+                                        <p class="card-text">Some quick example text to build on the card title and make
+                                            up
+                                            the
+                                            bulk of the card's content.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row control-labels">
-                                <label for="users">Groups</label>
+                            <div class="card-body card-deactive">
+                                <div class="card border-dark mb-3" style="max-width: 18rem;">
+                                    <div class="card-header">Random Activity</div>
+                                    <div class="card-body">
+                                        <p class="card-text">Some quick example text to build on the card title and make
+                                            up
+                                            the
+                                            bulk of the card's content.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row control-buttons">
-                                <a id="addGroup" href="#" data-toggle="modal" data-target="#addGroupModal"><i
-                                        class="fa fa-plus fa-3x fa-border" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-search fa-3x fa-border" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-edit fa-3x fa-border" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-trash fa-3x fa-border" aria-hidden="true"></i></a>
+
+                        </div>
+                        <div class="row activity-row">
+                            <div class="card-body card-deactive">
+                                <div class="card border-dark mb-3" style="max-width: 18rem;">
+                                    <div class="card-header">Random Activity</div>
+                                    <div class="card-body">
+                                        <p class="card-text">Some quick example text to build on the card title and make
+                                            up
+                                            the
+                                            bulk of the card's content.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body card-deactive">
+                                <div class="card border-dark mb-3" style="max-width: 18rem;">
+                                    <div class="card-header">Random Activity</div>
+                                    <div class="card-body">
+                                        <p class="card-text">Some quick example text to build on the card title and make
+                                            up
+                                            the
+                                            bulk of the card's content.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body card-deactive">
+                                <div class="card border-dark mb-3" style="max-width: 18rem;">
+                                    <div class="card-header">Random Activity</div>
+                                    <div class="card-body">
+                                        <p class="card-text">Some quick example text to build on the card title and make
+                                            up
+                                            the
+                                            bulk of the card's content.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 admin-panel">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>My Groups</h4>
+            </section>
+            <!-- Modals -->
+            <!-- Add Group Modal -->
+            <div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addGroupModalLabel">New Group</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div id="myGroups" class="card-body">
-                            <div id="group1" class="group">
-                                <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                                <span>UT Coding Bootcamp (Nov. Tues/Thurs)</span>
-                            </div>
-                            <div class="group">
-                                <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                                <span>UT Coding Bootcamp (Nov. Mon/Wed)</span>
-                            </div>
-                            <div class="group">
-                                <img src="https://via.placeholder.com/50">
-                                <span>Random Group #1</span>
-                            </div>
-                            <div class="group">
-                                <img src="https://via.placeholder.com/50">
-                                <span>Miscellaneous Group #2</span>
-                            </div>
+                        <div class="modal-body">
+                            <form name="addNewGroupForm">
+                                <div class="form-group">
+                                    <label for="newGroupName"><span class="required">*</span> Name</label>
+                                    <input name="newGroupName" type="text" class="form-control" id="newGroupName"
+                                        aria-describedby="groupName" placeholder="Enter a name for your group">
+                                    <small id="groupNameHelp" class="form-text text-muted">Limit 140 characters</small>
+                                    <span class="required" id="newGroupNameError">Please enter a group name</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newGroupNameDesc">Give a description of your group..</label>
+                                    <textarea class="form-control" id="newGroupNameDesc" rows="3"></textarea>
+                                </div>
+                                <!-- not ready to implement uploading of profile pictures -->
+                                <!-- <div class="form-group">
+                                    <label for="groupProfilePic">Upload a group profile pic</label>
+                                    <input type="file" class="form-control-file" id="groupProfilePic">
+                                </div>
+                                <small id="groupNameHelp" class="form-text text-muted">Must be 10mb or smaller</small> -->
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button id="submitNewGroupName" type="button" class="btn btn-primary"
+                               >Next</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <section id="addNewGroupUsers">
-            <div class="row mt-5 add-group-row">
-                <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 admin-panel">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>My Users</h4>
+            <!-- Show Group Modal -->
+            <div class="modal fade" id="showGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
+                            <h5 class="modal-title" id="addGroupModalLabel">UT Coding Bootcamp (Nov. Tues/Thurs)</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="card-body">
-                            <p id="loremSelectedUsers">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-                                modi culpa asperiores
-                                vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
-                                deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Impedit modi culpa asperiores
-                                vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
-                                deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Impedit modi culpa asperiores
-                                vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
-                                deleniti expedita aperiam porro quasi perspiciatis!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 admin-panel align-self-center">
-                    <div class="selection-controls">
-                        <div class="select-add d-flex justify-content-center">
-                            <button id="addUsersSubmit" type="button" class="btn btn-success mb-5">Finish</button>
-                        </div>
-                        <div class="select-add d-flex justify-content-center">
-                            <i id="selectAdd" class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
-                        </div>
-                        <div class="select-remove d-flex justify-content-center">
-                            <i id="selectRemove" class="fa fa-angle-right fa-2x" aria-hidden="true"></i>
-                        </div>
-                        <div class="select-remove d-flex justify-content-center">
-                            <a href="admin.html"><button id="cancelUsersSubmit" type="button"
-                                    class="btn btn-danger mt-5">Cancel</button></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 admin-panel">
-                    <div class="card">
-                        <div class="card-header user-search">
-                            <h4>Available Users</h4>
-                        </div>
-                        <div class="card-body">
-                            <input type="checkbox"> Select All
-                            <p id="loremAvailUsers">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-                                modi culpa asperiores
-                                vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
-                                deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Impedit modi culpa asperiores
-                                vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
-                                deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Impedit modi culpa asperiores
-                                vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore accusamus
-                                deleniti expedita aperiam porro quasi perspiciatis!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="addActivity">
-            <div class="row activity-row-header mt-5">
-                <div class="col-12">
-                    <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                    <h1>UT Coding Bootcamp (Tues/Thurs)</h1>
-                </div>
-            </div>
-            <div class="col-12 mt-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Activities</h4>
-                    </div>
-                    <h5 class="activity-row-desc">Recommended for you...</h5>
-                    <div class="row activity-row">
-                        <div class="card-body">
-                            <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                <div class="card-header">2 Truths & A Lie</div>
+                        <div id="showGroupModalBody" class="modal-body">
+                            <span id="showGroupDesc">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tenetur magni
+                                    repudiandae eveniet quae temporibus quis in tempore quibusdam facilis voluptatum rem
+                                    fuga
+                                    qui sed, modi nulla aut eaque molestiae?</p>
+                            </span>
+                            <div class="card">
                                 <div class="card-body">
+                                    <h5 class="card-title">Activities</h5>
+                                    <p class="card-text">You do not have any activites scheduled.
+                                    </p>
+                                    <a id="addNewActivity" href="#" class="btn btn-primary" data-dismiss="modal">Add
+                                        Activity</a>
+                                </div>
+                            </div>
+                            <div class="card mt-1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Results</h5>
+                                    <p class="card-text">There are no results to display.
+                                    </p>
+                                    <a id="viewResult" href="#" class="btn btn-secondary disabled">See Results</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Show Group Modal -->
+            <div class="modal fade" id="confirmAddActivityModal" tabindex="-1" role="dialog"
+                aria-labelledby="confirmAddActivityModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
+                            <h5 class="modal-title" id="confirmAddActivityModalLabel">UT Coding Bootcamp (Nov.
+                                Tues/Thurs)</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div id="confirmAddActivityModalBody" class="modal-body">
+                            <h5>You are about to add:</h5>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">2 Truths & A Lie</h5>
                                     <p class="card-text">Classic game of two truths & a lie. Provides admin user report
-                                        for recommended team building venues.</p>
-                                    <button id="addThisActivity" class="btn btn-success activity-btn">Add to
-                                        Group</button>
+                                        for
+                                        recommended team building venues.
+                                    </p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-body card-deactive">
-                            <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                <div class="card-header">Random Activity</div>
+                            <div class="card mt-1">
                                 <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk of the card's content.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body card-deactive">
-                            <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                <div class="card-header">Random Activity</div>
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk of the card's content.</p>
-                                </div>
-                            </div>
-                        </div>
+                                    <h5 class="card-title">User List</h5>
+                                    <p class="card-text">Scollable list of profile pictures
+                                    </p>
 
-                    </div>
-                    <div class="row activity-row">
-                        <div class="card-body card-deactive">
-                            <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                <div class="card-header">Random Activity</div>
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk of the card's content.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body card-deactive">
-                            <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                <div class="card-header">Random Activity</div>
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk of the card's content.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body card-deactive">
-                            <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                <div class="card-header">Random Activity</div>
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk of the card's content.</p>
-                                </div>
-                            </div>
+                        <div class="modal-footer">
+                            <button id="cancelAddActivity" type="button" class="btn btn-danger"
+                                data-dismiss="modal">Cancel</button>
+                            <button id="confirmAddActivity" type="button" class="btn btn-success"
+                                data-dismiss="modal">Confirm</button>
                         </div>
                     </div>
-
                 </div>
-            </div>
-        </section>
-        <!-- Modals -->
-    <!-- Add Group Modal -->
-    <div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addGroupModalLabel">New Group</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="newGroupName"><span class="required">*</span> Name</label>
-                        <input type="text" class="form-control" id="newGroupName" aria-describedby="groupName"
-                            placeholder="Enter a name for your group">
-                        <small id="groupNameHelp" class="form-text text-muted">Limit 140 characters</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="newGroupNameDesc">Give a description of your group..</label>
-                        <textarea class="form-control" id="newGroupNameDesc" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="groupProfilePic">Upload a group profile pic</label>
-                        <input type="file" class="form-control-file" id="groupProfilePic">
-                    </div>
-                    <small id="groupNameHelp" class="form-text text-muted">Must be 10mb or smaller</small>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button id="submitNewGroupName" type="button" class="btn btn-primary"
-                    data-dismiss="modal">Next</button>
             </div>
         </div>
     </div>
-</div>
-<!-- Show Group Modal -->
-<div class="modal fade" id="showGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                <h5 class="modal-title" id="addGroupModalLabel">UT Coding Bootcamp (Nov. Tues/Thurs)</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div id="showGroupModalBody" class="modal-body">
-                <span id="showGroupDesc">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tenetur magni
-                        repudiandae eveniet quae temporibus quis in tempore quibusdam facilis voluptatum rem fuga
-                        qui sed, modi nulla aut eaque molestiae?</p>
-                </span>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Activities</h5>
-                        <p class="card-text">You do not have any activites scheduled.
-                        </p>
-                        <a id="addNewActivity" href="#" class="btn btn-primary" data-dismiss="modal">Add
-                            Activity</a>
-                    </div>
-                </div>
-                <div class="card mt-1">
-                    <div class="card-body">
-                        <h5 class="card-title">Results</h5>
-                        <p class="card-text">There are no results to display.
-                        </p>
-                        <a id="viewResult" href="#" class="btn btn-secondary disabled">See Results</a>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Show Group Modal -->
-<div class="modal fade" id="confirmAddActivityModal" tabindex="-1" role="dialog"
-    aria-labelledby="confirmAddActivityModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                <h5 class="modal-title" id="confirmAddActivityModalLabel">UT Coding Bootcamp (Nov. Tues/Thurs)</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div id="confirmAddActivityModalBody" class="modal-body">
-                <h5>You are about to add:</h5>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">2 Truths & A Lie</h5>
-                        <p class="card-text">Classic game of two truths & a lie. Provides admin user report for
-                            recommended team building venues.
-                        </p>
-                    </div>
-                </div>
-                <div class="card mt-1">
-                    <div class="card-body">
-                        <h5 class="card-title">User List</h5>
-                        <p class="card-text">Scollable list of profile pictures
-                        </p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="cancelAddActivity" type="button" class="btn btn-danger"
-                    data-dismiss="modal">Cancel</button>
-                <button id="confirmAddActivity" type="button" class="btn btn-success"
-                    data-dismiss="modal">Confirm</button>
-            </div>
-        </div>
-    </div>
-</div> 
-</div>
-</div>
     <footer>
         <div class="container">
             <div class="row footer-row mt-5">
@@ -385,15 +405,14 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="assets/js/app.js"></script>
-    <script src="assets/js/auth.js"></script>
+    <!-- <script src="assets/js/auth.js"></script> -->
     <script src="assets/js/modal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
-
+        crossorigin="anonymous"></script>    
     <!-- end js files -->
 </body>
 

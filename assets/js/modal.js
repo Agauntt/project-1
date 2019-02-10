@@ -6,7 +6,8 @@ function initAdmin(){
     $("#addActivity").hide();       
     // $("#userGroupSelect").hide();
     $("#userActivitySelect").hide();
-    $("#userLogin").hide()
+    $("#userLogin").hide();
+    $("#newGroupNameError").hide();
 }
 initAdmin();
 // Modal functionality
@@ -20,10 +21,9 @@ $(document).ready(function(){
         
     }
    
-    $("#submitNewGroupName").on("click", function(){
-        $("#adminHome").hide();
-        $("#addNewGroupUsers").show();
-    });
+    // $("#submitNewGroupName").on("click", function(){
+
+    // });
     // test onclick function
     $("#selectAdd").on("click", function(){
         $("#loremAvailUsers").hide();
