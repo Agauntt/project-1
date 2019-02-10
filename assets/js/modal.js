@@ -4,14 +4,14 @@ function initAdmin(){
     $("#addNewGroupUsers").hide();
     $("#loremSelectedUsers").hide();
     $("#addActivity").hide();       
-    // $("#userGroupSelect").hide();
+    $("#userGroupSelect").hide();
     $("#userActivitySelect").hide();
-    $("#userLogin").hide();
-    $("#newGroupNameError").hide();
+   // $("#userLogin").hide()
 }
 initAdmin();
 // Modal functionality
 $(document).ready(function(){
+    getUserDetailsFromCookies();
     // testing only
     function showAddUsers() {
         $("#adminHome").show();
@@ -75,5 +75,13 @@ $(document).ready(function(){
     });
     $("#adminAsAdmin").on("click", function(){
         window.location.href="admin.html";
+    });
+
+    //Logout
+    $(document).on("click","#logOutLink",function(){
+         console.log("Logout");
+         Cookies.remove('userDetail');
+         window.location.replace( "../project-1/index.html");
+      $("#userLogin").show();
     });
 });
