@@ -10,28 +10,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">    
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script src="assets/js/particles.js"></script>
 </head>
 
 <body>
-    <div class="container">
+    <div id="particles-js"></div>
+    <div class="page-container">
+    <div class="container content-wrap">    
         <header>
             <div class="row">
-                <div class="col-4">
+                <div class="col-lg-4 d-none d-lg-block d-xl-block">
                 </div>
-                <div class="col-4 d-flex justify-content-center mt-1">
-                    <img src="https://via.placeholder.com/200x100" alt="Logo">
+                <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-center mt-3 logo">
+                    <img src="assets/images/Logo.svg" alt="Logo">
                 </div>
-                <div class="col-4 d-flex justify-content-end mt-2">
+                <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-end mt-2">
                     <div class="mini-nav mt-2">
-                        <i class="fas fa-home fa-lg mr-2"></i>
+                        <a href="index.html"><i class="fas fa-home fa-lg mr-2"></i></a>
                         <i class="fas fa-bell fa-lg mr-3"></i>
                     </div>
-                    <div class="user-details">
-                        <img src="https://via.placeholder.com/50x50" alt="Logo" id="userProfilePic">
-                        <span id="userProfileName">FirstName LastName</span>
-                        <i id="userProfileMoreInfo" class="fas fa-caret-down"></i>
+                    <div class="dropdown user-details">
+                        <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img src="https://via.placeholder.com/50x50" alt="Logo" id="userProfilePic">
+                            <span id="userProfileName">FirstName LastName</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
                     </div>
                 </div>
         </header>
@@ -99,28 +108,27 @@
                 </div>
             </div>
         </section>
-        <footer>
+    </div>
+</div>
+    <footer>
+        <div class="container">
             <div class="row footer-row mt-5">
                 <div class="col-12">
                     <p>Copyright &copy; 2019 <br> TACT</p>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
     <!-- begin js files -->
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-database.js"></script>
-
-
-        <script src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-        
-        <script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-        <script src="assets/js/app.js"></script>
-        <script src="assets/js/auth.js"></script>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/modal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
@@ -130,3 +138,5 @@
 
     <!-- end js files -->
 </body>
+
+</html>

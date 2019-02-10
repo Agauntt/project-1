@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // //Array of question objects
 // var queArr = [q1,q2,q3,q4,q5];
 
@@ -25,3 +26,7 @@
 //        tempArr.splice(qNo,1);
 //     }
 // }
+=======
+// start particles.js
+particlesJS.load('particles-js', 'assets/js/particles.json');
+>>>>>>> c4fa3f0b710a7185d2c625eeee568cb3d60b5d9b

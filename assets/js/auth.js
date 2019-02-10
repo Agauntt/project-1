@@ -20,6 +20,13 @@ var config = {
     uid:''
   }
 
+  $("#userLogin").hide();
+  signIn=Cookies.getJSON('userDetail');
+    if (signIn==null)
+    {
+      console.log("in signup")
+      $("#userLogin").show();
+    }
 
  $(document).on("click","#googleLogin",function(){
    
@@ -27,6 +34,7 @@ var config = {
     if (signIn==null)
     {
       console.log("in signup")
+      $("#userLogin").show();
      provider = new firebase.auth.GoogleAuthProvider();
     
       provider.addScope('https://www.googleapis.com/auth/plus.login');
@@ -44,7 +52,7 @@ var config = {
 
   signIn=Cookies.getJSON('userDetail');
     if (signIn==null)
-    {
+    {   $("#userLogin").show();
         provider = new firebase.auth.FacebookAuthProvider();
       
     webAuth();
@@ -74,6 +82,7 @@ function webAuth() {
         // [START_EXCLUDE]
         console.log("user :", user);
         signInSuccess = "true";
+        
         redirectToLoginSuccessPage();
         // [END_EXCLUDE]
       }).catch(function(error) {
@@ -131,18 +140,33 @@ function webAuth() {
     // An error happened.
   });
   function redirectToLoginSuccessPage(){
-
+    
+    getUserDetailsFromCookies();
     if (signInSuccess == "true") {
+  
+      if (signIn.email === "chandnibpatel@gmail.com")
+      {
+        console.log("admin");
         window.location.replace( "../project-1/continueAs.html");
+      }
+      else{
+        $("#userLogin").hide();
+        $("#userProfileName").text(user.displayName);
+        $("#userProfilePic").src(user.photoUrl);
+      }
     }
   }
   function getUserDetailsFromCookies(){
-
+    
     signIn=Cookies.getJSON('userDetail')
     user.displayName=signIn.displayName;
     user.emailId=signIn.email;
     user.photoUrl=signIn.photoURL;
     user.uid = signIn.uid;
+    console.log("user.emailId", user.emailId);
+    $("#userProfileName").text(user.displayName);
+    $("#userProfilePic").src(user.photoUrl);
+    
    return user;
   }
   
