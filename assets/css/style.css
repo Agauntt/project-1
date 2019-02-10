@@ -113,6 +113,11 @@ span#showGroupShortDesc {
     margin-left: 10px;
     margin-top: 4px;
 }
+span#addGroupActivityShortDesc {
+    vertical-align: bottom;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+}
 
 #showGroupDesc p, .created-by {
     font-size: .75rem;
@@ -140,10 +145,9 @@ span#showGroupShortDesc {
 .card-header {
     background: #1C5C9B;
     color: #fff;
-    border: none;
 }
-.card {
-    border: none;
+.card.border-dark.mb-3 {
+    border: 1px solid #1C5C9B !important;
 }
 .card-text {
     margin-top: 20px;
@@ -163,7 +167,6 @@ span#showGroupShortDesc {
 .card-body.user-activity-card-body {
     margin: auto;
 }
-
 .fb-btn {
     background-color: #3B5998;
     color: white;

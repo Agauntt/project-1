@@ -99,8 +99,9 @@
                         <span id="hideAddActivitySection"><i class="fas fa-angle-double-left"></i> Back to Admin Panel</span>
                     </div>
                     <div class="col-12">
-                        <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                        <h1>UT Coding Bootcamp (Tues/Thurs)</h1>
+                        <!-- <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4"> -->
+                        <h1 id="addGroupActivityTitle"></h1>
+                        <span id="addGroupActivityShortDesc"></span>
                     </div>
                 </div>
                 <div class="col-12 mt-3">
@@ -109,8 +110,8 @@
                             <h4>Activities</h4>
                         </div>
                         <h5 class="activity-row-desc">Recommended for you...</h5>
-                        <div class="row activity-row">
-                            <div class="card-body">
+                        <div id="addActivityRow" class="row activity-row">
+                            <!-- <div class="card-body">
                                 <div class="card border-dark mb-3" style="max-width: 18rem;">
                                     <div class="card-header">2 Truths & A Lie</div>
                                     <div class="card-body">
@@ -121,8 +122,8 @@
                                             Group</button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-body card-deactive">
+                            </div> -->
+                            <!-- <div class="card-body card-deactive">
                                 <div class="card border-dark mb-3" style="max-width: 18rem;">
                                     <div class="card-header">Random Activity</div>
                                     <div class="card-body">
@@ -143,45 +144,9 @@
                                             bulk of the card's content.</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                         </div>
-                        <div class="row activity-row">
-                            <div class="card-body card-deactive">
-                                <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                    <div class="card-header">Random Activity</div>
-                                    <div class="card-body">
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up
-                                            the
-                                            bulk of the card's content.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body card-deactive">
-                                <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                    <div class="card-header">Random Activity</div>
-                                    <div class="card-body">
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up
-                                            the
-                                            bulk of the card's content.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body card-deactive">
-                                <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                    <div class="card-header">Random Activity</div>
-                                    <div class="card-body">
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up
-                                            the
-                                            bulk of the card's content.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </section>
@@ -276,44 +241,30 @@
                     </div>
                 </div>
             </div>
-            <!-- Show Group Modal -->
+            <!-- Show confirm Ac Modal -->
             <div class="modal fade" id="confirmAddActivityModal" tabindex="-1" role="dialog"
                 aria-labelledby="confirmAddActivityModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                            <h5 class="modal-title" id="confirmAddActivityModalLabel">UT Coding Bootcamp (Nov.
-                                Tues/Thurs)</h5>
+                        <div class="modal-header">                           
+                            <h5 class="modal-title" id="confirmAddActivityModalLabel">You are about to add:</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div id="confirmAddActivityModalBody" class="modal-body">
-                            <h5>You are about to add:</h5>
+                        <div id="confirmAddActivityModalBody" class="modal-body">                           
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">2 Truths & A Lie</h5>
-                                    <p class="card-text">Classic game of two truths & a lie. Provides admin user report
-                                        for
-                                        recommended team building venues.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card mt-1">
-                                <div class="card-body">
-                                    <h5 class="card-title">User List</h5>
-                                    <p class="card-text">Scollable list of profile pictures
-                                    </p>
-
+                                    <h5 id="confirmAddActivityName" class="card-title"></h5>
+                                    <p id="confirmAddActivityDesc" class="card-text"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button id="cancelAddActivity" type="button" class="btn btn-danger"
                                 data-dismiss="modal">Cancel</button>
-                            <button id="confirmAddActivity" type="button" class="btn btn-success"
-                                data-dismiss="modal">Confirm</button>
+                            <button id="confirmAddActivityBtn" type="button" class="btn btn-success"
+                               >Confirm</button>
                         </div>
                     </div>
                 </div>

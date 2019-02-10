@@ -30,22 +30,9 @@ $(document).ready(function(){
         $("#addNewGroupUsers").hide();
         $("#adminHome").show();
     });
-    // test show group modal
-    $("#group1").on("click", function(){
-        $('#showGroupModal').modal('show');  
-    });
-    // test add activity modal
+
     
-    // test add single activity
-    $("#addThisActivity").on("click", function(){
-        $('#confirmAddActivityModal').modal('show');  
-    });
-    //test close confirm activity modal
-    $("#confirmAddActivity").on("click", function(){
-        $("#adminHome").show();
-        $("#addNewGroupUsers").hide();
-        $("#addActivity").hide();    
-    });
+
     // test user submit login
     $("#submitUserLogin").on("click", function(e){
         $("#homePage").hide();
