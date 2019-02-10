@@ -92,73 +92,7 @@
                     </div>
                 </div>
             </section>
-            <section id="addNewGroupUsers">
-                <div class="row mt-5 add-group-row">
-                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 admin-panel">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>My Users</h4>
-                            </div>
-                            <div class="card-body">
-                                <p id="loremSelectedUsers">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Impedit
-                                    modi culpa asperiores
-                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
-                                    accusamus
-                                    deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Impedit modi culpa asperiores
-                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
-                                    accusamus
-                                    deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Impedit modi culpa asperiores
-                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
-                                    accusamus
-                                    deleniti expedita aperiam porro quasi perspiciatis!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 admin-panel align-self-center">
-                        <div class="selection-controls">
-                            <div class="select-add d-flex justify-content-center">
-                                <button id="addUsersSubmit" type="button" class="btn btn-success mb-5">Finish</button>
-                            </div>
-                            <div class="select-add d-flex justify-content-center">
-                                <i id="selectAdd" class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
-                            </div>
-                            <div class="select-remove d-flex justify-content-center">
-                                <i id="selectRemove" class="fa fa-angle-right fa-2x" aria-hidden="true"></i>
-                            </div>
-                            <div class="select-remove d-flex justify-content-center">
-                                <a href="admin.html"><button id="cancelUsersSubmit" type="button"
-                                        class="btn btn-danger mt-5">Cancel</button></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 admin-panel">
-                        <div class="card">
-                            <div class="card-header user-search">
-                                <h4>Available Users</h4>
-                            </div>
-                            <div class="card-body">
-                                <input type="checkbox"> Select All
-                                <p id="loremAvailUsers">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-                                    modi culpa asperiores
-                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
-                                    accusamus
-                                    deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Impedit modi culpa asperiores
-                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
-                                    accusamus
-                                    deleniti expedita aperiam porro quasi perspiciatis Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Impedit modi culpa asperiores
-                                    vel quaerat similique nihil omnis ratione laboriosam? Dolor ipsa sunt tempore
-                                    accusamus
-                                    deleniti expedita aperiam porro quasi perspiciatis!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            
             <section id="addActivity">
                 <div class="row activity-row-header mt-5">
                     <div class="col-12">
@@ -273,6 +207,14 @@
                                     <label for="newGroupNameDesc">Give a description of your group..</label>
                                     <textarea class="form-control" id="newGroupNameDesc" rows="3"></textarea>
                                 </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="publicPrivate" id="groupPublic" value="0" checked="checked">
+                                    <label class="form-check-label" for="groupPublic">Public</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="publicPrivate" id="groupPrivate" value="1" disabled>
+                                    <label class="form-check-label" for="groupPrivate">Private</label>
+                                  </div>
                                 <!-- not ready to implement uploading of profile pictures -->
                                 <!-- <div class="form-group">
                                     <label for="groupProfilePic">Upload a group profile pic</label>
@@ -290,30 +232,29 @@
                 </div>
             </div>
             <!-- Show Group Modal -->
-            <div class="modal fade" id="showGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
+            <div class="modal fade" id="showGroupModal" tabindex="-1" role="dialog" aria-labelledby="showGroupModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4">
-                            <h5 class="modal-title" id="addGroupModalLabel">UT Coding Bootcamp (Nov. Tues/Thurs)</h5>
+                            <!-- <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4"> -->
+                            <h5 class="modal-title" id="showGroupModalTitle"></h5><span id="showGroupShortDesc"></span>
+                                                       
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                        </div>
+                        </div>                        
+                            <div class="created-by pl-3">
+                                Created by <span id="showGroupCreatedBy"></span> on <span id="showGroupCreatedOn"></span>
+                            </div> 
                         <div id="showGroupModalBody" class="modal-body">
-                            <span id="showGroupDesc">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tenetur magni
-                                    repudiandae eveniet quae temporibus quis in tempore quibusdam facilis voluptatum rem
-                                    fuga
-                                    qui sed, modi nulla aut eaque molestiae?</p>
-                            </span>
+                            <span id="showGroupLongDesc"></span>
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Activities</h5>
                                     <p class="card-text">You do not have any activites scheduled.
                                     </p>
-                                    <a id="addNewActivity" href="#" class="btn btn-primary" data-dismiss="modal">Add
+                                    <a id="addNewGroupActivity" href="#" class="btn btn-primary" data-dismiss="modal">Add
                                         Activity</a>
                                 </div>
                             </div>
@@ -322,7 +263,7 @@
                                     <h5 class="card-title">Results</h5>
                                     <p class="card-text">There are no results to display.
                                     </p>
-                                    <a id="viewResult" href="#" class="btn btn-secondary disabled">See Results</a>
+                                    <a id="showGroupResults" href="#" class="btn btn-secondary disabled">See Results</a>
                                 </div>
                             </div>
                         </div>

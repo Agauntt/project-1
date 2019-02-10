@@ -35,7 +35,7 @@ $(document).ready(function(){
         $('#showGroupModal').modal('show');  
     });
     // test add activity modal
-    $("#addNewActivity").on("click", function(){
+    $("#addNewGroupActivity").on("click", function(){
         $("#adminHome").hide();
         $("#addNewGroupUsers").hide();
         $("#addActivity").show();

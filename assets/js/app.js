@@ -50,9 +50,7 @@ $("#submitNewGroupName").on("click", function(){
        var newGroupName = $("#newGroupName").val();
        var newGroupNameDesc = $("#newGroupNameDesc").val();
        saveGroupToDB(newGroupName, newGroupNameDesc);
-       $("#addGroupModal").modal('hide');
-       $("#adminHome").hide();
-       $("#addNewGroupUsers").show();       
+       $("#addGroupModal").modal('hide');      
     }
    });
     function saveGroupToDB(name, desc) {
@@ -71,14 +69,15 @@ $("#submitNewGroupName").on("click", function(){
             }, function (err) {
                 console.log(err + " error");
             });
-    }    
+    }
+    // populate My Groups on admin page with groups created by user.uid    
     function populateMyGroups(admin){  
     
     db.ref('groups').orderByChild('createdBy').equalTo(admin).on("value", function(snap) {      
         $("#myGroups").empty();
         snap.forEach(function(data) {
            var newDiv = $("<div>");
-           newDiv.addClass("group");
+           newDiv.addClass("admin-group");
            newDiv.attr("id", data.val().group_id);
            newDiv.html("<span>" + data.key + "</span>");
            $("#myGroups").append(newDiv);
@@ -86,7 +85,30 @@ $("#submitNewGroupName").on("click", function(){
     });
     }
     populateMyGroups("Trent Davis");
-
+    // show My Group info and Add Activity/See Results
+    $(document).on("click", ".admin-group", function(){
+        $("#showGroupModalTitle").empty();
+        $("#showGroupCreatedBy").empty()
+        $("#showGroupShortDesc").empty()
+        $("#showGroupLongDesc").empty() 
+        $("#addNewGroupActivity").attr("data-group-id", ""); 
+        $("#showGroupResults").attr("data-group-id", ""); 
+        var group_id = $(this).attr("id");
+        db.ref('groups').orderByChild('group_id').equalTo(group_id).on("value", function(snap) {     
+            snap.forEach(function(child) {
+               var name = child.key;
+                var cv = child.val();
+                $("#showGroupModalTitle").text(name);
+                $("#showGroupCreatedBy").text(cv.createdBy);
+                $("#showGroupCreatedOn").text(cv.created);
+                $("#showGroupShortDesc").text(cv.group_short_desc);
+                $("#showGroupLongDesc").text(cv.group_long_desc); 
+                $("#addNewGroupActivity").attr("data-group-id", cv.group_id);     
+                $("#showGroupResults").attr("data-group-id", cv.group_id);                   
+              });
+        });
+            $("#showGroupModal").modal('show');
+    });
     // Logout functionality
        $(document).on("click","#logOutLink",function(){
         console.log("Logout");
