@@ -29,7 +29,7 @@ function initAll(){
     $("#adminHome").show();
     $("#addNewGroupUsers").hide();
     $("#loremSelectedUsers").hide();
-    $("#addActivity").hide();       
+    $("#addGroupActivity").hide();       
     $("#userGroupSelect").hide();
     $("#userActivitySelect").hide();
     $("#newGroupNameError").hide();
@@ -108,6 +108,15 @@ $("#submitNewGroupName").on("click", function(){
               });
         });
             $("#showGroupModal").modal('show');
+    });
+    // show Add New Group Activity section
+    $("#addNewGroupActivity").on("click", function(){
+        $("#adminHome").hide();
+        $("#addGroupActivity").show();
+    });
+    $("#hideAddActivitySection").on("click", function(){
+        $("#addGroupActivity").hide();
+        $("#adminHome").show();       
     });
     // Logout functionality
        $(document).on("click","#logOutLink",function(){

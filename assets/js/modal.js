@@ -35,11 +35,7 @@ $(document).ready(function(){
         $('#showGroupModal').modal('show');  
     });
     // test add activity modal
-    $("#addNewGroupActivity").on("click", function(){
-        $("#adminHome").hide();
-        $("#addNewGroupUsers").hide();
-        $("#addActivity").show();
-    });
+    
     // test add single activity
     $("#addThisActivity").on("click", function(){
         $('#confirmAddActivityModal').modal('show');  

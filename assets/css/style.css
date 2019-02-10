@@ -223,12 +223,20 @@ a.dropdown-item {
     margin-right: .25rem;
     cursor: pointer;
 }
-.mini-nav i {
-    font-size: 25px;
+.mini-nav i, .mini-nav span  {    
     cursor: pointer;
     color: #573E8A;
     opacity: .85;
 }
+.mini-nav i {
+    font-size: 25px;
+    
+}
+.mini-nav span {
+   font-weight: bold;   
+   vertical-align: top;
+}
+
 .mini-nav i:hover {
     opacity: 1;
 }
