@@ -1,3 +1,28 @@
+// get user details commented out for local development
+    // var user={
+    //     displayName:'',
+    //     emailId:'',
+    //     photoUrl:'',
+    //     uid:''
+    // }
+    // function getUserDetailsFromCookies(){
+        
+    //     signIn=Cookies.getJSON('userDetail')
+    //     if(signIn==null){
+    //         window.location.replace( "../project-1/index.html");
+    //     }
+    //     else{
+    //     user.displayName=signIn.displayName;
+    //     user.emailId=signIn.email;
+    //     user.photoUrl=signIn.photoURL;
+    //     user.uid = signIn.uid;
+        
+    //     $("#userProfileName").text(user.displayName);
+    //     $("#userProfilePic").attr("src",user.photoUrl);
+    //     }
+    // return user;
+    // }
+    // getUserDetailsFromCookies();
 // start particles.js
 particlesJS.load('particles-js', 'assets/js/particles.json');
 function initAll(){
@@ -8,6 +33,8 @@ function initAll(){
     $("#userGroupSelect").hide();
     $("#userActivitySelect").hide();
     $("#newGroupNameError").hide();
+    $("#userLogin").hide();
+    $("#userGroupSelect").show();
 }
 initAll();
 $(document).ready(function(){
@@ -59,4 +86,13 @@ $("#submitNewGroupName").on("click", function(){
     });
     }
     populateMyGroups("Trent Davis");
+
+    // Logout functionality
+       $(document).on("click","#logOutLink",function(){
+        console.log("Logout");
+        Cookies.remove('userDetail');
+        $("#userLogin").show();
+        window.location.replace( "../project-1/index.html");
+     
+   });
 });
