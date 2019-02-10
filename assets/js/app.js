@@ -84,7 +84,8 @@ $("#submitNewGroupName").on("click", function(){
         var key = myRef.key;
         var data = { 
                 group_id: key,                                 
-                group_long_desc : desc,
+                group_short_desc: shortDesc,                            
+                group_long_desc : longDesc,
                 createdBy : user.displayName,
                 created : firebase.database.ServerValue.TIMESTAMP                  
                    
