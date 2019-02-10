@@ -1,5 +1,5 @@
 function initAdmin(){
-    $(".group").hide();
+    // $(".group").hide();
     $("#adminHome").show();
     $("#addNewGroupUsers").hide();
     $("#loremSelectedUsers").hide();

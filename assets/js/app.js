@@ -14,9 +14,11 @@ $(document).ready(function(){
     var db = firebase.database();
 // add new group modal functions 
 $("#submitNewGroupName").on("click", function(){
+    // add new group validation
     var value = $("#newGroupName").val().trim();
     if(value == ""){
        $("#newGroupNameError").show();
+    // else grab values and fire db function - hide/show necessary sections
     } else {
        var newGroupName = $("#newGroupName").val();
        var newGroupNameDesc = $("#newGroupNameDesc").val();
@@ -27,13 +29,15 @@ $("#submitNewGroupName").on("click", function(){
     }
    });
     function saveGroupToDB(name, desc) {
-        var data = {                                  
+        var myRef = db.ref().push();
+        var key = myRef.key;
+        var data = { 
+                group_id: key,                                 
                 group_long_desc : desc,
                 createdBy : "Trent Davis",
                 created : firebase.database.ServerValue.TIMESTAMP                  
                    
         };
-
         db.ref('groups').child(name).set(data)
             .then(function (snap) {
                 console.log("Success!");
@@ -41,4 +45,18 @@ $("#submitNewGroupName").on("click", function(){
                 console.log(err + " error");
             });
     }    
+    function populateMyGroups(admin){  
+    
+    db.ref('groups').orderByChild('createdBy').equalTo(admin).on("value", function(snap) {      
+        $("#myGroups").empty();
+        snap.forEach(function(data) {
+           var newDiv = $("<div>");
+           newDiv.addClass("group");
+           newDiv.attr("id", data.val().group_id);
+           newDiv.html("<span>" + data.key + "</span>");
+           $("#myGroups").append(newDiv);
+        });
+    });
+    }
+    populateMyGroups("Trent Davis");
 });
