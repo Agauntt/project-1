@@ -179,7 +179,7 @@ $("#submitNewGroupName").on("click", function(){
                 }    
                 $("#adminShowResults").html(html);
             } else {
-                $("#adminShowResults").html("<li>You do not have an results to display</li>");
+                $("#adminShowResults").html("<li>You do not have any results to display</li>");
             }
            
         });
