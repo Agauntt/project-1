@@ -88,8 +88,7 @@ $("#submitNewGroupName").on("click", function(){
                 group_short_desc: shortDesc,                            
                 group_long_desc : longDesc,
                 // createdBy : user.displayName,
-                created : firebase.database.ServerValue.TIMESTAMP                  
-                   
+                created : firebase.database.ServerValue.TIMESTAMP                   
         };
         db.ref('groups').child(name).set(data)
             .then(function (snap) {
@@ -123,6 +122,7 @@ $("#submitNewGroupName").on("click", function(){
         $("#adminActivitiesScheduled").empty();
         $("#addNewGroupActivity").attr("data-group-id", ""); 
         $("#showGroupResults").attr("data-group-id", ""); 
+        $("adminShowResults").empty();
     }
     // show My Group info and Add Activity/See Results
     $(document).on("click", ".admin-group", function(){
@@ -152,6 +152,16 @@ $("#submitNewGroupName").on("click", function(){
                 $("#addNewGroupActivity").attr("data-group-id", cv.group_id);     
                 $("#showGroupResults").attr("data-group-id", cv.group_id);                   
               });
+        });
+        db.ref('results').orderByChild('group_id').equalTo(group_id).once("value", function(snap) {  
+            if(snap.val()) {
+                snap.forEach(function(snap) {
+                    $("#adminShowResults").html("<li>" + snap.key + "</li>");
+                  });
+            } else {
+                $("#adminShowResults").html("<li>You do not have an results to display</li>");
+            }
+           
         });
             $("#showGroupModal").modal('show');
     });
@@ -210,13 +220,13 @@ $("#submitNewGroupName").on("click", function(){
         $("#addGroupActivity").hide(); 
         $("#confirmAddActivityModal").modal("hide");
     });
+    // function to obtain the newly created activity push key and insert it into the 'results' table for relational purposes
     function createResultsSet(groupID, activityID) {
         var query = db.ref('groups').orderByChild('group_id').equalTo(groupID);
         query.once("value", function(snapshot) {
             snapshot.forEach(function(groupSnapshot) {                
                 groupSnapshot.child("activities").forEach(function(activitySnapshot) {  
-                    if(activitySnapshot.val().activity_id == activityID) {
-                        console.log(activitySnapshot.key);
+                    if(activitySnapshot.val().activity_id == activityID) {                        
                         db.ref('results').push({
                            group_id : groupID,
                            activity_id : activityID,
