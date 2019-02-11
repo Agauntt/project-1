@@ -155,9 +155,29 @@ $("#submitNewGroupName").on("click", function(){
         });
         db.ref('results').orderByChild('group_id').equalTo(group_id).once("value", function(snap) {  
             if(snap.val()) {
+                var qtyPend = 0;
+                var qtyIP = 0;
+                var qtyComp = 0;
+                var html = "";
                 snap.forEach(function(snap) {
-                    $("#adminShowResults").html("<li>" + snap.key + "</li>");
-                  });
+                    if(snap.val().status == "pending") {
+                        qtyPend++; 
+                    } else if(snap.val().status == "in progress") {
+                        qtyIP++;
+                    } else if(snap.val().status == "complete") {
+                        qtyComp++;
+                    }
+                });
+                if(qtyPend > 0) {
+                    html += "<li>" + qtyPend + " Pending</li>";
+                }
+                if(qtyIP > 0) {
+                    html += "<li>" + qtyIP + " In Progress</li>";
+                }
+                if(qtyComp > 0) {
+                    html += "<li>" + qtyComp + " Complete</li>";
+                }    
+                $("#adminShowResults").html(html);
             } else {
                 $("#adminShowResults").html("<li>You do not have an results to display</li>");
             }
@@ -232,6 +252,7 @@ $("#submitNewGroupName").on("click", function(){
                            activity_id : activityID,
                            activity_key : activitySnapshot.key,
                            users : "0",
+                           status : "pending",
                            created : firebase.database.ServerValue.TIMESTAMP 
                         });
                     }
