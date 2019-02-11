@@ -87,7 +87,7 @@ $("#submitNewGroupName").on("click", function(){
                 group_id: key,                                 
                 group_short_desc: shortDesc,                            
                 group_long_desc : longDesc,
-                createdBy : user.displayName,
+                // createdBy : user.displayName,
                 created : firebase.database.ServerValue.TIMESTAMP                  
                    
         };
@@ -112,7 +112,7 @@ $("#submitNewGroupName").on("click", function(){
         });
     });
     }
-    populateMyGroups("Trent Davis");
+    populateMyGroups("-LYO_4FYLna5DK-Pmi_n");
     function clearFirebaseDataHTML() {
         $("#showGroupModalTitle").empty();
         $("#addGroupActivityTitle").empty();
@@ -147,7 +147,7 @@ $("#submitNewGroupName").on("click", function(){
                     });                                                              
                     });
                 } else {
-                    $("#adminActivitiesScheduled").text("<li>You do not have any activities scheduled</li>");  
+                    $("#adminActivitiesScheduled").html("<li>You do not have any activities scheduled</li>");  
                 }                
                 $("#addNewGroupActivity").attr("data-group-id", cv.group_id);     
                 $("#showGroupResults").attr("data-group-id", cv.group_id);                   
@@ -203,13 +203,32 @@ $("#submitNewGroupName").on("click", function(){
         var activityID = $(this).attr("data-activity-id");
         var query = db.ref('groups').orderByChild('group_id').equalTo(groupID);
         query.on("child_added", function(snapshot) {
-        snapshot.ref.child('activities').push({activity_id: activityID });
+        snapshot.ref.child('activities').push({activity_id: activityID });         
         });
+        createResultsSet(groupID,activityID);
         $("#adminHome").show();
         $("#addGroupActivity").hide(); 
         $("#confirmAddActivityModal").modal("hide");
     });
-
+    function createResultsSet(groupID, activityID) {
+        var query = db.ref('groups').orderByChild('group_id').equalTo(groupID);
+        query.once("value", function(snapshot) {
+            snapshot.forEach(function(groupSnapshot) {                
+                groupSnapshot.child("activities").forEach(function(activitySnapshot) {  
+                    if(activitySnapshot.val().activity_id == activityID) {
+                        console.log(activitySnapshot.key);
+                        db.ref('results').push({
+                           group_id : groupID,
+                           activity_id : activityID,
+                           activity_key : activitySnapshot.key,
+                           users : "0",
+                           created : firebase.database.ServerValue.TIMESTAMP 
+                        });
+                    }
+                });                         
+            });
+        });
+    }
     // Logout functionality
        $(document).on("click","#logOutLink",function(){
         console.log("Logout");
