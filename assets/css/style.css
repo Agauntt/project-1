@@ -252,12 +252,8 @@ footer {
     margin-top: 15px;
 }
 
-.dropdown-toggle {
-    width: 85%;
-}
-
-.dropdown-menu {
-    width: 77%;
+.truth-lie-instructions {
+    margin-bottom: 15px;  
 }
 
 #selectScreenHeader {

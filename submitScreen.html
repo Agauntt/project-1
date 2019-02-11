@@ -15,25 +15,52 @@
 
 <body>
     <div class="container">
-        <header>
-            <h2 class="text-center" id="selectScreenHeader">Selection Screen</span></h2>
-        </header>
+        <div id="particles-js"></div>
+                <header>
+                    <div class="row">
+                        <div class="col-lg-4 d-none d-lg-block d-xl-block">
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-center mt-3 logo">
+                            <img src="assets/images/Logo.svg" alt="Logo">
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-end mt-2">
+                            <div class="mini-nav mt-2">
+                                <a href="index.html"><i class="fas fa-home fa-lg mr-2"></i></a>
+                                <i class="fas fa-bell fa-lg mr-3"></i>
+                            </div>
+                            <div class="dropdown user-details">
+                                <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="https://via.placeholder.com/50x50" alt="Logo" id="userProfilePic">
+                                    <span class="d-none d-lg-inline d-xl-inline" id="userProfileName">FirstName
+                                        LastName</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Profile</a>
+                                    <a class="dropdown-item" id="logOutLink" href="#">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                </header>
 <br>
 <br>
- 
+<div class="truth-lie-instructions">
+    <h3 class="text-center">Tell us about yourself!</h3>
+<br>
     <h4 class="text-center">Select two truths and one lie from the dropdown list below. Indicate which selection is the lie by selecting the button next to the chosen lie. Click "submit" when you have completed this.</h4>
+</div>
 <br>
     <div class="wrapper text-center" id="truthOrLieSubmitBox">
-        <select class="dropdown" id="option1">
+        <select class="dropdown form-control option1" id="option1">
             <option value="1-1">Truth or Lie 1-1</option>
             <option value="1-2">Truth or Lie 1-2</option>
             <option value="1-3">Truth or Lie 1-3</option>
         </select>
         <span id="radio1">
-                <input type="radio" name="lieSelect"> Lie
-            </span>
+            <input type="radio" name="lieSelect"> Lie
+        </span>
 <br>
-        <select class="dropdown" id="option2">
+        <select class="dropdown form-control" id="option2">
             <option value="2-1">Truth or Lie 2-1</option>
             <option value="2-2">Truth or Lie 2-2</option>
             <option value="2-3">Truth or Lie 2-3</option>
@@ -42,16 +69,16 @@
                 <input type="radio" name="lieSelect"> Lie
             </span>
 <br>
-        <select class="dropdown" id="option2">
+        <select class="dropdown form-control" id="option2">
             <option value="3-1">Truth or Lie 2-1</option>
-            <option value="3-2">Truth or Lie 2-2</option>
+            <option value="3-2">Truth or Lie 3-2</option>
             <option value="3-3">Truth or Lie 3-3</option>
         </select>
         <span id="radio2">
                 <input type="radio" name="lieSelect"> Lie
             </span>
 <br>
-            <button class="btn btn-success" id="inputSubmit">Submit</button>
+            <button class="btn btn-success" id="input-submit">Submit</button>
     </div>
         
     </div>
