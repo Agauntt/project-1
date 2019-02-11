@@ -1,25 +1,26 @@
 
-# TACTful Lies
+# TACT App 
 
 ## Description
 
-A digital version of the classic two truths and one lie game. Users will be able to play a game where there will be a random selection of people that will have three options to choose from. One of these options will be a lie that has been randomly generated from a list of lies while the other two will be two truths that a user has entered about the person. After a predetermined number of rounds the game will end and display how many rounds the user got correct. Then they will be able to replay the game with another random set of people to begin the game again.  There will be a function to log in allowing the user to create new data entries for a wider selection for the game to choose from.
+An online colloboration tool for corporate, educational, or any other organized group to come together and for the purpose of generating a "team personality" profile. This personality profile will be built via group members completing and competing in fun and familiar activities. Our beta test activity will be a digital version of the classic "Two Truths and a Lie" game. Users will login to the application through the sign-in method of their choice (Google, Facebook, Twitter), join their specific group, and then complete the tasks assigned to them by their group admin. Upon completion (or expiry) of all tasks, the admin will be provided with a result set outlining the team's profile, and provided with a ranked list of best team building venues via the Yelp API. 
+
 ## APIs 
-*	Linkedin
-*	Words API
-*	Firebase
-*	Giphy
-*	Insult Generator API?
-*	Facebook?
+*	Google OAuth2
+*	Twitter OAuth2 
+*	Facebook OAuth2
+*	Firebase Realtime Database
+*	Yelp API
 ## Libraries
 *	Jquery
 *	Bootstrap
 *	Firebase
-*	Fontawesome
+*	FontAwesome
 *	Google Fonts
 *	Particles.js
+*   Moment.js
 ## TEAM
-*	Tim Beirne - Liar
-*	Trent Davis – Mega liar
-*	Chandni Patel – May or may not be lying
-*	Aaron Gauntt – Can’t tell the truth to save his soul
+* T rent Davis
+* A aron Gauntt
+* C handi Patel
+* T im Beirne  
