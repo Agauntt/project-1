@@ -255,3 +255,34 @@ footer {
 .footer-row {
     text-align: center;
 }
+
+#truthOrLieSubmitBox {
+    border-width: 2px;
+    border-style: solid;
+    border-color: green;
+    padding: 25px;
+    margin: 20px;
+    margin-left: 75px;
+    margin-right: 75px;
+    border-radius: 25px;
+}
+
+.dropdown {
+    margin-top: 15px;
+}
+
+.dropdown-toggle {
+    width: 85%;
+}
+
+.dropdown-menu {
+    width: 77%;
+}
+
+#selectScreenHeader {
+    font-size: 35px;
+    border-bottom: 2px;
+    border-bottom: solid;
+    padding: 20px;
+}
+
