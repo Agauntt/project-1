@@ -1,28 +1,4 @@
-// get user details commented out for local development
-    // var user={
-    //     displayName:'',
-    //     emailId:'',
-    //     photoUrl:'',
-    //     uid:''
-    // }
-    // function getUserDetailsFromCookies(){
-        
-    //     signIn=Cookies.getJSON('userDetail')
-    //     if(signIn==null){
-    //         window.location.replace( "../project-1/index.html");
-    //     }
-    //     else{
-    //     user.displayName=signIn.displayName;
-    //     user.emailId=signIn.email;
-    //     user.photoUrl=signIn.photoURL;
-    //     user.uid = signIn.uid;
-        
-    //     $("#userProfileName").text(user.displayName);
-    //     $("#userProfilePic").attr("src",user.photoUrl);
-    //     }
-    // return user;
-    // }
-    // getUserDetailsFromCookies();
+
 // start particles.js
 particlesJS.load('particles-js', 'assets/js/particles.json');
 function initAll(){
@@ -39,31 +15,9 @@ function initAll(){
 initAll();
 var path = window.location.pathname;
 var page = path.split("/").pop();
-var signIn;
-  var signInSuccess = "";
+
   var db = firebase.database();
 $(document).ready(function(){
-   
-    //Check url 
-    // if(isUserAuthenticated()){
-    //     if (page=="index.html"){
-    //      $("#userLogin").hide();
-    //      $("#userGroupSelect").show();
-        
-    //     }
-    //     $(".user-details").show();
-    //     authNav(false);
-         
-    //  }
-    //  else{
-    //      console.log("in signup");
-    //      if (page=="index.html"){
-    //      $("#userLogin").show();
-    //      $("#userGroupSelect").hide();
-    //      $(".user-details").hide();
-    //      }
-    //      authNav(false);
-    //  }
   
 // add new group modal functions 
 $("#submitNewGroupName").on("click", function(){
@@ -111,6 +65,8 @@ $("#submitNewGroupName").on("click", function(){
         });
     });
     }
+    //calling Get Groups from Firebase
+    getGroups();
     populateMyGroups("-LYO_4FYLna5DK-Pmi_n");
     function clearFirebaseDataHTML() {
         $("#showGroupModalTitle").empty();
@@ -240,6 +196,28 @@ $("#submitNewGroupName").on("click", function(){
         $("#addGroupActivity").hide(); 
         $("#confirmAddActivityModal").modal("hide");
     });
+  
+   // Group selection 
+   $(document).on("click",".user-group",function(){
+        var groupId=$(this).attr("data-group-id");
+        setUsersFromCookies();
+        var datapath="groupUsers/" + user.displayName +"/groupId";
+
+        db.ref(datapath).set(groupId)
+         .then(function (snap) {
+            console.log("Success!");
+            $("#userGroupSelect").hide();
+            $("#userActivitySelect").show();
+            //window.location.href=""
+        }, function (err) {
+            console.log(err + " error");
+        });
+   });
+//Add User specific true/Lies
+   $(document).on("click","#startThisActivity",function(){
+  // 
+   });
+
     // function to obtain the newly created activity push key and insert it into the 'results' table for relational purposes
     function createResultsSet(groupID, activityID) {
         var query = db.ref('groups').orderByChild('group_id').equalTo(groupID);
@@ -271,84 +249,12 @@ $("#submitNewGroupName").on("click", function(){
      
    });
 
-   
+      // test user/admin redirect
+      $("#adminAsUser").on("click", function(){
+        window.location.href="index.html";
+    });
+    $("#adminAsAdmin").on("click", function(){
+        window.location.href="admin.html";
+    });
 });
-// function isUserAuthenticated(){
-//     signIn=Cookies.getJSON("userDetail");
-//      if(signIn==null || typeof signIn === "undefined"){
-//        return false;
-//      }
-//      else{
-//          return true;
-//      }
-// }
 
-//  var user={
-//  displayName:'',
-//   emailId:'',
-//   photoUrl:'',
-//   uid:''
-// }
-// function setUsersFromCookies(){
-//    signIn=Cookies.getJSON('userDetail');
-//   if(signIn===null || typeof signIn === "undefined"){
-//     return false;
-//   }
-//   else{
-//   user.displayName=signIn.displayName;
-//   user.emailId=signIn.email;
-//   user.photoUrl=signIn.photoURL;
-//   user.uid = signIn.uid;
-//   $("#userProfileName").text(user.displayName);
-//   $("#userProfilePic").attr("src",user.photoUrl);
-//  }
-
-//  return true;
-// }
-
-//  function authNav(isFreshLogin){
-//   var isCookie= setUsersFromCookies();
-//    if (isCookie==false) 
-//    {
-//         if (page=="index.html"){
-//           $("#userLogin").show();
-//           $("#userGroupSelect").hide();
-//           $(".user-details").hide();
-//       }
-//       else
-//       {
-//           window.location.replace( "../project-1/index.html");
-//       }
-//    }
-//    else {
-//      if (signIn.email === "chandnibpatel@gmail.com")
-//      {
-//       if (page=="index.html" && isFreshLogin)
-//        window.location.replace( "../project-1/continueAs.html");
-//      }
-//      else{
-//        $("#userLogin").hide();
-//        $("#userGroupSelect").show();
-//        $(".user-details").show();
-//      }
-//    }
-//  }
-//Add Users
-
-// var addGroupUser=function(){
-//     if (setUsersFromCookies())
-//     {
-//      var myRef = db.ref().push();
-//      var key = myRef.key;
-//     user.uid=key;
-//     db.ref('groupUsers').child(user.displayName).set(user)
-//          .then(function (snap) {
-//              console.log("Success!");
-//          }, function (err) {
-//              console.log(err + " error");
-//          });
-    
-//      }
-//    }
-
- 
