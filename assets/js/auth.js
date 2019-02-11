@@ -1,6 +1,29 @@
 
   var signIn ="";
   var signInSuccess = "";
+
+  $(document).ready(function(){
+//Check url 
+    if(isUserAuthenticated()){
+        if (page=="index.html"){
+         $("#userLogin").hide();
+         $("#userGroupSelect").show();
+        
+        }
+        $(".user-details").show();
+        authNav(false);
+         
+     }
+     else{
+         console.log("in signup");
+         if (page=="index.html"){
+         $("#userLogin").show();
+         $("#userGroupSelect").hide();
+         $(".user-details").hide();
+         }
+         authNav(false);
+     }
+  });
 //Provider default Google
   var provider = new firebase.auth.GoogleAuthProvider();
    $(document).on("click","#googleLogin",function(){
@@ -105,5 +128,33 @@ function webAuth() {
   }).catch(function(error) {
     // An error happened.
   });
+  function authNav(isFreshLogin){
+    console.log("In AuthNav");
+    var isCookie= setUsersFromCookies();
+     if (isCookie==false) 
+     {
+          if (page=="index.html"){
+            $("#userLogin").show();
+            $("#userGroupSelect").hide();
+            $(".user-details").hide();
+        }
+        else
+        {
+            window.location.replace( "../project-1/index.html");
+        }
+     }
+     else {
+       if (signIn.email === "chandnibpatel@gmail.com")
+       {
+        if (page=="index.html" && isFreshLogin)
+         window.location.replace( "../project-1/continueAs.html");
+       }
+       else{
+         $("#userLogin").hide();
+         $("#userGroupSelect").show();
+         $(".user-details").show();
+       }
+     }
+   }
  
  
