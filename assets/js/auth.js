@@ -37,31 +37,39 @@
     }
     
  })
-
+// Facebook Authentication
  $(document).on("click","#facebookLogin",function(){
   signIn=Cookies.getJSON('userDetail');
     if (signIn==null)
     {   $("#userLogin").show();
         provider = new firebase.auth.FacebookAuthProvider();
-      
-    webAuth();
+        webAuth();
+    }
+    
+ });
+// Twitter Auth
+ $(document).on("click","#twitterLogin",function(){
+  signIn=Cookies.getJSON('userDetail');
+    if (signIn==null)
+    {   $("#userLogin").show();
+      provider = new firebase.auth.TwitterAuthProvider();
+      webAuth();
     }
     
  });
 
-
-
 function webAuth() {
     if (!firebase.auth().currentUser) {
       // [START createprovider]
-      
       // [END addscopes]
       // [START signin]
       firebase.auth().signInWithPopup(provider).then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
+          var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
+       // var userAdditionInfo=result.additionalUserInfo
+     
         // The signed-in user info.
         var date = new Date();
         var minutes = 30;
@@ -128,7 +136,8 @@ function webAuth() {
   }).catch(function(error) {
     // An error happened.
   });
-  function authNav(isFreshLogin){
+
+function authNav(isFreshLogin){
     console.log("In AuthNav");
     var isCookie= setUsersFromCookies();
      if (isCookie==false) 
@@ -155,6 +164,6 @@ function webAuth() {
          $(".user-details").show();
        }
      }
-   }
+    }
  
  

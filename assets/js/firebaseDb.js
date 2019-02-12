@@ -46,7 +46,7 @@ var addGroup =function(name,desc){
   var data = { 
           group_id: key,                                 
           group_long_desc : desc,
-          createdBy : user.uid,
+          createdBy : user.emailId,
           createdOn : firebase.database.ServerValue.TIMESTAMP                  
              
   };
@@ -72,7 +72,7 @@ function isUserAuthenticated(){
  displayName:'',
   emailId:'',
   photoUrl:'',
-  uid:''
+  
 }
 
 function setUsersFromCookies(){
@@ -86,7 +86,7 @@ function setUsersFromCookies(){
  user.displayName=signIn.displayName;
  user.emailId=signIn.email;
  user.photoUrl=signIn.photoURL;
- user.uid = signIn.uid;
+
  $("#userProfileName").text(user.displayName);
  $("#userProfilePic").attr("src",user.photoUrl);
 }
@@ -101,8 +101,13 @@ var addGroupUser=function(){
     {
      var myRef = db.ref().push();
      var key = myRef.key;
-    user.uid=key;
-    db.ref('groupUsers').child(user.displayName).set(user)
+     //user.uid=key;
+     var userData={
+       displayName:user.displayName,
+       emailId:user.emailId,
+       photoUrl:user.photoUrl
+     }
+    db.ref('groupUsers').child(user.displayName).set(userData)
          .then(function (snap) {
              console.log("Success!");
          }, function (err) {
@@ -114,22 +119,20 @@ var addGroupUser=function(){
 
  // Populate All Groups
  var getGroups=function(){
-  
-   
-  db.ref('groups').on("value", function(snap) { 
+   db.ref('groups').on("value", function(snap) { 
     var i=0;
     $("#myUserGroups").empty();    
     snap.forEach(function(child) {
          var name = child.key;
         var cv = child.val();
            console.log(cv.group_id);
-    var groupHtml="<div id='group'"+ i + " class='user-group' data-group-id='"+ cv.group_id +"'>";
+    var groupHtml="<div id='group"+ i + "' class='user-group' data-group-id='"+ cv.group_id +"'>";
     groupHtml+="<img src='https://avatars3.githubusercontent.com/u/17503864?s=70&v=4'>";
     groupHtml+="<span>"+ name+ "</span></div>";
     $("#myUserGroups").append(groupHtml);
     i++;
  });
- $("#userGroupSelect").show();
+ 
  }); 
 
  }
