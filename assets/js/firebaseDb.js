@@ -123,12 +123,13 @@ var addGroupUser=function(){
          var name = child.key;
         var cv = child.val();
            console.log(cv.group_id);
-    var groupHtml="<div id='group'"+ i + " class='user-group' data-group-id="+ cv.group_id +">";
+    var groupHtml="<div id='group'"+ i + " class='user-group' data-group-id='"+ cv.group_id +"'>";
     groupHtml+="<img src='https://avatars3.githubusercontent.com/u/17503864?s=70&v=4'>";
     groupHtml+="<span>"+ name+ "</span></div>";
     $("#myUserGroups").append(groupHtml);
     i++;
  });
+ $("#userGroupSelect").show();
  }); 
 
  }

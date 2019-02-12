@@ -267,15 +267,15 @@ footer {
     border-radius: 25px;
 }
 
-.dropdown {
+.dropdown:not(:first)  {
     margin-top: 15px;
 }
 
-.dropdown-toggle {
+.dropdown-toggle:not(:first)  {
     width: 85%;
 }
 
-.dropdown-menu {
+.dropdown-menu:not(:first)  {
     width: 77%;
 }
 

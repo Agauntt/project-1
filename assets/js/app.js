@@ -10,7 +10,7 @@ function initAll(){
     $("#userActivitySelect").hide();
     $("#newGroupNameError").hide();
     $("#userLogin").hide();
-    $("#userGroupSelect").show();
+    
 }
 initAll();
 var path = window.location.pathname;
