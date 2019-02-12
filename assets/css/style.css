@@ -65,10 +65,10 @@ body {
 .control-buttons i:hover {
     opacity: 1;
 }
-.user-group:hover {
+.admin-group:hover, .user-group:hover {
     background: #e5e5e5;
 }
-.group, .user-group {
+.admin-group, .user-group {
     border: 1px solid #e5e5e5;
     min-height: 50px;
     min-width: 300px;
@@ -80,37 +80,39 @@ body {
     cursor: pointer;
     
 }
-.group img, .modal-header img {
+.admin-group img, .modal-header img {
     float: left;
     margin-right: 10px;
     width: 50px;
     
 }
-.group span,  .user-group span {
+.admin-group span,  .user-group span {
     display: inline;
     font-size: 1.5rem;
     position: relative;
     top: 5px;
-    padding-right: 5px;
+    padding-left: 15px;
   }
-.selection-controls {
-    flex-wrap: wrap;    
+
+.row.activity-row-header.mt-3 h4 {
+    display: inline-block;
+    margin-bottom: .25rem;
 }
-.select-add, .select-remove {
-    flex-basis: 100%;
+span#showGroupShortDesc {
+    margin-left: 10px;
+    margin-top: 4px;
 }
-.select-add button, .select-remove button {
-    min-width: 75px;
+span#addGroupActivityShortDesc {
+    vertical-align: bottom;
+    font-size: 1.5rem;
+    margin-left: 1rem;
 }
-.fa-angle-left, .fa-angle-right {
-    padding: 10px;
-    cursor: pointer;
-}
-.fa-angle-left:hover, .fa-angle-right:hover {
-    color: blue;
-}
-#showGroupDesc p {
+
+#showGroupDesc p, .created-by {
     font-size: .75rem;
+}
+span#showGroupLongDesc {
+    font-size: .8rem;    
 }
 .activity-row-header {
     margin-left: .2rem;
@@ -135,10 +137,9 @@ body {
 .card-header {
     background: #1C5C9B;
     color: #fff;
-    border: none;
 }
-.card {
-    border: none;
+.card.border-dark.mb-3 {
+    border: 1px solid #1C5C9B !important;
 }
 .card-text {
     margin-top: 20px;
@@ -158,7 +159,6 @@ body {
 .card-body.user-activity-card-body {
     margin: auto;
 }
-
 .fb-btn {
     background-color: #3B5998;
     color: white;
@@ -218,14 +218,31 @@ a.dropdown-item {
     margin-right: .25rem;
     cursor: pointer;
 }
-.mini-nav i {
-    font-size: 25px;
+.mini-nav i, .mini-nav span  {    
     cursor: pointer;
     color: #573E8A;
     opacity: .85;
 }
+.mini-nav i {
+    font-size: 25px;
+    
+}
+.mini-nav span {
+   font-weight: bold;   
+   vertical-align: top;
+}
+
 .mini-nav i:hover {
     opacity: 1;
+}
+.result-tab-content {    
+    padding: 1rem;
+    border-left: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-bottom-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
 }
 footer {
     position: absolute;
@@ -248,12 +265,16 @@ footer {
     border-radius: 25px;
 }
 
-.dropdown-game {
+.dropdown:not(:first)  {
     margin-top: 15px;
 }
 
-.truth-lie-instructions {
-    margin-bottom: 15px;  
+.dropdown-toggle:not(:first)  {
+    width: 85%;
+}
+
+.dropdown-menu:not(:first)  {
+    width: 77%;
 }
 
 #selectScreenHeader {

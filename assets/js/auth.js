@@ -1,36 +1,32 @@
 
-
   var signIn ="";
   var signInSuccess = "";
+
+  $(document).ready(function(){
+//Check url 
+    if(isUserAuthenticated()){
+        if (page=="index.html"){
+         $("#userLogin").hide();
+         $("#userGroupSelect").show();
+        
+        }
+        $(".user-details").show();
+        authNav(false);
+         
+     }
+     else{
+         console.log("in signup");
+         if (page=="index.html"){
+         $("#userLogin").show();
+         $("#userGroupSelect").hide();
+         $(".user-details").hide();
+         }
+         authNav(false);
+     }
+  });
 //Provider default Google
   var provider = new firebase.auth.GoogleAuthProvider();
-  var user={
-    displayName:'',
-    emailId:'',
-    photoUrl:'',
-    uid:''
-  }
-
- $(document).ready(function(){
-  signIn=Cookies.getJSON('userDetail');
-    if (signIn==null)
-    {
-      console.log("in signup")
-      $("#userLogin").show();
-      $("#userGroupSelect").hide();
-    }
-    else{
-      $("#userLogin").hide();
-      $("#userGroupSelect").show();
-      
-      signInSuccess='true';
-      redirectToLoginSuccessPage();
-    }
-   });
-
-
- $(document).on("click","#googleLogin",function(){
-   
+   $(document).on("click","#googleLogin",function(){
     signIn=Cookies.getJSON('userDetail');
     if (signIn==null)
     {
@@ -39,16 +35,10 @@
       provider.addScope('https://www.googleapis.com/auth/plus.login');
       webAuth();
     }
-    else{
-      signInSuccess = "true";
-      redirectToLoginSuccessPage();
-    }
     
-  
  })
 
  $(document).on("click","#facebookLogin",function(){
-
   signIn=Cookies.getJSON('userDetail');
     if (signIn==null)
     {   $("#userLogin").show();
@@ -56,9 +46,7 @@
       
     webAuth();
     }
-    else
-    redirectToLoginSuccessPage();
-  
+    
  });
 
 
@@ -83,8 +71,8 @@ function webAuth() {
         // [START_EXCLUDE]
         console.log("user :", user);
         signInSuccess = "true";
-        
-        redirectToLoginSuccessPage();
+        addGroupUser(true);
+        authNav(true);
         // [END_EXCLUDE]
       }).catch(function(error) {
         // Handle Errors here.
@@ -105,7 +93,7 @@ function webAuth() {
       alert("An auth domain configuration is required"); 
         }
         else if (errorCode === 'auth/cancelled-popup-request') {
-            alert("Popup Google sign in was canceled");
+            alert("Popup sign in was canceled");
         }
         else if (errorCode === 'auth/operation-not-allowed') {
             alert("Operation is not allowed");
@@ -117,7 +105,7 @@ function webAuth() {
             alert("Sign in popup got blocked");
         }
         else if (errorCode === 'auth/popup-closed-by-user') {
-            alert("Google sign in popup got cancelled");
+            alert("The sign in popup got cancelled");
         }
         else if (errorCode === 'auth/unauthorized-domain') {
             alert("Unauthorized domain");
@@ -140,38 +128,33 @@ function webAuth() {
   }).catch(function(error) {
     // An error happened.
   });
-  function redirectToLoginSuccessPage(){
-    
-    getUserDetailsFromCookies();
-    if (signInSuccess == "true") {
-      $("#userProfileName").text(user.displayName);
-      $("#userProfilePic").attr("src",user.photoUrl);
-      if (signIn.email === "chandnibpatel@gmail.com")
-      {
-        console.log("admin");
-        window.location.replace( "../project-1/continueAs.html");
-      }
-      else{
-        
-        $("#userLogin").hide();
-        $("#userGroupSelect").show();
-       
-      }
-    }
-  }
-  function getUserDetailsFromCookies(){
-    
-    signIn=Cookies.getJSON('userDetail')
-    if (signIn!=null)
-    {
-      user.displayName=signIn.displayName;
-      user.emailId=signIn.email;
-      user.photoUrl=signIn.photoURL;
-      user.uid = signIn.uid;
-      
-    }
-    
-    
-   return user;
-  }
-  
+  function authNav(isFreshLogin){
+    console.log("In AuthNav");
+    var isCookie= setUsersFromCookies();
+     if (isCookie==false) 
+     {
+          if (page=="index.html"){
+            $("#userLogin").show();
+            $("#userGroupSelect").hide();
+            $(".user-details").hide();
+        }
+        else
+        {
+            window.location.replace( "../project-1/index.html");
+        }
+     }
+     else {
+       if (signIn.email === "chandnibpatel@gmail.com")
+       {
+        if (page=="index.html" && isFreshLogin)
+         window.location.replace( "../project-1/continueAs.html");
+       }
+       else{
+         $("#userLogin").hide();
+         $("#userGroupSelect").show();
+         $(".user-details").show();
+       }
+     }
+   }
+ 
+ 
