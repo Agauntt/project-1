@@ -5,9 +5,9 @@ var lie = "";
 var userDataSet;
 
 var optionsarr1 = [
-    "I'm a vegetarian",
-    "I'm a vegan",
-    "I've never been outside the US",
+    "I am a vegetarian",
+    "I am a vegan",
+    "I have never been outside the US",
     "I like to go camping",
     "I enjoy anime",
     "I prefer movies over TV",
@@ -18,7 +18,7 @@ var optionsarr1 = [
 ];
 
 var optionsarr2 = [
-    "I've been skydiving",
+    "I have been skydiving",
     "I live on my own",
     "I know how to drive a manual transmission",
     "I enjoy lifting weights",
@@ -26,13 +26,13 @@ var optionsarr2 = [
     "I like to go hunting",
     "I play World of Warcraft",
     "I like to go to bars",
-    "I've never had an alcoholic drink",
+    "I have never had an alcoholic drink",
     "I enjoy hiking"
 ];
 
 var optionsarr3 = [
     "I enjoy Javascript more than HTML",
-    "I'm more interested in front-end design than backend",
+    "I am more interested in front-end design than backend",
     "I prefer writing notes over typing them",
     "I can do my own vehicle maintanence",
     "I have a fear of water",
@@ -110,10 +110,10 @@ function compileResults() {
     }
     lieDetector();
     userDataSet = [
-         selection1,
-         selection2,
-         selection3,
-         lie
+        selection1,
+        selection2,
+        selection3,
+        lie
     ];
 };
 
@@ -136,8 +136,9 @@ $("#input-submit").click(function(){
         return;
     }
     console.log(userDataSet);
-    // console.log(selection1);
-    // console.log(selection2);
-    // console.log(selection3);
-    // console.log(lie);
+    console.log(selection1);
+    console.log(selection2);
+    console.log(selection3);
+    console.log(lie);
+
 });
