@@ -1,7 +1,7 @@
 var selection1 = "";
 var selection2 = "";
 var selection3 = "";
-var lie;
+var lie = "";
 
 var optionsarr1 = [
     "I'm a vegetarian",
@@ -41,10 +41,9 @@ var optionsarr3 = [
     "I know how to ride a motorcycle"
 ];
 
-
 function populateDropdown(){
     for (i = 0; i < optionsarr1.length; i++) {
-        var a = $("<option value=" + "1-" + i + ">" + optionsarr1[i] + "</option>");
+        a = $("<option value='" + optionsarr1[i] + "'>" + optionsarr1[i] + "</option>");
         $("#option1").append(a);
 
     //     if (selection1 == ""){
@@ -52,7 +51,7 @@ function populateDropdown(){
     //     }
      }
     for (i = 0; i < optionsarr1.length; i++) {
-        var b = $("<option value=" + "2-" + i + ">" + optionsarr2[i] + "</option>");
+        b = $("<option value='" + optionsarr2[i] + "'>" + optionsarr2[i] + "</option>");
         $("#option2").append(b);
 
         // if (selection2 == ""){
@@ -60,7 +59,7 @@ function populateDropdown(){
         // }
     }
     for (i = 0; i < optionsarr1.length; i++) {
-        var c = $("<option value=" + "3-" + i + ">" + optionsarr3[i] + "</option>");
+        c = $("<option value='" + optionsarr3[i] + "'>" + optionsarr3[i] + "</option>");
         $("#option3").append(c);
 
         // if (selection3 == ""){
@@ -98,17 +97,22 @@ function lieDetector() {
 
 $("#input-submit").click(function(){ 
     if (selection1 == ""){
-        selection1 = "1-0";
+        selection1 = optionsarr1[0];
     }
 
     if (selection2 == ""){
-        selection2 = "2-0";
+        selection2 = optionsarr2[0];
     }
 
     if (selection3 == ""){
-        selection3 = "3-0";
+        selection3 = optionsarr3[0];
     }
+
     lieDetector();
+    if (lie == ""){
+        alert("Please indicated which statement is a lie");
+        return;
+    }
     console.log(selection1);
     console.log(selection2);
     console.log(selection3);
