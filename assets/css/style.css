@@ -246,6 +246,15 @@ a.dropdown-item {
 .mini-nav i:hover {
     opacity: 1;
 }
+.result-tab-content {    
+    padding: 1rem;
+    border-left: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-bottom-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
 footer {
     position: absolute;
     bottom: 0;

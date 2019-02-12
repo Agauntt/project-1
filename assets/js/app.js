@@ -10,6 +10,7 @@ function initAll(){
     $("#userActivitySelect").hide();
     $("#newGroupNameError").hide();
     $("#userLogin").hide();
+    $("#adminHome").hide();
     
 }
 initAll();
