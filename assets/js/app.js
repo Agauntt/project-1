@@ -11,6 +11,7 @@ function initAll(){
     $("#newGroupNameError").hide();
     $("#userLogin").hide();
     
+    
 }
 initAll();
 var path = window.location.pathname;
