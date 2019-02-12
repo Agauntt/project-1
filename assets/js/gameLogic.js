@@ -1,3 +1,4 @@
+//================================ SELECT SCREEN LOGIC ============================================
 var selection1 = "";
 var selection2 = "";
 var selection3 = "";
@@ -107,6 +108,8 @@ function compileResults() {
 
 };
 
+compileResults();
+
 $("#input-submit").click(function(){ 
 
     compileResults();
@@ -121,4 +124,35 @@ $("#input-submit").click(function(){
     // console.log(selection2);
     // console.log(selection3);
     // console.log(lie);
+});
+
+//============================ ACTUAL GAME LOGIC ==============================================
+var firstRandom;
+var secondRandom;
+var thirdRandom;
+var card = $(".play-area");
+
+function loadGame() {
+firstRandom = userDataSet.first;
+secondRandom = userDataSet.second;
+thirdRandom = userDataSet.third;
+$("#random1").text(firstRandom);
+$("#random2").text(secondRandom);
+$("#random3").text(thirdRandom);
+console.log(firstRandom);
+console.log(secondRandom);
+console.log(thirdRandom);
+console.log(lie);
+
+$(".begin-game").hide();
+
+    card.append("<labe><input type='radio' name='game-select' value='" + firstRandom + "'>" + firstRandom + "</label><br>");
+    card.append("<labe><input type='radio' name='game-select' value='" + secondRandom + "'>" + secondRandom + "</label><br>");
+    card.append("<labe><input type='radio' name='game-select' value='" + thirdRandom + "'>" + thirdRandom + "</label><br><br>");
+    card.append("<button type='submit' class='btn btn-primary' id='end-game'>Make Selection</button>");
+};
+
+$(".begin-game").click(function(){
+    loadGame();
+
 });
