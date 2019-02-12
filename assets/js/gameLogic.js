@@ -2,6 +2,7 @@ var selection1 = "";
 var selection2 = "";
 var selection3 = "";
 var lie = "";
+var userDataSet;
 
 var optionsarr1 = [
     "I'm a vegetarian",
@@ -95,7 +96,7 @@ function lieDetector() {
     }
 };
 
-$("#input-submit").click(function(){ 
+function compileResults() {
     if (selection1 == ""){
         selection1 = optionsarr1[0];
     }
@@ -107,14 +108,36 @@ $("#input-submit").click(function(){
     if (selection3 == ""){
         selection3 = optionsarr3[0];
     }
-
     lieDetector();
+    userDataSet = [
+         selection1,
+         selection2,
+         selection3,
+         lie
+    ];
+};
+
+$("#input-submit").click(function(){ 
+    // if (selection1 == ""){
+    //     selection1 = optionsarr1[0];
+    // }
+
+    // if (selection2 == ""){
+    //     selection2 = optionsarr2[0];
+    // }
+
+    // if (selection3 == ""){
+    //     selection3 = optionsarr3[0];
+    // }
+    // lieDetector();
+    compileResults();
     if (lie == ""){
         alert("Please indicated which statement is a lie");
         return;
     }
-    console.log(selection1);
-    console.log(selection2);
-    console.log(selection3);
-    console.log(lie);
+    console.log(userDataSet);
+    // console.log(selection1);
+    // console.log(selection2);
+    // console.log(selection3);
+    // console.log(lie);
 });
