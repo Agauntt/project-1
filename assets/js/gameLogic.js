@@ -86,6 +86,15 @@ $("#option3").change(function(){
     // console.log(this.value);
 })
 
+function lieDetector() {
+    if ($("#radio1").is(":checked")) {
+        lie = selection1;
+    }else if ($("#radio2").is(":checked")) {
+        lie = selection2;
+    }else if ($("#radio3").is(":checked")) {
+        lie = selection3;
+    }
+};
 
 $("#input-submit").click(function(){ 
     if (selection1 == ""){
@@ -99,7 +108,9 @@ $("#input-submit").click(function(){
     if (selection3 == ""){
         selection3 = "3-0";
     }
+    lieDetector();
     console.log(selection1);
     console.log(selection2);
     console.log(selection3);
+    console.log(lie);
 });
