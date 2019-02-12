@@ -93,21 +93,10 @@ body {
     top: 5px;
     padding-left: 15px;
   }
-.selection-controls {
-    flex-wrap: wrap;    
-}
-.select-add, .select-remove {
-    flex-basis: 100%;
-}
-.select-add button, .select-remove button {
-    min-width: 75px;
-}
-.fa-angle-left, .fa-angle-right {
-    padding: 10px;
-    cursor: pointer;
-}
-.fa-angle-left:hover, .fa-angle-right:hover {
-    color: blue;
+
+.row.activity-row-header.mt-3 h4 {
+    display: inline-block;
+    margin-bottom: .25rem;
 }
 span#showGroupShortDesc {
     margin-left: 10px;
@@ -245,6 +234,15 @@ a.dropdown-item {
 
 .mini-nav i:hover {
     opacity: 1;
+}
+.result-tab-content {    
+    padding: 1rem;
+    border-left: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-bottom-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
 }
 footer {
     position: absolute;
