@@ -72,6 +72,7 @@ function isUserAuthenticated(){
  displayName:'',
   emailId:'',
   photoUrl:'',
+  userAuthId:''
   
 }
 
@@ -86,6 +87,7 @@ function setUsersFromCookies(){
  user.displayName=signIn.displayName;
  user.emailId=signIn.email;
  user.photoUrl=signIn.photoURL;
+ user.userAuthId=signIn.providerData[0].userAuthId;
 
  $("#userProfileName").text(user.displayName);
  $("#userProfilePic").attr("src",user.photoUrl);
@@ -105,7 +107,8 @@ var addGroupUser=function(){
      var userData={
        displayName:user.displayName,
        emailId:user.emailId,
-       photoUrl:user.photoUrl
+       photoUrl:user.photoUrl,
+      userAuthId: user.userAuthId
      }
     db.ref('groupUsers').child(user.displayName).set(userData)
          .then(function (snap) {
