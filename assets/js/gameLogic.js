@@ -42,30 +42,19 @@ var optionsarr3 = [
     "I know how to ride a motorcycle"
 ];
 
+
 function populateDropdown(){
     for (i = 0; i < optionsarr1.length; i++) {
         a = $("<option value='" + optionsarr1[i] + "'>" + optionsarr1[i] + "</option>");
         $("#option1").append(a);
-
-    //     if (selection1 == ""){
-    //         selection1 = "1-0";
-    //     }
      }
     for (i = 0; i < optionsarr1.length; i++) {
         b = $("<option value='" + optionsarr2[i] + "'>" + optionsarr2[i] + "</option>");
         $("#option2").append(b);
-
-        // if (selection2 == ""){
-        //     selection2 = "2-0";
-        // }
     }
     for (i = 0; i < optionsarr1.length; i++) {
         c = $("<option value='" + optionsarr3[i] + "'>" + optionsarr3[i] + "</option>");
         $("#option3").append(c);
-
-        // if (selection3 == ""){
-        //     selection3 = "3-0";
-        // }
     }
 };
 
@@ -109,36 +98,27 @@ function compileResults() {
         selection3 = optionsarr3[0];
     }
     lieDetector();
-    userDataSet = [
-        selection1,
-        selection2,
-        selection3,
-        lie
-    ];
+    userDataSet = {
+        first: selection1,
+        second: selection2,
+        third: selection3,
+        lie: lie
+    };
+
 };
 
 $("#input-submit").click(function(){ 
-    // if (selection1 == ""){
-    //     selection1 = optionsarr1[0];
-    // }
 
-    // if (selection2 == ""){
-    //     selection2 = optionsarr2[0];
-    // }
-
-    // if (selection3 == ""){
-    //     selection3 = optionsarr3[0];
-    // }
-    // lieDetector();
     compileResults();
     if (lie == ""){
         alert("Please indicated which statement is a lie");
         return;
     }
+    $("#input-submit").hide();
+    $("#hide-play-button").show();
     console.log(userDataSet);
-    console.log(selection1);
-    console.log(selection2);
-    console.log(selection3);
-    console.log(lie);
-
+    // console.log(selection1);
+    // console.log(selection2);
+    // console.log(selection3);
+    // console.log(lie);
 });
