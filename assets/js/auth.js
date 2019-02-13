@@ -68,8 +68,17 @@ function webAuth() {
           var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
-       // var userAdditionInfo=result.additionalUserInfo
-     
+        var userAdditionInfo=result.additionalUserInfo
+        //For Twitter we are going to use username as ID
+        if(user.providerData[0].providerId=="twitter.com")
+        {
+          user.providerData[0].userAuthId=userAdditionInfo.username;
+        }
+        else
+        {
+          user.providerData[0].userAuthId= user.providerData[0].email
+      
+        }
         // The signed-in user info.
         var date = new Date();
         var minutes = 30;
