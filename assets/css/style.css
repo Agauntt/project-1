@@ -244,6 +244,22 @@ a.dropdown-item {
     border-top-right-radius: .25rem;
     border-bottom-right-radius: .25rem;
 }
+.result-nav-link {
+    color: #573e8a;
+}
+.results-activity-title {
+    display: inline-block;
+}
+.results-activity-status {
+    display: inline-block;
+    position: relative;
+    bottom: 4px;
+    text-transform: capitalize;
+    margin-left: 10px;
+}
+.results-activity-desc {
+    display: block;
+}
 footer {
     position: absolute;
     bottom: 0;
