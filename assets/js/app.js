@@ -282,7 +282,8 @@ $(document).ready(function () {
                 html += "role='tabpanel'><div class='row'><div class='col-6'><h3 class='results-activity-title' id='title-" + cv.activity_key + "'></h3>";
                 html += "<span id='status-" + cv.activity_key + "' class='badge results-activity-status'>" + cv.status + "</span>";
                 html += "<small class='results-activity-desc' id='desc-" + cv.activity_key + "'></small>";
-                html += "<h5 class='results-activity-users mt-3'>Users:</h5><span class='badge badge-theme'>" + cv.users + "</span>";
+                html += "<button type='button' class='btn btn-theme-secondary results-activity-users mt-3'>Users";
+                html += "<span class='user-badge badge badge-theme'>" + cv.users + "</span></button>";
                 html += "</div>";
                 html += "<div class='col-6'>"; 
                

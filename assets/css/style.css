@@ -18,6 +18,11 @@ body {
    border: none;
    color: #FFFFFF; 
 }
+.btn-theme-secondary {
+    background-color: #1C5C9B;
+    border: none;
+   color: #FFFFFF; 
+}
 #particles-js canvas {
     display: block;
     vertical-align: bottom;
@@ -264,8 +269,13 @@ a.dropdown-item {
 .results-activity-desc {
     display: block;
 }
-.results-activity-users span {
+.results-activity-users {
+    text-transform: uppercase;
+}
+.user-badge {
     margin-left: 10px;
+    position: relative;
+    bottom: 2px;
 }
 /* end spinning circle CSS */
 .icon {
