@@ -1,6 +1,7 @@
 
   var signIn ="";
   var signInSuccess = "";
+  var adminsArr = ["trentdavisinc@gmail.com","chandnibpatel@gmail.com"];
 
   $(document).ready(function(){
 //Check url 
@@ -162,8 +163,11 @@ function authNav(isFreshLogin){
         }
      }
      else {
-       if (signIn.email === "chandnibpatel@gmail.com")
+       var isUserAdmin = signIn.providerData[0].userAuthId;
+       console.log(isUserAdmin);
+       if (adminsArr.indexOf(isUserAdmin) != -1)
        {
+         console.log("signIn.providerData[0].userAuthId", signIn.providerData[0].userAuthId);
         if (page=="index.html" && isFreshLogin)
          window.location.replace( "../project-1/continueAs.html");
        }
