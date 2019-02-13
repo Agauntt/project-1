@@ -40,7 +40,8 @@ var optionsarr3 = [
     "I wear glasses/contacts",
     "I prefer Marvel over DC",
     "I dislike horror movies",
-    "I know how to ride a motorcycle"
+    "I know how to ride a motorcycle",
+    "I speak more than one language"
 ];
 
 
