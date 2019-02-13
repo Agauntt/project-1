@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Submit User Information</title>
+    <title>Two Truths and a Lie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -46,40 +46,20 @@
                             </div>
                         </div>
                 </header>
-<br>
-<br>
-<div class="truth-lie-instructions">
-    <h3 class="text-center">Tell us about yourself!</h3>
-<br>
-    <h4 class="text-center">Select two truths and one lie from the dropdown lists below. Indicate which selection is the lie by selecting the button next to the chosen lie. Click "submit" when you have completed this.</h4>
-</div>
-<br>
-    <div class="wrapper text-center" id="truthOrLieSubmitBox">
-        <select class="dropdown dropdown-game form-control option1" id="option1">
-        </select>
-        <span>
-            <input id="radio1" type="radio" name="lieSelect"> Lie
-        </span>
-<br>
-        <select class="dropdown dropdown-game form-control" id="option2">
-        </select>
-        <span>
-                <input id="radio2" type="radio" name="lieSelect"> Lie
-            </span>
-<br>
-        <select class="dropdown dropdown-game form-control" id="option3">
-        </select>
-        <span>
-                <input  id="radio3" type="radio" name="lieSelect"> Lie
-            </span>
-<br>
-<br>
-            <button class="btn" id="input-submit">Submit</button>
-    </div>
-        <div id="hide-play-button">
-            <a href="twoTruthsGame.html" class="play-game-button"><span>Play the Game!</span></a>
+    <br>
+        <div class="truth-lie-instructions">
+            <h3 class="text-center">Lets Play!</h3>
+        <br>
+            <h4 class="text-center">Two of the statements below are true, while one is false. Using the buttons to the right of the statements, select the statement you believe is false.</h4>
         </div>
+    <br>
+    <div class="play-area" id="truthOrLieGameBox">
+        <button class="btn begin-game">PLAY!!</button>
+
     </div>
+    </div>
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="assets/js/app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>

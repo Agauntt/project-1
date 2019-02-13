@@ -257,7 +257,8 @@ footer {
 #truthOrLieSubmitBox {
     border-width: 2px;
     border-style: solid;
-    border-color: green;
+    border-color: rgb(54, 139, 219);
+    background: rgb(54, 139, 219, .4);
     padding: 25px;
     margin: 20px;
     margin-left: 75px;
@@ -265,8 +266,25 @@ footer {
     border-radius: 25px;
 }
 
+#truthOrLieGameBox {
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(54, 139, 219);
+    padding: 25px;
+    margin: 20px;
+    margin-left: 75px;
+    margin-right: 75px;
+    border-radius: 25px;
+    background: rgb(54, 139, 219, .4);
+}
+
+#input-submit {
+    background: #573E8A;
+    color: white;
+}
+
 .dropdown:not(:first)  {
-    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .dropdown-toggle:not(:first)  {
@@ -284,3 +302,64 @@ footer {
     padding: 20px;
 }
 
+.play-game-button {
+    border-radius: 6px;
+    background-color: #573E8A;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 22px;
+    padding: 20px;
+    width: 250px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    display: block;
+    margin: 0 auto;
+}
+
+.play-game-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.play-game-button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+.play-game-button:hover span {
+    padding-right: 25px;
+    color: white;
+  }
+
+.play-game-button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+#hide-play-button {
+    display: none;
+}
+
+.two-truths-game-option {
+    font-size: 25px;
+}
+
+.begin-game {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 75px;
+    background-color: #573E8A;
+    border: none;
+    color: #FFFFFF;
+    font-size: 25px;
+    border-radius: 8px;
+}
