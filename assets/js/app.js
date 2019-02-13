@@ -71,7 +71,8 @@ $(document).ready(function () {
     }
     //calling Get Groups from Firebase
     getGroups();
-    populateMyGroups(user.userAuthId);
+    // populateMyGroups(user.userAuthId);
+    populateMyGroups("trentdavisinc@gmail.com");
     function clearFirebaseDataHTML() {
         $("#showGroupModalTitle").empty();
         $("#addGroupActivityTitle").empty();
@@ -280,7 +281,11 @@ $(document).ready(function () {
                 var html = "<div class='tab-pane fade  result-tab-content' id='" + cv.activity_key + "'";                              
                 html += "role='tabpanel'><div class='row'><div class='col-6'><h3 class='results-activity-title' id='title-" + cv.activity_key + "'></h3>";
                 html += "<span id='status-" + cv.activity_key + "' class='badge results-activity-status'>" + cv.status + "</span>";
-                html += "<small class='results-activity-desc' id='desc-" + cv.activity_key + "'></small></div><div class='col-6'>"; 
+                html += "<small class='results-activity-desc' id='desc-" + cv.activity_key + "'></small>";
+                html += "<h5 class='results-activity-users mt-3'>Users:</h5><span class='badge badge-theme'>" + cv.users + "</span>";
+                html += "</div>";
+                html += "<div class='col-6'>"; 
+               
                 html += "<h3>Suggested Venues</h3><img src='assets/images/resultDemo.jpg' width='500' />";        
                 html += "</div></div></div>";      
                 $("#resultTabContent").append(html);  
@@ -289,13 +294,14 @@ $(document).ready(function () {
                 } else if(cv.status == "in progress"){
                     $("#status-" + cv.activity_key).addClass("badge-info");                  
                 } else if(cv.status == "complete"){
-                    $("#status-" + cv.activity_key).addClass("badge-success");                  
+                    $("#status-" + cv.activity_key).addClass("badge-success");                
                 }
+                
                 db.ref('activities').orderByChild('activity_id').equalTo(cv.activity_id).on("child_added", function (activitychild) {
                     $("#" + cv.activity_key + "-tab").text(activitychild.key);
                     $("#title-" + cv.activity_key).text(activitychild.key);
                     $("#desc-" + cv.activity_key).text(activitychild.val().activity_desc);
-
+                   
                  });  
                  
             });   
