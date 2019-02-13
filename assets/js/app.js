@@ -33,18 +33,19 @@ $(document).ready(function () {
             var newGroupName = $("#newGroupName").val();
             var newGroupNameShortDesc = $("#newGroupNameShortDesc").val();
             var newGroupNameLongDesc = $("#newGroupNameLongDesc").val();
-            saveGroupToDB(newGroupName, newGroupNameShortDesc, newGroupNameLongDesc);
+            var uid = user.userAuthId;
+            saveGroupToDB(newGroupName, newGroupNameShortDesc, newGroupNameLongDesc, uid);
             $("#addGroupModal").modal('hide');
         }
     });
-    function saveGroupToDB(name, shortDesc, longDesc) {
+    function saveGroupToDB(name, shortDesc, longDesc, uid) {
         var myRef = db.ref().push();
         var key = myRef.key;
         var data = {
             group_id: key,
             group_short_desc: shortDesc,
             group_long_desc: longDesc,
-            // createdBy : user.displayName,
+            createdBy: uid,
             created: firebase.database.ServerValue.TIMESTAMP
         };
         db.ref('groups').child(name).set(data)
@@ -70,7 +71,7 @@ $(document).ready(function () {
     }
     //calling Get Groups from Firebase
     getGroups();
-    populateMyGroups("-LYO_4FYLna5DK-Pmi_n");
+    populateMyGroups(user.userAuthId);
     function clearFirebaseDataHTML() {
         $("#showGroupModalTitle").empty();
         $("#addGroupActivityTitle").empty();
