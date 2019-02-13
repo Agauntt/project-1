@@ -131,8 +131,9 @@ function loadGame() {
 
 // Populate All users
 var getUsers=function(){
+    setUsersFromCookies();
     db.ref('groupUsers').on("value", function(snap) { 
-    // db.ref('groupUsers').orderByChild('group_id').equalTo(groupID).on("value", function (snap) {
+
      var i=0;
      $("#usersList").empty();    
      snap.forEach(function(child) {
@@ -140,34 +141,37 @@ var getUsers=function(){
         var cv = child.val();
 
         divId = name;
+       
+        if (divId != user.userKey)
+        {       
+            var userObj=$("<div>")
+            userObj.addClass("userDiv col-3")
+            userObj.css({'display': 'inline-block'})
 
-        var userObj=$("<div>")
-        userObj.addClass("userDiv col-3")
-        userObj.css({'display': 'inline-block'})
+            //user Iamge
+            var selectuserImg = $("<img>");
+            selectuserImg.addClass("userPic");
+            selectuserImg.attr("src",cv.photoUrl);
+            selectuserImg.attr("id",divId);
+            selectuserImg.attr("data-image-id",name);
+            selectuserImg.css({ 'height': '100px', 'width': '100px' });
 
-        //user Iamge
-        var selectuserImg = $("<img>");
-        selectuserImg.addClass("userPic");
-        selectuserImg.attr("src",cv.photoUrl);
-        selectuserImg.attr("id",divId);
-        selectuserImg.attr("data-image-id",name);
-        selectuserImg.css({ 'height': '100px', 'width': '100px' });
+            //Header part of the user object
+            var userHeader =$("<div>");
+            userHeader.addClass("content top");
 
-        //Header part of the user object
-        var userHeader =$("<div>");
-        userHeader.addClass("content top");
-
-        //user Name
-        var userName=$("<h6>");
-        userName.text(cv.displayName);
-        userHeader.append(userName);
+            //user Name
+            var userName=$("<h6>");
+            userName.text(cv.displayName);
+            userHeader.append(userName);
+                
+            //Adde to DIV
+            userObj.append(userHeader);
+            userObj.append(selectuserImg);
             
-        //Adde to DIV
-        userObj.append(userHeader);
-        userObj.append(selectuserImg);
-        
-        //Add to Main Div
-        $("#usersList").append(userObj);
+            //Add to Main Div
+            $("#usersList").append(userObj);
+        }
             
         i++;
      });
