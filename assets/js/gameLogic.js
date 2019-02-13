@@ -50,11 +50,11 @@ function populateDropdown(){
         a = $("<option value='" + optionsarr1[i] + "'>" + optionsarr1[i] + "</option>");
         $("#option1").append(a);
      }
-    for (i = 0; i < optionsarr1.length; i++) {
+    for (i = 0; i < optionsarr2.length; i++) {
         b = $("<option value='" + optionsarr2[i] + "'>" + optionsarr2[i] + "</option>");
         $("#option2").append(b);
     }
-    for (i = 0; i < optionsarr1.length; i++) {
+    for (i = 0; i < optionsarr3.length; i++) {
         c = $("<option value='" + optionsarr3[i] + "'>" + optionsarr3[i] + "</option>");
         $("#option3").append(c);
     }
