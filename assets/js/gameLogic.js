@@ -60,6 +60,8 @@ function populateDropdown(){
 };
 
 populateDropdown();
+setUsersFromCookies();
+console.log("in Game logic");
 
 $("#option1").change(function(){
     selection1 = this.value;

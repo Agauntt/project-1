@@ -21,6 +21,7 @@ var page = path.split("/").pop();
 var db = firebase.database();
 $(document).ready(function () {
 
+    setUsersFromCookies();
     // add new group modal functions 
     $("#submitNewGroupName").on("click", function () {
         // add new group validation
