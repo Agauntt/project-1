@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" 
+      integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+      <title>Yelp API</title>
+   </head>
+   <body>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" 
+      integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous">
+      </script>
+      
+      <script>
+         var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=";
+
+         $.ajax({
+            url: myurl,
+            headers: {
+             'Authorization':'Bearer 51MljoOv5CQaR6wRoitgJaWnE5CxBDWtzQ5Ht7Hm-jLOAxK51e42Q0cMjSm3OUHVORFGWNyGFcqO0yutAU5fdEFJH9ClR9ETWYBO-_xa86VycE3Mi_yy-fWPUCVfXHYx',
+         },
+            method: 'GET',
+            dataType: 'json',
+            success: function(data){
+                console.log('success: '+data);
+            }
+         });      
+
+      </script>
+   </body>
+</html>
