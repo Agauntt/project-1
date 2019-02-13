@@ -250,6 +250,35 @@ $(document).ready(function () {
             });
         });
     }
+    // print results page to HTML
+    function printResultsToHTML(groupID){
+        var i = 0;
+        db.ref('results').orderByChild('group_id').equalTo(groupID).on("value", function (snap) {
+           
+            snap.forEach(function (child) {      
+                var cv = child.val();             
+                var newLi = "<li class='nav-item'>";
+                newLi += "<a class='nav-link active' id='" + cv.activity_key + "-tab' data-toggle='tab' href='" + cv.activity_key + "'";                
+                newLi += "role='tab'>Result" + cv.activity_id + "</a></li>";
+                $("#resultTab").append(newLi);
+                i++;
+                var html = "<div class='tab-pane fade result-tab-content' id='" + cv.activity_key + "'";                              
+                html += "role='tabpanel'><div class='row'><div class='col-6'><h3 id='title-" + cv.activity_key + "'></h3>";
+                html += "<small id='desc-" + cv.activity_key + "'></small></div><div class='col-6'>"; 
+                html += "<h3>Suggested Venues</h3><img src='assets/images/resultDemo.jpg' width='500' />";        
+                html += "</div></div></div>";        
+                db.ref('activities').orderByChild('activity_id').equalTo(cv.activity_id).on("child_added", function (activitychild) {
+                    $("#" + cv.activity_key + "-tab").text(activitychild.key);
+                    $("#title-" + cv.activity_key).text(activitychild.key);
+                    $("#desc-" + cv.activity_key).text(activitychild.val().activity_desc);
+
+                 });  
+                $("#resultTabContent").append(html);
+            });          
+    });
+}
+    
+    printResultsToHTML("-LYP8ezRxmVs0eFLJyaY");
     // Logout functionality
     $(document).on("click", "#logOutLink", function () {
         console.log("Logout");
