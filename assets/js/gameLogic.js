@@ -1,4 +1,5 @@
 //================================ SELECT SCREEN LOGIC ============================================
+//Personal Trues and Lie screen variables
 var selection1 = "";
 var selection2 = "";
 var selection3 = "";
@@ -43,7 +44,43 @@ var optionsarr3 = [
     "I know how to ride a motorcycle"
 ];
 
+// Play Game Variables
+var firstRandom;
+var secondRandom;
+var thirdRandom;
+var lie;
+var card = $(".play-area");
+var divId='';
+var selectedUser = "";
+var options = [];
+var userExist = "false";
 
+
+// Function to check if the user is joining any group for the first time
+function firstTimeUser(){
+    populateDropdown();
+    setUsersFromCookies();
+    console.log("in Game logic");
+
+    $("#option1").change(function(){
+        selection1 = this.value;
+        // console.log(this.value);
+    })
+    
+    $("#option2").change(function(){
+        selection2 = this.value;
+        // console.log(this.value);
+    })
+    
+    $("#option3").change(function(){
+        selection3 = this.value;
+        // console.log(this.value);
+    })
+
+    compileResults();
+}
+
+//Function to populate dropdown for user personal trues and lie
 function populateDropdown(){
     for (i = 0; i < optionsarr1.length; i++) {
         a = $("<option value='" + optionsarr1[i] + "'>" + optionsarr1[i] + "</option>");
@@ -59,7 +96,7 @@ function populateDropdown(){
     }
 };
 
-
+//Lie detector
 function lieDetector() {
     if ($("#radio1").is(":checked")) {
         lie = selection1;
@@ -70,6 +107,7 @@ function lieDetector() {
     }
 };
 
+//Checking the Results
 function compileResults() {
     if (selection1 == ""){
         selection1 = optionsarr1[0];
@@ -92,16 +130,8 @@ function compileResults() {
 
 };
 
-//============================ ACTUAL GAME LOGIC ==============================================
-var firstRandom;
-var secondRandom;
-var thirdRandom;
-var lie;
-var card = $(".play-area");
-var divId='';
-var selectedUser = "";
-var options = []
 
+// This function will load the game for selected user
 function loadGame() {
     
     selectedUser=  localStorage.getItem("selectedUser");
@@ -179,30 +209,55 @@ var getUsers=function(){
     }); 
  
   }
+  //check if the user exist for verifying first time user
+  function isUserExist(){
+
+    setUsersFromCookies();
+    db.ref('groupUsers').on("value", function(snap) { 
+
+    var i=0;
+    $("#usersList").empty();    
+    snap.forEach(function(child) {
+    var name = child.key;
+    var cv = child.val();
+        
+    if (name === user.userKey)
+       {     
+        // *************************************
+        // THIS PART IS NOT WORKING PROPERLY
+        //**************************************
+        //if (child.key.hasChild("True-and-Lie")) {
+        if (child("True-and-Lie").exists()){  
+            userExist = "true";
+           }
+       }
+    i++;
+    });
+     
+   }); 
+}
 //*********************
 //Main Processing Area
 //*********************
-    populateDropdown();
-    setUsersFromCookies();
-    console.log("in Game logic");
+    isUserExist();
 
-    $("#option1").change(function(){
-        selection1 = this.value;
-        // console.log(this.value);
-    })
-    
-    $("#option2").change(function(){
-        selection2 = this.value;
-        // console.log(this.value);
-    })
-    
-    $("#option3").change(function(){
-        selection3 = this.value;
-        // console.log(this.value);
-    })
-
-    compileResults();
-    
+    //if user exist navigate to the select users to play screen
+    if (userExist){
+        $("#input-submit").hide();
+        getUsers();
+        $("#truthOrLieSubmitBox").hide();
+        $("#gameIns").hide();
+        $("#gameHeading").text("Select any users to Play !!");
+    }
+    //else will create a personal trues and lie by user
+    else
+    {
+        firstTimeUser(); 
+        userExist = "true";
+        loadGame();
+    }
+   
+    //eventlistener for input submit button for personal trues and lie screen
     $("#input-submit").click(function(){ 
 
         compileResults();
@@ -229,9 +284,7 @@ var getUsers=function(){
    
     });
 
-    
-      
-    
+ 
     // on click event to select user to play will redirect to twoTruthsGame
     $(document).on("click",".userPic",function(e){
     
@@ -245,6 +298,8 @@ var getUsers=function(){
         
 
     });
+
+    //eventlistener for make selection button for game play
     $(document).on("click","#end-game",function(){
         var userAns = '';
         console.log("end game");
@@ -263,5 +318,5 @@ var getUsers=function(){
         {
             console.log("Correct !!")
         }
-    })
+    });
 
