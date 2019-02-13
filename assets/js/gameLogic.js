@@ -5,6 +5,11 @@ var selection3 = "";
 var lie = "";
 var userDataSet;
 
+function initModals(){
+    $("#selectionError").hide();
+};
+initModals();
+
 var optionsarr1 = [
     "I am a vegetarian",
     "I am a vegan",
@@ -115,7 +120,7 @@ $("#input-submit").click(function(){
 
     compileResults();
     if (lie == ""){
-        alert("Please indicated which statement is a lie");
+        $("#selectionError").modal("show");
         return;
     }
     $("#input-submit").hide();
@@ -147,9 +152,9 @@ console.log(lie);
 
 $(".begin-game").hide();
 
-    card.append("<labe><input type='radio' name='game-select' value='" + firstRandom + "'>" + firstRandom + "</label><br>");
-    card.append("<labe><input type='radio' name='game-select' value='" + secondRandom + "'>" + secondRandom + "</label><br>");
-    card.append("<labe><input type='radio' name='game-select' value='" + thirdRandom + "'>" + thirdRandom + "</label><br><br>");
+    card.append("<label><input type='radio' class='selection-radios' name='game-select' value='" + firstRandom + "'>" + firstRandom + "</label><br>");
+    card.append("<label><input type='radio' class='selection-radios' name='game-select' value='" + secondRandom + "'>" + secondRandom + "</label><br>");
+    card.append("<label><input type='radio' class='selection-radios' name='game-select' value='" + thirdRandom + "'>" + thirdRandom + "</label><br><br>");
     card.append("<button type='submit' class='btn btn-primary' id='end-game'>Make Selection</button>");
 };
 

@@ -267,6 +267,7 @@ footer {
 }
 
 #truthOrLieGameBox {
+    font-size: 25px;
     border-width: 2px;
     border-style: solid;
     border-color: rgb(54, 139, 219);
@@ -318,6 +319,12 @@ footer {
     margin: 0 auto;
 }
 
+.twoTruthsBtn {
+    background-color: #573E8A;
+    border: none;
+    color: #FFFFFF;
+}
+
 .play-game-button span {
     cursor: pointer;
     display: inline-block;
@@ -362,4 +369,20 @@ footer {
     color: #FFFFFF;
     font-size: 25px;
     border-radius: 8px;
+}
+
+.dropdown-game {
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 80%;
+    vertical-align: middle;
+}
+
+.submit-radios {
+    margin-top: 25px;
+    margin-left: 15px;
+}
+
+.selection-radios {
+    margin-right: 15px;
 }

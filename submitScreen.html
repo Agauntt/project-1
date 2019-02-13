@@ -54,24 +54,50 @@
     <h4 class="text-center">Select two truths and one lie from the dropdown lists below. Indicate which selection is the lie by selecting the button next to the chosen lie. Click "submit" when you have completed this.</h4>
 </div>
 <br>
-    <div class="wrapper text-center" id="truthOrLieSubmitBox">
+<!----------------------------------------------- Modal for lie selection error ---------------------------->
+<div class="modal fade" id="selectionError" tabindex="-1" role="dialog" aria-labelledby="selectionErrorLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="selectionErrorLabel">Error</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                Please select which statement is a lie, by checking one of the buttons to the left of the statements.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<!---------------------------------------------- End of Error Modal --------------------------------------->
+<div class="wrapper text-center" id="truthOrLieSubmitBox">
+    <div class="row">
         <select class="dropdown dropdown-game form-control option1" id="option1">
         </select>
-        <span>
-            <input id="radio1" type="radio" name="lieSelect"> Lie
-        </span>
+            <span>
+                <input class="submit-radios" id="radio1" type="radio" name="lieSelect"> <strong>Lie</strong>
+            </span>
+    </div>
 <br>
+    <div class="row">
         <select class="dropdown dropdown-game form-control" id="option2">
         </select>
-        <span>
-                <input id="radio2" type="radio" name="lieSelect"> Lie
+            <span>
+                <input class="submit-radios" id="radio2" type="radio" name="lieSelect"> <strong>Lie</strong>
             </span>
+    </div>
 <br>
+    <div class="row">
         <select class="dropdown dropdown-game form-control" id="option3">
         </select>
-        <span>
-                <input  id="radio3" type="radio" name="lieSelect"> Lie
+            <span>
+                <input class="submit-radios" id="radio3" type="radio" name="lieSelect"> <strong>Lie</strong>
             </span>
+    </div>
 <br>
 <br>
             <button class="btn" id="input-submit">Submit</button>
