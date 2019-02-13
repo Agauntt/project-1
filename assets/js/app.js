@@ -21,6 +21,7 @@ var page = path.split("/").pop();
 var db = firebase.database();
 $(document).ready(function () {
 
+    setUsersFromCookies();
     // add new group modal functions 
     $("#submitNewGroupName").on("click", function () {
         // add new group validation
@@ -92,8 +93,11 @@ $(document).ready(function () {
                 var cv = child.val();
                 $("#showGroupModalTitle").text(name);
                 $("#addGroupActivityTitle").text(name);
-                $("#showGroupCreatedBy").text(cv.createdBy);
-                $("#showGroupCreatedOn").text(cv.created);
+                $("#showGroupCreatedBy").text(cv.createdBy);    
+                
+                var createdOn = moment(cv.created).format("MMMM Do YYYY, hh:mm:ss a");
+                $("#showGroupCreatedOn").text(createdOn);
+                
                 $("#showGroupShortDesc").text(cv.group_short_desc);
                 $("#addGroupActivityShortDesc").text(cv.group_short_desc);
                 $("#showGroupLongDesc").text(cv.group_long_desc);
