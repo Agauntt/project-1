@@ -261,6 +261,7 @@ $(document).ready(function () {
     // print results page to HTML
     function printResultsToHTML(groupID){
         $(".result-nav-link").empty();
+        $("#resultTab").empty();
         $(".result-nav-link").removeClass("active");
         $("#resultTabContent").empty();
         $(".tab-pane").removeClass("show active"); 
