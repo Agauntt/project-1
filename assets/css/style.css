@@ -348,6 +348,34 @@ a.dropdown-item {
     100% { -webkit-transform:rotate(-360deg); }
     }
 /* end spinning circle CSS */
+
+/* begin yelp api results css */
+.yelp-image {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.yelp-business-name {
+    text-decoration: none;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #1C5C9B;
+    font-weight: bold;
+    font-size: 120%;
+}
+.yelp-business-rating {
+    display: block;
+}
+.yelp-business-location {
+    float: right;
+    color: #333;
+    font-size: 90%;
+}
+.yelp-business-reviews {
+    color: #666;
+    font-size: 90%;
+}
+/* end yelp api results css */
 footer {
     position: absolute;
     bottom: 0;

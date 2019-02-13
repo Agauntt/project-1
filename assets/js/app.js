@@ -95,8 +95,8 @@ $(document).ready(function () {
                 var cv = child.val();
                 $("#showGroupModalTitle").text(name);
                 $("#addGroupActivityTitle").text(name);
-                $("#showGroupCreatedBy").text(cv.createdBy);    
-                
+                $("#showGroupCreatedBy").text(cv.createdBy);
+
                 var createdOn = moment(cv.created).format("MMMM Do YYYY, hh:mm:ss a");
                 $("#showGroupCreatedOn").text(createdOn);
 
@@ -219,8 +219,8 @@ $(document).ready(function () {
         printResultsToHTML(dataGroupID);
     });
 
-   // Group selection 
-   $(document).on("click", ".user-group", function () {
+    // Group selection 
+    $(document).on("click", ".user-group", function () {
         var groupId = $(this).attr("data-group-id");
         //setUsersFromCookies();
         setUsersFromCookies();
@@ -263,55 +263,121 @@ $(document).ready(function () {
         });
     }
     // print results page to HTML
-    function printResultsToHTML(groupID){
+    function printResultsToHTML(groupID) {
         $(".result-nav-link").empty();
         $("#resultTab").empty();
         $(".result-nav-link").removeClass("active");
         $("#resultTabContent").empty();
-        $(".tab-pane").removeClass("show active"); 
+        $(".tab-pane").removeClass("show active");
         var i = 0;
-        db.ref('results').orderByChild('group_id').equalTo(groupID).once("value", function (snap) {           
-            snap.forEach(function (child) {      
-                var cv = child.val();             
+        db.ref('results').orderByChild('group_id').equalTo(groupID).once("value", function (snap) {
+            snap.forEach(function (child) {
+                var cv = child.val();
                 var newLi = "<li class='nav-item '>";
-                newLi += "<a class='nav-link result-nav-link' id='" + cv.activity_key + "-tab' data-toggle='tab' href='#" + cv.activity_key + "'";                
+                newLi += "<a class='nav-link result-nav-link' id='" + cv.activity_key + "-tab' data-toggle='tab' href='#" + cv.activity_key + "'";
                 newLi += "role='tab'></a></li>";
                 $("#resultTab").append(newLi);
                 i++;
-                var html = "<div class='tab-pane fade  result-tab-content' id='" + cv.activity_key + "'";                              
+                var html = "<div class='tab-pane fade  result-tab-content' id='" + cv.activity_key + "'";
                 html += "role='tabpanel'><div class='row'><div class='col-6'><h3 class='results-activity-title' id='title-" + cv.activity_key + "'></h3>";
                 html += "<span id='status-" + cv.activity_key + "' class='badge results-activity-status'>" + cv.status + "</span>";
                 html += "<small class='results-activity-desc' id='desc-" + cv.activity_key + "'></small>";
                 html += "<button type='button' class='btn btn-theme-secondary results-activity-users mt-3'>Users";
                 html += "<span class='user-badge badge badge-theme'>" + cv.users + "</span></button>";
                 html += "</div>";
-                html += "<div class='col-6'>"; 
-               
-                html += "<h3>Suggested Venues</h3><img src='assets/images/resultDemo.jpg' width='500' />";        
-                html += "</div></div></div>";      
-                $("#resultTabContent").append(html);  
-                if(cv.status == "pending"){
-                    $("#status-" + cv.activity_key).addClass("badge-warning");                  
-                } else if(cv.status == "in progress"){
-                    $("#status-" + cv.activity_key).addClass("badge-info");                  
-                } else if(cv.status == "complete"){
-                    $("#status-" + cv.activity_key).addClass("badge-success");                
+                var yelpApiDivId = "yelpAPI-" + cv.activity_key;
+                var resultKeywords = cv.result_keywords;
+                html += "<div id='" + yelpApiDivId + "' class='col-6'>";
+                html += "<div class='mt-5'><div class='outerCircle'></div><div class='innerCircle'></div><div class='icon'></div></div>"; 
+                getYelpApiResults(yelpApiDivId, [resultKeywords.r1, resultKeywords.r2, resultKeywords.r3]);
+                // html += "<h3>Suggested Venues</h3><img src='assets/images/resultDemo.jpg' width='500' />";        
+                html += "</div></div></div>";
+                $("#resultTabContent").append(html);
+                if (cv.status == "pending") {
+                    $("#status-" + cv.activity_key).addClass("badge-warning");
+                } else if (cv.status == "in progress") {
+                    $("#status-" + cv.activity_key).addClass("badge-info");
+                } else if (cv.status == "complete") {
+                    $("#status-" + cv.activity_key).addClass("badge-success");
                 }
-                
+
                 db.ref('activities').orderByChild('activity_id').equalTo(cv.activity_id).on("child_added", function (activitychild) {
                     $("#" + cv.activity_key + "-tab").text(activitychild.key);
                     $("#title-" + cv.activity_key).text(activitychild.key);
                     $("#desc-" + cv.activity_key).text(activitychild.val().activity_desc);
-                   
-                 });  
-                 
-            });   
-            $(".tab-pane").first().addClass("show active");   
-            $(".result-nav-link").first().addClass("active");      
-    });   
-}
-    // $(document).on("click", ".")
-    
+
+                });
+
+            });
+            $(".tab-pane").first().addClass("show active");
+            $(".result-nav-link").first().addClass("active");
+        });
+    }
+    function getYelpApiResults(yelpApiDivId, resultKeywords) {
+        var html = "<h3>Suggested Venues</h3>";
+       for(i=0; i < resultKeywords.length; i++){
+           console.log(resultKeywords[i]);
+        var myurl = "https://api.yelp.com/v3/businesses/search?term=" + resultKeywords[i] + "&location=austin-tx&limit=1";
+        $.ajax({
+            url: "https://cors-anywhere.herokuapp.com/" + myurl,
+            headers: {
+                'Authorization': 'Bearer 51MljoOv5CQaR6wRoitgJaWnE5CxBDWtzQ5Ht7Hm-jLOAxK51e42Q0cMjSm3OUHVORFGWNyGFcqO0yutAU5fdEFJH9ClR9ETWYBO-_xa86VycE3Mi_yy-fWPUCVfXHYx',
+            },
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                // Grab the results from the API JSON return               
+                var totalresults = data.total;
+                // If our results are greater than 0, continue
+                if (totalresults > 0) {
+                    // Itirate through the JSON array of 'businesses' which was returned by the API
+                    $.each(data.businesses, function (i, item) {
+                        // Store each business's object in a variable
+                        var id = item.id;
+                        var page = item.url
+                        var phone = item.display_phone;
+                        var image = item.image_url;
+                        var name = item.name;
+                        var rating = item.rating;
+                        var reviewcount = item.review_count;
+                        var address = item.location.address1;
+                        var city = item.location.city;
+                        var state = item.location.state;
+                        var zipcode = item.location.zip_code;
+                        // Append our result into our page                        
+                        html += "<div class='yelp-result-wrapper mt-4' id='wrapper-" + id + "'>";
+                        html += "<div class='yelp-details'>";
+                        html += "<div class='yelp-business-location mt-2 mr-2'>" + address + "<br>" + city + ", " + state + " " + zipcode + "<br>" + phone +"</div>";
+                        html += "<img class='yelp-image float-left mr-2' id='image-" + id + "' src='" + image + "' alt='" + name +"'>";                        
+                        html += "<a class='yelp-business-name' target='_blank' href='" + page + "'>" + name + "</a>";
+                        html += "<img class='yelp-business-rating' src='assets/images/yelp_stars/small_";
+                        if(rating == "4.5") {
+                            rating = Math.floor(rating);
+                            html += rating + "_half";
+                        } else {
+                            html += rating;
+                        }
+                        html += ".png' >";
+                        html += "<p class='yelp-business-reviews mt-3'>Based on " + reviewcount + " reviews</p>";
+                        html += "</div>";         
+                        
+                        console.log(html);
+                    });
+                    $("#" + yelpApiDivId).empty();
+        $("#" + yelpApiDivId).append(html);
+                } else {
+                    // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
+                    html = "<h5>no results!</h5>";
+                    
+                }
+            }
+        });
+
+       }
+        
+        
+    }
+
     // Logout functionality
     $(document).on("click", "#logOutLink", function () {
         console.log("Logout");
