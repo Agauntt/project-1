@@ -97,7 +97,7 @@ $(document).ready(function () {
                 
                 var createdOn = moment(cv.created).format("MMMM Do YYYY, hh:mm:ss a");
                 $("#showGroupCreatedOn").text(createdOn);
-                
+
                 $("#showGroupShortDesc").text(cv.group_short_desc);
                 $("#addGroupActivityShortDesc").text(cv.group_short_desc);
                 $("#showGroupLongDesc").text(cv.group_long_desc);
@@ -216,8 +216,10 @@ $(document).ready(function () {
    // Group selection 
    $(document).on("click", ".user-group", function () {
         var groupId = $(this).attr("data-group-id");
+        //setUsersFromCookies();
         setUsersFromCookies();
-        var datapath = "groupUsers/" + user.displayName + "/groupId";
+        var datapath = "groupUsers/" + user.userKey + "/groupId";
+        //var datapath = "groupUsers/" + user.displayName + "/groupId";
 
         db.ref(datapath).set(groupId)
             .then(function (snap) {

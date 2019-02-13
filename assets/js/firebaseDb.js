@@ -59,7 +59,7 @@ var addGroup =function(name,desc){
 
 }
 function isUserAuthenticated(){
-    signIn=Cookies.getJSON("userDetail");
+    setUsersFromCookies()
      if(signIn==null || typeof signIn === "undefined"){
        return false;
      }
@@ -69,6 +69,7 @@ function isUserAuthenticated(){
 }
 
  var user={
+   userKey:'',
  displayName:'',
   emailId:'',
   photoUrl:'',
@@ -84,10 +85,16 @@ function setUsersFromCookies(){
    return false;
  }
  else{
+ 
+ 
  user.displayName=signIn.displayName;
  user.emailId=signIn.email;
  user.photoUrl=signIn.photoURL;
  user.userAuthId=signIn.providerData[0].userAuthId;
+ var replaceSymb= user.userAuthId.replace("@", "-");
+ var replaceSymb = replaceSymb.replace(".", "");
+ var userKey = replaceSymb.replace(".", "");
+ user.userKey = userKey;
 
  $("#userProfileName").text(user.displayName);
  $("#userProfilePic").attr("src",user.photoUrl);
@@ -103,14 +110,19 @@ var addGroupUser=function(){
     {
      var myRef = db.ref().push();
      var key = myRef.key;
-     //user.uid=key;
+     
+     var replaceSymb= user.userAuthId.replace("@", "-");
+     var replaceSymb = replaceSymb.replace(".", "");
+     var userKey = replaceSymb.replace(".", "");
+     console.log("userKey", userKey);
+
      var userData={
-       displayName:user.displayName,
-       emailId:user.emailId,
-       photoUrl:user.photoUrl,
-      userAuthId: user.userAuthId
-     }
-    db.ref('groupUsers').child(user.displayName).set(userData)
+      displayName:user.displayName,
+      emailId:user.emailId,
+      photoUrl:user.photoUrl,
+     userAuthId: userKey
+    }
+    db.ref('groupUsers').child(userKey).set(userData)
          .then(function (snap) {
              console.log("Success!");
          }, function (err) {

@@ -49,9 +49,9 @@
 <br>
 <br>
 <div class="truth-lie-instructions">
-    <h3 class="text-center">Tell us about yourself!</h3>
+    <h3 class="text-center" id="gameHeading">Tell us about yourself!</h3>
 <br>
-    <h4 class="text-center">Select two truths and one lie from the dropdown lists below. Indicate which selection is the lie by selecting the button next to the chosen lie. Click "submit" when you have completed this.</h4>
+    <h4 class="text-center" id = "gameIns">Select two truths and one lie from the dropdown lists below. Indicate which selection is the lie by selecting the button next to the chosen lie. Click "submit" when you have completed this.</h4>
 </div>
 <br>
     <div class="wrapper text-center" id="truthOrLieSubmitBox">
@@ -76,9 +76,10 @@
 <br>
             <button class="btn" id="input-submit">Submit</button>
     </div>
-        <div id="hide-play-button">
+        <span id="usersList"></span>
+        <!-- <div id="hide-play-button">
             <a href="twoTruthsGame.html" class="play-game-button"><span>Play the Game!</span></a>
-        </div>
+        </div> -->
     </div>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
