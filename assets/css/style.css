@@ -386,3 +386,15 @@ footer {
 .selection-radios {
     margin-right: 15px;
 }
+
+.player-plate {
+    background-color: gray;
+        width: 150px;
+        height: 150px;;
+    text-align: center;
+    float: right;
+    margin-right: 30px;
+    margin-top: 25px;
+    vertical-align: middle;
+    text-align: center;
+}

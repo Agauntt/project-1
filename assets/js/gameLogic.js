@@ -137,6 +137,7 @@ var firstRandom;
 var secondRandom;
 var thirdRandom;
 var card = $(".play-area");
+$(".player-plate").hide();
 
 function loadGame() {
 firstRandom = userDataSet.first;
@@ -160,5 +161,6 @@ $(".begin-game").hide();
 
 $(".begin-game").click(function(){
     loadGame();
+    $(".player-plate").show();
 
 });
