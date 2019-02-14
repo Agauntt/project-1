@@ -505,3 +505,12 @@ footer {
     font-size: 25px;
     border-radius: 8px;
 }
+#playAgainBtn{
+    position: relative;
+    bottom:90%;
+    left:45%;
+}
+.resultDiv{
+    justify-self: center;
+    align-content: center;
+}

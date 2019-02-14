@@ -50,14 +50,20 @@
                 </header>
     <br>
         <div class="truth-lie-instructions">
-            <h3 class="text-center">Lets Play!</h3>
+            <h3 class="text-center" id="letsPlay">Lets Play!</h3>
         <br>
-            <h4 class="text-center">Two of the statements below are true, while one is false. Using the buttons to the right of the statements, select the statement you believe is false.</h4>
+            <h4 class="text-center" id="true-lie-Ins">Two of the statements below are true, while one is false. Using the buttons to the right of the statements, select the statement you believe is false.</h4>
         </div>
+       
     <br>
     <div class="play-area" id="truthOrLieGameBox">
         <button class="btn begin-game">PLAY!!</button>
 
+    </div>
+    <div class="resultDiv">
+        <label class="col-12 text-center display-3 font-weight-normal" id="gameResults"></label><br>
+        <label class="col-12 text-center display-4 " id="true-lie-Result"></label><br><br><br>
+        <button class="btn btn-primary" id="playAgainBtn">Play Again</button>
     </div>
     </div>
 
