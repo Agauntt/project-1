@@ -18,9 +18,12 @@ An online colloboration tool for corporate, educational, or any other organized 
 *	FontAwesome
 *	Google Fonts
 *	Particles.js
-*   Moment.js
+* Moment.jsq
+* cookie.min.js
+
 ## TEAM
 * T rent Davis
 * A aron Gauntt
-* C handi Patel
+* C handni Patel
 * T im Beirne  
+ 
