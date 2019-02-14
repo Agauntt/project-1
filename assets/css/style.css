@@ -159,6 +159,7 @@ span#showGroupLongDesc {
 }
 .card-text {
     margin-top: 20px;
+    min-height: 100px;
 }
 .card-deactive {
     opacity: .5;
@@ -259,6 +260,7 @@ a.dropdown-item {
     border-bottom-left-radius: .25rem;
     border-top-right-radius: .25rem;
     border-bottom-right-radius: .25rem;
+    min-height: 400px;
 }
 .result-nav-link {
     color: #573e8a;
@@ -357,6 +359,7 @@ a.dropdown-item {
 /* end spinning circle CSS */
 
 /* begin yelp api results css */
+
 .yelp-image {
     width: 90px;
     height: 90px;

@@ -168,7 +168,7 @@ $(document).ready(function () {
                 html += "<p class='card-text'>" + dv.activity_desc + "</p>";
                 html += "<button data-group-id='" + dataGroupID + "' data-activity-id='" + dv.activity_id + "'";
                 html += "data-activity-name='" + data.key + "' data-activity-desc='" + dv.activity_desc + "'";
-                html += "id='addThisActivity' class='btn btn-success activity-btn'>Add to  Group</button>";
+                html += "id='addThisActivity' class='btn btn-theme activity-btn'>Add to  Group</button>";
                 html += "</div></div></div>";
                 $("#addActivityRow").append(html);
 
@@ -236,16 +236,17 @@ $(document).ready(function () {
             });
 
             db.ref('groups').orderByChild('group_id').equalTo(groupId).once("value", function (snap) {
-                snap.forEach(function(groupSnap){
+                snap.forEach(function(groupSnap){      
+                   var groupName = groupSnap.key;        
                     var obj = groupSnap.val().activities;
                     var result = Object.keys(obj).map(function(key) {
                     return [Number(key), obj[key]];
                     });
                     for(i=0; i<result.length; i++){
-                        groupActivites.push(result[i][1].activity_id);
+                        groupActivites.push(result[i][1].activity_id);                       
                        
                     }
-                    printUserGroupActivities(groupActivites);
+                    printUserGroupActivities(groupActivites, groupName);
               
                 });
              });
@@ -253,11 +254,10 @@ $(document).ready(function () {
              $("#userActivitySelect").show();
 
     });
-    function printUserGroupActivities(groupActivites){
-        console.log(groupActivites);
+    function printUserGroupActivities(groupActivites, groupName){        
         var html = "";
         for(i=0; i<groupActivites.length;i++){
-            
+            var activityID = groupActivites[i];
             db.ref('activities').orderByChild('activity_id').equalTo(groupActivites[i]).once("child_added", function (snap) {
             html += "<div class='card-body user-activity-card-body mt-3'>";
             html += "<div class='card border-dark mb-3'>";
@@ -265,9 +265,9 @@ $(document).ready(function () {
             html += "<div class='card-body user-activity-card-body'>";
             html += "<p>" + snap.val().activity_desc + "</p>";
             if(snap.val().activity_url == "index.html"){
-                html += "<a id='startThisActivityID' href='" + snap.val().activity_url + "' class='btn btn-theme activity-btn disabled'>Start</a>";
+                html += "<a data-group-name='" + groupName + "' id='" + activityID + "' href='" + snap.val().activity_url + "' class='startThisActivity btn btn-theme activity-btn disabled'>Start</a>";
             } else {
-                html += "<a id='startThisActivityID' href='" + snap.val().activity_url + "' class='btn btn-theme activity-btn'>Start</a>";
+                html += "<a data-group-name='" + groupName + "' id='" + activityID + "' href='" + snap.val().activity_url + "' class='startThisActivity btn btn-theme activity-btn'>Start</a>";
             }           
             html += "</div></div></div>";   
             $("#myGroupActivities").empty();     
@@ -276,8 +276,27 @@ $(document).ready(function () {
         }        
     }
     //Add User specific true/Lies
-    $(document).on("click", "#startThisActivity", function () {
-        // 
+    $(document).on("click", ".startThisActivity", function () {
+      var groupName = $(this).attr("data-group-name");
+      var activityID = $(this).attr("id");
+      var resultKey;  
+      db.ref('groups/' + groupName).child('group_id').on("value", function(snap){
+          var groupID = snap.val();
+          db.ref('results').orderByChild('group_id').equalTo(groupID).on("value", function(resultSnap){
+            resultSnap.forEach(function(activitySnap){
+                if(activitySnap.val().activity_id === activityID) {
+                    resultKey = activitySnap.key;
+                }
+            }); 
+          });
+      });
+      setTimeout(function(){ 
+        db.ref('results/' + resultKey + "/users").transaction(function(userCount) {
+            return userCount + 1;
+          });
+          db.ref('results/' + resultKey).update({status: "in progress"});
+       }, 2000);
+
     });
 
     // function to obtain the newly created activity push key and insert it into the 'results' table for relational purposes
@@ -291,7 +310,7 @@ $(document).ready(function () {
                             group_id: groupID,
                             activity_id: activityID,
                             activity_key: activitySnapshot.key,
-                            users: "0",
+                            users: 1,
                             status: "pending",
                             created: firebase.database.ServerValue.TIMESTAMP
                         });
@@ -302,6 +321,7 @@ $(document).ready(function () {
     }
     // print results page to HTML
     function printResultsToHTML(groupID) {
+        var rkey1 = "team-building", rkey2 = "bars", rkey3 ="restaurants";
         $(".result-nav-link").empty();
         $("#resultTab").empty();
         $(".result-nav-link").removeClass("active");
@@ -327,7 +347,12 @@ $(document).ready(function () {
                 var resultKeywords = cv.result_keywords;
                 html += "<div id='" + yelpApiDivId + "' class='col-6'>";
                 html += "<div class='mt-5'><div class='outerCircle'></div><div class='innerCircle'></div><div class='icon'></div></div>"; 
-                getYelpApiResults(yelpApiDivId, [resultKeywords.r1, resultKeywords.r2, resultKeywords.r3]);
+                if(resultKeywords) {
+                    rkey1 = resultKeywords.r1;
+                    rkey2 = resultKeywords.r2;
+                    rkey3 = resultKeywords.r3;
+                }
+                getYelpApiResults(yelpApiDivId, [rkey1, rkey2, rkey3]);
                 // html += "<h3>Suggested Venues</h3><img src='assets/images/resultDemo.jpg' width='500' />";        
                 html += "</div></div></div>";
                 $("#resultTabContent").append(html);
