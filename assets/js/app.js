@@ -265,9 +265,9 @@ $(document).ready(function () {
             html += "<div class='card-body user-activity-card-body'>";
             html += "<p>" + snap.val().activity_desc + "</p>";
             if(snap.val().activity_url == "index.html"){
-                html += "<a data-group-name='" + groupName + "' id='" + activityID + "' href='" + snap.val().activity_url + "' class='startThisActivity btn btn-theme activity-btn disabled'>Start</a>";
+                html += "<button data-group-name='" + groupName + "' id='" + activityID + "' data-activity-url='" + snap.val().activity_url + "' class='startThisActivity btn btn-theme activity-btn disabled'>Start</button>";
             } else {
-                html += "<a data-group-name='" + groupName + "' id='" + activityID + "' href='" + snap.val().activity_url + "' class='startThisActivity btn btn-theme activity-btn'>Start</a>";
+                html += "<button data-group-name='" + groupName + "' id='" + activityID + "'  data-activity-url='" + snap.val().activity_url + "' class='startThisActivity btn btn-theme activity-btn'>Start</button>";
             }           
             html += "</div></div></div>";   
             $("#myGroupActivities").empty();     
@@ -277,8 +277,11 @@ $(document).ready(function () {
     }
     //Add User specific true/Lies
     $(document).on("click", ".startThisActivity", function () {
+      $("#myGroupActivities").empty();
+      $("#myGroupActivities").html("<div class='mt-5'><div class='outerCircle'></div><div class='innerCircle'></div><div class='icon'></div></div>");  
       var groupName = $(this).attr("data-group-name");
       var activityID = $(this).attr("id");
+      var activityURL = $(this).attr("data-activity-url");
       var resultKey;  
       db.ref('groups/' + groupName).child('group_id').on("value", function(snap){
           var groupID = snap.val();
@@ -295,7 +298,9 @@ $(document).ready(function () {
             return userCount + 1;
           });
           db.ref('results/' + resultKey).update({status: "in progress"});
-       }, 2000);
+          window.location.href = activityURL;
+       }, 1000);
+       
 
     });
 
