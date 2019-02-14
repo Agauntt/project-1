@@ -46,6 +46,66 @@
                             </div>
                         </div>
                 </header>
+<!----------------------------------------------- Modal for lie selection error ---------------------------->
+<div class="modal fade" id="selectionError" tabindex="-1" role="dialog" aria-labelledby="selectionErrorLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="selectionErrorLabel">Error</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            Please select which statement is a lie, by checking one of the buttons to the left of the statements.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!---------------------------------------------- End of Error Modal --------------------------------------->
+<!----------------------------------------------- Modal for Victory ---------------------------->
+<div class="modal fade" id="victory-modal" tabindex="-1" role="dialog" aria-labelledby="victory-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="victory-label">Congrats!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            Congratulations! You win!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!---------------------------------------------- End of Victory Modal --------------------------------------->
+<!----------------------------------------------- Modal for lose ---------------------------->
+<div class="modal fade" id="lose-modal" tabindex="-1" role="dialog" aria-labelledby="lose-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="lose-label">Error</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           You answered incorrectly. Sad Day.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!---------------------------------------------- End of lose Modal --------------------------------------->
     <br>
         <div class="truth-lie-instructions">
             <h3 class="text-center">Lets Play!</h3>
@@ -56,9 +116,9 @@
     <div class="play-area" id="truthOrLieGameBox">
         <button class="btn begin-game">PLAY!!</button>
          
-        <div class="player-plate">
+        <!-- <div class="player-plate">
                 Player info here
-        </div>
+        </div> -->
     </div>
     </div>
 

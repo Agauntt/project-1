@@ -5,48 +5,28 @@ var selection3 = "";
 var lie = "";
 var userDataSet;
 
-function initModals(){
-    $("#selectionError").hide();
-};
-initModals();
-
 var optionsarr1 = [
     "I am a vegetarian",
-    "I am a vegan",
-    "I have never been outside the US",
     "I like to go camping",
-    "I enjoy anime",
     "I prefer movies over TV",
     "I like to play video games",
-    "My favorite color is blue",
-    "I like to build computers",
     "I enjoy running"
 ];
 
 var optionsarr2 = [
     "I have been skydiving",
-    "I live on my own",
-    "I know how to drive a manual transmission",
-    "I enjoy lifting weights",
-    "I was born outside the US",
     "I like to go hunting",
-    "I play World of Warcraft",
     "I like to go to bars",
     "I have never had an alcoholic drink",
     "I enjoy hiking"
 ];
 
 var optionsarr3 = [
-    "I enjoy Javascript more than HTML",
-    "I am more interested in front-end design than backend",
-    "I prefer writing notes over typing them",
-    "I can do my own vehicle maintanence",
+    "I like to golf",
     "I have a fear of water",
-    "I wear glasses/contacts",
     "I prefer Marvel over DC",
     "I dislike horror movies",
-    "I know how to ride a motorcycle",
-    "I speak more than one language"
+    "I know how to ride a motorcycle"
 ];
 
 
@@ -55,11 +35,11 @@ function populateDropdown(){
         a = $("<option value='" + optionsarr1[i] + "'>" + optionsarr1[i] + "</option>");
         $("#option1").append(a);
      }
-    for (i = 0; i < optionsarr2.length; i++) {
+    for (i = 0; i < optionsarr1.length; i++) {
         b = $("<option value='" + optionsarr2[i] + "'>" + optionsarr2[i] + "</option>");
         $("#option2").append(b);
     }
-    for (i = 0; i < optionsarr3.length; i++) {
+    for (i = 0; i < optionsarr1.length; i++) {
         c = $("<option value='" + optionsarr3[i] + "'>" + optionsarr3[i] + "</option>");
         $("#option3").append(c);
     }
@@ -120,7 +100,7 @@ $("#input-submit").click(function(){
 
     compileResults();
     if (lie == ""){
-        $("#selectionError").modal("show");
+       $("#selectionError").modal("show");
         return;
     }
     $("#input-submit").hide();
@@ -137,30 +117,47 @@ var firstRandom;
 var secondRandom;
 var thirdRandom;
 var card = $(".play-area");
-$(".player-plate").hide();
-
-function loadGame() {
+var answer;
 firstRandom = userDataSet.first;
 secondRandom = userDataSet.second;
 thirdRandom = userDataSet.third;
+
+function loadGame() {
 $("#random1").text(firstRandom);
 $("#random2").text(secondRandom);
 $("#random3").text(thirdRandom);
-console.log(firstRandom);
-console.log(secondRandom);
-console.log(thirdRandom);
-console.log(lie);
+// console.log(firstRandom);
+// console.log(secondRandom);
+// console.log(thirdRandom);
+// console.log(lie);
 
 $(".begin-game").hide();
 
-    card.append("<label><input type='radio' class='selection-radios' name='game-select' value='" + firstRandom + "'>" + firstRandom + "</label><br>");
-    card.append("<label><input type='radio' class='selection-radios' name='game-select' value='" + secondRandom + "'>" + secondRandom + "</label><br>");
-    card.append("<label><input type='radio' class='selection-radios' name='game-select' value='" + thirdRandom + "'>" + thirdRandom + "</label><br><br>");
-    card.append("<button type='submit' class='btn btn-primary' id='end-game'>Make Selection</button>");
+    card.append("<labe><input type='radio' id='game-radio' name='game-select' value='" + firstRandom + "'>" + firstRandom + "</label><br>");
+    card.append("<labe><input type='radio' name='game-select' value='" + secondRandom + "'>" + secondRandom + "</label><br>");
+    card.append("<labe><input type='radio' name='game-select' value='" + thirdRandom + "'>" + thirdRandom + "</label><br><br>");
+    card.append("<button class='btn twoTruthsBtn end-game'>Submit</button>");
+    $(".end-game").click(function(){
+        successChecker();
+    });
+};
+
+function successChecker(){
+    answer = $("input[name = game-select]:checked").val();
+    lie = firstRandom;
+    if (lie == ""){
+        $("#selectionError").modal("show");
+             return;
+    } else if (answer == lie){
+        $("#victory-modal").modal("show");
+    } else {
+        $("#lose-modal").modal("show");
+    }
+    console.log(answer);
 };
 
 $(".begin-game").click(function(){
     loadGame();
-    $(".player-plate").show();
-
+    console.log(lie);
 });
+
