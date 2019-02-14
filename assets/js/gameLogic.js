@@ -108,6 +108,9 @@ function compileResults() {
 
 // Function will execute if the user is joining any group for the first time
 function firstTimeUser(){
+    $("#playAgainBtn").hide();
+    $(".resultDiv").hide();
+
     populateDropdown();
     setUsersFromCookies();
     console.log("in Game logic");
@@ -133,7 +136,9 @@ function firstTimeUser(){
 
 // This function will load the game for selected user
 function loadGame() {
-    
+
+    $("#playAgainBtn").hide();
+    $(".resultDiv").hide();
     selectedUser=  localStorage.getItem("selectedUser");
     console.log(selectedUser)
     db.ref('groupUsers/'+selectedUser+'/True-and-Lie').on("value", function (snap) {
@@ -226,7 +231,11 @@ var getUsers=function(){
             getUsers();
             $("#truthOrLieSubmitBox").hide();
             $("#gameIns").hide();
+            $(".truth-lie-instructions").show();
             $("#gameHeading").text("Select any users to Play !!");
+            $("#playAgainBtn").hide();
+            $(".resultDiv").hide();
+          
            
         });});   
         console.log('out'); 
@@ -248,8 +257,12 @@ var getUsers=function(){
             $("#input-submit").hide();
             getUsers();
             $("#truthOrLieSubmitBox").hide();
+            $(".truth-lie-instructions").show();
             $("#gameIns").hide();
             $("#gameHeading").text("Select any users to Play !!");
+            $("#playAgainBtn").hide();
+            $(".resultDiv").hide();
+         
 
         }
         else{
@@ -270,8 +283,12 @@ var getUsers=function(){
         $("#input-submit").hide();
         getUsers();
         $("#truthOrLieSubmitBox").hide();
+        $(".truth-lie-instructions").show();
         $("#gameIns").hide();
         $("#gameHeading").text("Select any users to Play !!");
+        $("#playAgainBtn").hide();
+        $(".resultDiv").hide();
+     
               
          
             db.ref('groupUsers').child(user.userKey).child('True-and-Lie' ).set(userDataSet)
@@ -319,9 +336,37 @@ var getUsers=function(){
         }else if ($("#radio3").is(":checked")) {
             userAns = thirdRandom;
         }
+        $("#end-game").hide();
+        
+        $("#truthOrLieGameBox").hide();
+        $(".truth-lie-instructions").hide();
+        $("#gameIns").hide();
+        $("#gameResults").text("Results");
+        $(".resultDiv").show();
+        $("#playAgainBtn").show();
         if (userAns === lie)
         {
             console.log("Correct !!")
+            $("#true-lie-Result").text("You are Correct !!");
+            
+        }
+         else
+        {
+            console.log("InCorrect !!")
+            $("#true-lie-Result").text("Sorry !! Your answer is Incorrect!!");
         }
     });
 
+    //Play Again button click to restart the game
+    $("#playAgainBtn").on("click", function(){
+        window.location.replace( "../project-1/submitScreen.html");
+        $("#input-submit").hide();
+        getUsers();
+        $("#truthOrLieSubmitBox").hide();
+        $(".truth-lie-instructions").show();
+        $("#gameIns").hide();
+        $("#gameHeading").text("Select any users to Play !!");
+        $("#playAgainBtn").hide();
+        $(".resultDiv").hide();
+       
+    });
