@@ -274,7 +274,6 @@ var getUsers=function(){
    
     //eventlistener for input submit button for personal trues and lie screen
     $("#input-submit").click(function(){ 
-        alert("submit click");
         compileResults();
         if (lie == ""){
             alert("Please indicated which statement is a lie");
@@ -309,7 +308,6 @@ var getUsers=function(){
     // on click event to select user to play will redirect to twoTruthsGame
     $(document).on("click",".userPic",function(e){
     
-        // alert($(this).attr("data-image-id"));
         console.log("image click");
         selectedUser = $(this).attr("data-image-id");
         console.log(selectedUser);
