@@ -229,7 +229,11 @@ $(document).ready(function () {
         //var datapath = "groupUsers/" + user.displayName + "/groupId";
 
         db.ref(datapath).set(groupId)
-            .then(function () {
+            .then(function (snap) {
+                console.log("Success!");
+                $("#userGroupSelect").hide();
+                $("#userActivitySelect").show();
+                Cookies.set("userStatus","groupSelected");
                 //window.location.href=""
             }, function (err) {
                 console.log(err + " error");
@@ -451,6 +455,8 @@ $(document).ready(function () {
         console.log("Logout");
         firebase.auth().signOut();
         Cookies.remove('userDetail');
+        Cookies.remove("userStatus");
+        localStorage.removeItem("selectedUser");
         $("#userLogin").show();
 
         window.location.replace("../project-1/index.html");
@@ -459,7 +465,9 @@ $(document).ready(function () {
 
     // test user/admin redirect
     $("#adminAsUser").on("click", function () {
+
         window.location.href = "index.html";
+        userFlow();
     });
     $("#adminAsAdmin").on("click", function () {
         window.location.href = "admin.html";

@@ -108,6 +108,7 @@ return true;
 var addGroupUser=function(){
     if (setUsersFromCookies())
     {
+
      var myRef = db.ref().push();
      var key = myRef.key;
      
@@ -122,7 +123,30 @@ var addGroupUser=function(){
       photoUrl:user.photoUrl,
      userAuthId: userKey
     }
-    db.ref('groupUsers').child(userKey).set(userData)
+    Cookies.set("userStatus","")
+    //Return if user is already added in Firebase
+    var query = db.ref('groupUsers/'+ user.userKey );
+    console.log("query", query)
+
+     query.once('value',function(snapshot) {
+      
+       console.log(snapshot.t)
+       snapshot.forEach(function (child) { 
+         //+'/True-and-Lie'     
+         if (child.key=='groupId')
+          Cookies.set("userStatus","groupSelected");
+                 
+       });
+       snapshot
+      .child('True-and-Lie')
+      .forEach(function (TrueandLieSnap) {
+         Cookies.set("userStatus","trueAndLiesSelected")
+      });
+       
+      authNav(true);
+       });   
+      
+    db.ref('groupUsers').child(userKey).update(userData)
          .then(function (snap) {
              console.log("Success!");
          }, function (err) {

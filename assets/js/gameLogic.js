@@ -53,32 +53,8 @@ var card = $(".play-area");
 var divId='';
 var selectedUser = "";
 var options = [];
-var userExist = "false";
+var userExist = false;
 
-
-// Function to check if the user is joining any group for the first time
-function firstTimeUser(){
-    populateDropdown();
-    setUsersFromCookies();
-    console.log("in Game logic");
-
-    $("#option1").change(function(){
-        selection1 = this.value;
-        // console.log(this.value);
-    })
-    
-    $("#option2").change(function(){
-        selection2 = this.value;
-        // console.log(this.value);
-    })
-    
-    $("#option3").change(function(){
-        selection3 = this.value;
-        // console.log(this.value);
-    })
-
-    compileResults();
-}
 
 //Function to populate dropdown for user personal trues and lie
 function populateDropdown(){
@@ -129,6 +105,30 @@ function compileResults() {
     };
 
 };
+
+// Function will execute if the user is joining any group for the first time
+function firstTimeUser(){
+    populateDropdown();
+    setUsersFromCookies();
+    console.log("in Game logic");
+
+    $("#option1").change(function(){
+        selection1 = this.value;
+        // console.log(this.value);
+    })
+    
+    $("#option2").change(function(){
+        selection2 = this.value;
+        // console.log(this.value);
+    })
+    
+    $("#option3").change(function(){
+        selection3 = this.value;
+        // console.log(this.value);
+    })
+
+    compileResults();
+}
 
 
 // This function will load the game for selected user
@@ -210,56 +210,58 @@ var getUsers=function(){
  
   }
   //check if the user exist for verifying first time user
-  function isUserExist(){
-
+  function hasUserSetTrueLies(){
     setUsersFromCookies();
-    db.ref('groupUsers').on("value", function(snap) { 
+   var UserSetTrueLies =false;
+   console.log("userkey",user.userKey);
+     var query = db.ref('groupUsers/'+ user.userKey +'/True-and-Lie');
+     console.log("query", query)
 
-    var i=0;
-    $("#usersList").empty();    
-    snap.forEach(function(child) {
-    var name = child.key;
-    var cv = child.val();
-        
-    if (name === user.userKey)
-       {     
-        // *************************************
-        // THIS PART IS NOT WORKING PROPERLY
-        //**************************************
-        //if (child.key.hasChild("True-and-Lie")) {
-        if (child("True-and-Lie").exists()){  
-            userExist = "true";
-           }
-       }
-    i++;
-    });
-     
-   }); 
+     query.once('value',function(snapshot) {
+        snapshot.forEach(function (child) { 
+          //+'/True-and-Lie'     
+            UserSetTrueLies=true;
+            console.log("HasUserSetTrueLies  IN")
+            $("#input-submit").hide();
+            getUsers();
+            $("#truthOrLieSubmitBox").hide();
+            $("#gameIns").hide();
+            $("#gameHeading").text("Select any users to Play !!");
+           
+        });});   
+        console.log('out'); 
+    return UserSetTrueLies;
 }
 //*********************
 //Main Processing Area
 //*********************
-    isUserExist();
-
+  
+   // var userExist= isUserExist();
+    //console.log("userExist1", userExist);
     //if user exist navigate to the select users to play screen
-    if (userExist){
-        $("#input-submit").hide();
-        getUsers();
-        $("#truthOrLieSubmitBox").hide();
-        $("#gameIns").hide();
-        $("#gameHeading").text("Select any users to Play !!");
+    function startSubmitScreen(){
+        var hasUserset= Cookies.get('userStatus');
+        console.log("user status1:",hasUserset);
+        if (hasUserset=='trueAndLiesSelected')
+        {
+            console.log("HasUserSetTrueLies  IN")
+            $("#input-submit").hide();
+            getUsers();
+            $("#truthOrLieSubmitBox").hide();
+            $("#gameIns").hide();
+            $("#gameHeading").text("Select any users to Play !!");
+
+        }
+        else{
+            firstTimeUser();
+        }
     }
-    //else will create a personal trues and lie by user
-    else
-    {
-        firstTimeUser(); 
-        userExist = "true";
-        loadGame();
-    }
+    
+ 
    
     //eventlistener for input submit button for personal trues and lie screen
     $("#input-submit").click(function(){ 
-
+        alert("submit click");
         compileResults();
         if (lie == ""){
             alert("Please indicated which statement is a lie");
@@ -270,17 +272,19 @@ var getUsers=function(){
         $("#truthOrLieSubmitBox").hide();
         $("#gameIns").hide();
         $("#gameHeading").text("Select any users to Play !!");
-     
-        console.log(userDataSet);
-     
-        console.log("user.userKe",user.userKey);
-        db.ref('groupUsers').child(user.userKey).child('True-and-Lie' ).set(userDataSet)
+              
+         
+            db.ref('groupUsers').child(user.userKey).child('True-and-Lie' ).set(userDataSet)
          .then(function (snap) {
              console.log("Success!");
+             Cookies.set("userStatus","trueAndLiesSelected");
          }, function (err) {
              console.log(err + " error");
          });
     
+        
+        
+        
    
     });
 
@@ -288,13 +292,14 @@ var getUsers=function(){
     // on click event to select user to play will redirect to twoTruthsGame
     $(document).on("click",".userPic",function(e){
     
-        alert($(this).attr("data-image-id"));
+        // alert($(this).attr("data-image-id"));
         console.log("image click");
         selectedUser = $(this).attr("data-image-id");
         console.log(selectedUser);
         localStorage.setItem("selectedUser", selectedUser);
 
         window.location.replace( "../project-1/twoTruthsGame.html");
+        loadGame();
         
 
     });
