@@ -222,21 +222,59 @@ $(document).ready(function () {
     // Group selection 
     $(document).on("click", ".user-group", function () {
         var groupId = $(this).attr("data-group-id");
+        var groupActivites = [];
         //setUsersFromCookies();
         setUsersFromCookies();
         var datapath = "groupUsers/" + user.userKey + "/groupId";
         //var datapath = "groupUsers/" + user.displayName + "/groupId";
 
         db.ref(datapath).set(groupId)
-            .then(function (snap) {
-                console.log("Success!");
-                $("#userGroupSelect").hide();
-                $("#userActivitySelect").show();
+            .then(function () {
                 //window.location.href=""
             }, function (err) {
                 console.log(err + " error");
             });
+
+            db.ref('groups').orderByChild('group_id').equalTo(groupId).once("value", function (snap) {
+                snap.forEach(function(groupSnap){
+                    var obj = groupSnap.val().activities;
+                    var result = Object.keys(obj).map(function(key) {
+                    return [Number(key), obj[key]];
+                    });
+                    for(i=0; i<result.length; i++){
+                        groupActivites.push(result[i][1].activity_id);
+                       
+                    }
+                    printUserGroupActivities(groupActivites);
+              
+                });
+             });
+             $("#userGroupSelect").hide();
+             $("#userActivitySelect").show();
+
     });
+    function printUserGroupActivities(groupActivites){
+        console.log(groupActivites);
+        var html = "";
+        for(i=0; i<groupActivites.length;i++){
+            
+            db.ref('activities').orderByChild('activity_id').equalTo(groupActivites[i]).once("child_added", function (snap) {
+            html += "<div class='card-body user-activity-card-body mt-3'>";
+            html += "<div class='card border-dark mb-3'>";
+            html += "<div class='card-header'>" + snap.key + "</div>";
+            html += "<div class='card-body user-activity-card-body'>";
+            html += "<p>" + snap.val().activity_desc + "</p>";
+            if(snap.val().activity_url == "index.html"){
+                html += "<a id='startThisActivityID' href='" + snap.val().activity_url + "' class='btn btn-theme activity-btn disabled'>Start</a>";
+            } else {
+                html += "<a id='startThisActivityID' href='" + snap.val().activity_url + "' class='btn btn-theme activity-btn'>Start</a>";
+            }           
+            html += "</div></div></div>";   
+            $("#myGroupActivities").empty();     
+            $("#myGroupActivities").prepend(html);        
+            });
+        }        
+    }
     //Add User specific true/Lies
     $(document).on("click", "#startThisActivity", function () {
         // 
@@ -377,7 +415,7 @@ $(document).ready(function () {
         
         
     }
-
+   
     // Logout functionality
     $(document).on("click", "#logOutLink", function () {
         console.log("Logout");

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +19,7 @@
     <script src="assets/js/firebase.js"></script>
     <script src="assets/js/firebaseDb.js"></script>
 </head>
+
 <body>
     <div id="particles-js"></div>
     <div class="page-container">
@@ -73,7 +75,11 @@
                                 <h4>My Groups</h4>
                             </div>
                             <div id="myUserGroups" class="card-body">
-
+                                <div class="mt-5">
+                                    <div class="outerCircle"></div>
+                                    <div class="innerCircle"></div>
+                                    <div class="icon"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -86,29 +92,13 @@
                             <div class="card-header">
                                 <h4>My Activities</h4>
                             </div>
-                            <div class="card-body user-activity-card-body mt-3">
-                                <div class="card border-dark mb-3 ">
-                                    <div class="card-header">2 Truths & A Lie</div>
-                                    <div class="card-body user-activity-card-body ">
-                                        <p>Classic game of two truths & a lie. Provides admin user report
-                                            for recommended team building venues.</p>
-                                        <a id="startThisActivity" href="submitScreen.html"
-                                            class="btn btn-success activity-btn">Start</a>
-                                    </div>
+                            <div id="myGroupActivities">
+                                <div class="mt-5">
+                                    <div class="outerCircle"></div>
+                                    <div class="innerCircle"></div>
+                                    <div class="icon"></div>
                                 </div>
-                            </div>
-                            <div class="card-body user-activity-card-body card-deactive">
-                                <div class="card border-dark mb-3 ">
-                                    <div class="card-header">Completed Activity</div>
-                                    <div class="card-body user-activity-card-body ">
-                                        <p>Some quick example text to build on the card title and make up
-                                            the
-                                            bulk of the card's content.</p>
-                                        <button id="startThisActivity"
-                                            class="btn btn-secondary activity-btn">Start</button>
-                                    </div>
-                                </div>
-                            </div>
+                            </div> <!-- end myGroupActivities -->
                         </div>
                     </div>
                 </div>
@@ -125,13 +115,13 @@
         </div>
     </footer>
     <!-- begin js files -->
-    
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <!-- <script src="assets/js/auth.js"></script> -->
+    <script src="assets/js/auth.js"></script>
     <script src="assets/js/app.js"></script>
-     
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
