@@ -276,7 +276,7 @@ var getUsers=function(){
     $("#input-submit").click(function(){ 
         compileResults();
         if (lie == ""){
-            alert("Please indicated which statement is a lie");
+           $("#selectionError").modal("show");
             return;
         }
         $("#input-submit").hide();
