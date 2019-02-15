@@ -1,7 +1,7 @@
 
 var signIn = "";
 var signInSuccess = "";
-var adminsArr = ["trentdavisinc@gmail.com", "chandnibpatel@gmail.com", "gauntta@gmail.com"];
+var adminsArr = ["trentdavisinc@gmail.com", "chandnibpatel@gmail.com", "gauntta@gmail.com","richardfornario@gmail.com"];
 
 $(document).ready(function () {
   //Check url 
